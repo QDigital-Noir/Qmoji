@@ -28,6 +28,8 @@
     self.qmojiKeyboard = [[[NSBundle mainBundle] loadNibNamed:@"QmojiKeyboard" owner:nil options:nil] objectAtIndex:0];
     self.inputView = self.qmojiKeyboard;
     
+    [self addGuestureToKeyboard];
+    
     for (NSString* family in [UIFont familyNames])
     {
         NSLog(@"%@", family);
@@ -57,6 +59,27 @@
     } else {
         textColor = [UIColor blackColor];
     }
+}
+
+#pragma mark - Qmoji Keyboard
+- (void)addGuestureToKeyboard
+{
+    [self.qmojiKeyboard.deleteButton addTarget:self
+                                        action:@selector(pressDeleteKey)
+                              forControlEvents:UIControlEventTouchUpInside];
+    [self.qmojiKeyboard.globalButton addTarget:self
+                                        action:@selector(advanceToNextInputMode)
+                              forControlEvents:UIControlEventTouchUpInside];
+    
+//    for (UIButton *key in self.keyCommands)
+//    {
+//    
+//    }
+}
+
+- (void)pressDeleteKey
+{
+    [self.textDocumentProxy deleteBackward];
 }
 
 @end
