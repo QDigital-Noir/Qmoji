@@ -1,0 +1,646 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		105E33B01AEA86FC005740F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E33AF1AEA86FC005740F9 /* main.m */; };
+		105E33B31AEA86FC005740F9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E33B21AEA86FC005740F9 /* AppDelegate.m */; };
+		105E33B61AEA86FC005740F9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E33B51AEA86FC005740F9 /* ViewController.m */; };
+		105E33B91AEA86FC005740F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 105E33B71AEA86FC005740F9 /* Main.storyboard */; };
+		105E33BB1AEA86FC005740F9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 105E33BA1AEA86FC005740F9 /* Images.xcassets */; };
+		105E33BE1AEA86FC005740F9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105E33BC1AEA86FC005740F9 /* LaunchScreen.xib */; };
+		105E33CA1AEA86FC005740F9 /* QmojiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E33C91AEA86FC005740F9 /* QmojiTests.m */; };
+		105E33DD1AEA876B005740F9 /* KeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E33DC1AEA876B005740F9 /* KeyboardViewController.m */; };
+		105E33E01AEA876B005740F9 /* QmojiKeyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 105E33D71AEA876B005740F9 /* QmojiKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		105E33E61AEA884C005740F9 /* QmojiKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105E33E51AEA884C005740F9 /* QmojiKeyboard.xib */; };
+		105E33E91AEA88C4005740F9 /* QmojiKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E33E81AEA88C4005740F9 /* QmojiKeyboard.m */; };
+		105E33F71AEA9893005740F9 /* JosefinSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33ED1AEA9893005740F9 /* JosefinSans-Bold.ttf */; };
+		105E33F81AEA9893005740F9 /* JosefinSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33ED1AEA9893005740F9 /* JosefinSans-Bold.ttf */; };
+		105E33F91AEA9893005740F9 /* JosefinSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33EE1AEA9893005740F9 /* JosefinSans-BoldItalic.ttf */; };
+		105E33FA1AEA9893005740F9 /* JosefinSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33EE1AEA9893005740F9 /* JosefinSans-BoldItalic.ttf */; };
+		105E33FB1AEA9893005740F9 /* JosefinSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33EF1AEA9893005740F9 /* JosefinSans-Italic.ttf */; };
+		105E33FC1AEA9893005740F9 /* JosefinSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33EF1AEA9893005740F9 /* JosefinSans-Italic.ttf */; };
+		105E33FD1AEA9893005740F9 /* JosefinSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F01AEA9893005740F9 /* JosefinSans-Light.ttf */; };
+		105E33FE1AEA9893005740F9 /* JosefinSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F01AEA9893005740F9 /* JosefinSans-Light.ttf */; };
+		105E33FF1AEA9893005740F9 /* JosefinSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F11AEA9893005740F9 /* JosefinSans-LightItalic.ttf */; };
+		105E34001AEA9893005740F9 /* JosefinSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F11AEA9893005740F9 /* JosefinSans-LightItalic.ttf */; };
+		105E34011AEA9893005740F9 /* JosefinSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F21AEA9893005740F9 /* JosefinSans-Regular.ttf */; };
+		105E34021AEA9893005740F9 /* JosefinSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F21AEA9893005740F9 /* JosefinSans-Regular.ttf */; };
+		105E34031AEA9893005740F9 /* JosefinSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F31AEA9893005740F9 /* JosefinSans-SemiBold.ttf */; };
+		105E34041AEA9893005740F9 /* JosefinSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F31AEA9893005740F9 /* JosefinSans-SemiBold.ttf */; };
+		105E34051AEA9893005740F9 /* JosefinSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F41AEA9893005740F9 /* JosefinSans-SemiBoldItalic.ttf */; };
+		105E34061AEA9893005740F9 /* JosefinSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F41AEA9893005740F9 /* JosefinSans-SemiBoldItalic.ttf */; };
+		105E34071AEA9893005740F9 /* JosefinSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F51AEA9893005740F9 /* JosefinSans-Thin.ttf */; };
+		105E34081AEA9893005740F9 /* JosefinSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F51AEA9893005740F9 /* JosefinSans-Thin.ttf */; };
+		105E34091AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */; };
+		105E340A1AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		105E33C41AEA86FC005740F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 105E33A21AEA86FC005740F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 105E33A91AEA86FC005740F9;
+			remoteInfo = Qmoji;
+		};
+		105E33DE1AEA876B005740F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 105E33A21AEA86FC005740F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 105E33D61AEA876B005740F9;
+			remoteInfo = QmojiKeyboard;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		105E33E41AEA876B005740F9 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				105E33E01AEA876B005740F9 /* QmojiKeyboard.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		105E33AA1AEA86FC005740F9 /* Qmoji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qmoji.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		105E33AE1AEA86FC005740F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		105E33AF1AEA86FC005740F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		105E33B11AEA86FC005740F9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		105E33B21AEA86FC005740F9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		105E33B41AEA86FC005740F9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		105E33B51AEA86FC005740F9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		105E33B81AEA86FC005740F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		105E33BA1AEA86FC005740F9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		105E33BD1AEA86FC005740F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		105E33C31AEA86FC005740F9 /* QmojiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QmojiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		105E33C81AEA86FC005740F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		105E33C91AEA86FC005740F9 /* QmojiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QmojiTests.m; sourceTree = "<group>"; };
+		105E33D71AEA876B005740F9 /* QmojiKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QmojiKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		105E33DA1AEA876B005740F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		105E33DB1AEA876B005740F9 /* KeyboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardViewController.h; sourceTree = "<group>"; };
+		105E33DC1AEA876B005740F9 /* KeyboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardViewController.m; sourceTree = "<group>"; };
+		105E33E51AEA884C005740F9 /* QmojiKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QmojiKeyboard.xib; sourceTree = "<group>"; };
+		105E33E71AEA88C4005740F9 /* QmojiKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QmojiKeyboard.h; sourceTree = "<group>"; };
+		105E33E81AEA88C4005740F9 /* QmojiKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QmojiKeyboard.m; sourceTree = "<group>"; };
+		105E33ED1AEA9893005740F9 /* JosefinSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Bold.ttf"; sourceTree = "<group>"; };
+		105E33EE1AEA9893005740F9 /* JosefinSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		105E33EF1AEA9893005740F9 /* JosefinSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Italic.ttf"; sourceTree = "<group>"; };
+		105E33F01AEA9893005740F9 /* JosefinSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Light.ttf"; sourceTree = "<group>"; };
+		105E33F11AEA9893005740F9 /* JosefinSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		105E33F21AEA9893005740F9 /* JosefinSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Regular.ttf"; sourceTree = "<group>"; };
+		105E33F31AEA9893005740F9 /* JosefinSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		105E33F41AEA9893005740F9 /* JosefinSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		105E33F51AEA9893005740F9 /* JosefinSans-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Thin.ttf"; sourceTree = "<group>"; };
+		105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-ThinItalic.ttf"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		105E33A71AEA86FC005740F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		105E33C01AEA86FC005740F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		105E33D41AEA876B005740F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		105E33A11AEA86FC005740F9 = {
+			isa = PBXGroup;
+			children = (
+				105E33AC1AEA86FC005740F9 /* Qmoji */,
+				105E33C61AEA86FC005740F9 /* QmojiTests */,
+				105E33D81AEA876B005740F9 /* QmojiKeyboard */,
+				105E33AB1AEA86FC005740F9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		105E33AB1AEA86FC005740F9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				105E33AA1AEA86FC005740F9 /* Qmoji.app */,
+				105E33C31AEA86FC005740F9 /* QmojiTests.xctest */,
+				105E33D71AEA876B005740F9 /* QmojiKeyboard.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		105E33AC1AEA86FC005740F9 /* Qmoji */ = {
+			isa = PBXGroup;
+			children = (
+				105E33EB1AEA9824005740F9 /* Resources */,
+				105E33B11AEA86FC005740F9 /* AppDelegate.h */,
+				105E33B21AEA86FC005740F9 /* AppDelegate.m */,
+				105E33B41AEA86FC005740F9 /* ViewController.h */,
+				105E33B51AEA86FC005740F9 /* ViewController.m */,
+				105E33B71AEA86FC005740F9 /* Main.storyboard */,
+				105E33BA1AEA86FC005740F9 /* Images.xcassets */,
+				105E33BC1AEA86FC005740F9 /* LaunchScreen.xib */,
+				105E33AD1AEA86FC005740F9 /* Supporting Files */,
+			);
+			path = Qmoji;
+			sourceTree = "<group>";
+		};
+		105E33AD1AEA86FC005740F9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				105E33AE1AEA86FC005740F9 /* Info.plist */,
+				105E33AF1AEA86FC005740F9 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		105E33C61AEA86FC005740F9 /* QmojiTests */ = {
+			isa = PBXGroup;
+			children = (
+				105E33C91AEA86FC005740F9 /* QmojiTests.m */,
+				105E33C71AEA86FC005740F9 /* Supporting Files */,
+			);
+			path = QmojiTests;
+			sourceTree = "<group>";
+		};
+		105E33C71AEA86FC005740F9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				105E33C81AEA86FC005740F9 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		105E33D81AEA876B005740F9 /* QmojiKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				105E33DB1AEA876B005740F9 /* KeyboardViewController.h */,
+				105E33DC1AEA876B005740F9 /* KeyboardViewController.m */,
+				105E33D91AEA876B005740F9 /* Supporting Files */,
+				105E33E51AEA884C005740F9 /* QmojiKeyboard.xib */,
+				105E33E71AEA88C4005740F9 /* QmojiKeyboard.h */,
+				105E33E81AEA88C4005740F9 /* QmojiKeyboard.m */,
+			);
+			path = QmojiKeyboard;
+			sourceTree = "<group>";
+		};
+		105E33D91AEA876B005740F9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				105E33DA1AEA876B005740F9 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		105E33EB1AEA9824005740F9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				105E33EC1AEA983D005740F9 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		105E33EC1AEA983D005740F9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				105E33ED1AEA9893005740F9 /* JosefinSans-Bold.ttf */,
+				105E33EE1AEA9893005740F9 /* JosefinSans-BoldItalic.ttf */,
+				105E33EF1AEA9893005740F9 /* JosefinSans-Italic.ttf */,
+				105E33F01AEA9893005740F9 /* JosefinSans-Light.ttf */,
+				105E33F11AEA9893005740F9 /* JosefinSans-LightItalic.ttf */,
+				105E33F21AEA9893005740F9 /* JosefinSans-Regular.ttf */,
+				105E33F31AEA9893005740F9 /* JosefinSans-SemiBold.ttf */,
+				105E33F41AEA9893005740F9 /* JosefinSans-SemiBoldItalic.ttf */,
+				105E33F51AEA9893005740F9 /* JosefinSans-Thin.ttf */,
+				105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		105E33A91AEA86FC005740F9 /* Qmoji */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 105E33CD1AEA86FC005740F9 /* Build configuration list for PBXNativeTarget "Qmoji" */;
+			buildPhases = (
+				105E33A61AEA86FC005740F9 /* Sources */,
+				105E33A71AEA86FC005740F9 /* Frameworks */,
+				105E33A81AEA86FC005740F9 /* Resources */,
+				105E33E41AEA876B005740F9 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				105E33DF1AEA876B005740F9 /* PBXTargetDependency */,
+			);
+			name = Qmoji;
+			productName = Qmoji;
+			productReference = 105E33AA1AEA86FC005740F9 /* Qmoji.app */;
+			productType = "com.apple.product-type.application";
+		};
+		105E33C21AEA86FC005740F9 /* QmojiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 105E33D01AEA86FC005740F9 /* Build configuration list for PBXNativeTarget "QmojiTests" */;
+			buildPhases = (
+				105E33BF1AEA86FC005740F9 /* Sources */,
+				105E33C01AEA86FC005740F9 /* Frameworks */,
+				105E33C11AEA86FC005740F9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				105E33C51AEA86FC005740F9 /* PBXTargetDependency */,
+			);
+			name = QmojiTests;
+			productName = QmojiTests;
+			productReference = 105E33C31AEA86FC005740F9 /* QmojiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		105E33D61AEA876B005740F9 /* QmojiKeyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 105E33E11AEA876B005740F9 /* Build configuration list for PBXNativeTarget "QmojiKeyboard" */;
+			buildPhases = (
+				105E33D31AEA876B005740F9 /* Sources */,
+				105E33D41AEA876B005740F9 /* Frameworks */,
+				105E33D51AEA876B005740F9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QmojiKeyboard;
+			productName = QmojiKeyboard;
+			productReference = 105E33D71AEA876B005740F9 /* QmojiKeyboard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		105E33A21AEA86FC005740F9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = Q;
+				TargetAttributes = {
+					105E33A91AEA86FC005740F9 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					105E33C21AEA86FC005740F9 = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = 105E33A91AEA86FC005740F9;
+					};
+					105E33D61AEA876B005740F9 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+				};
+			};
+			buildConfigurationList = 105E33A51AEA86FC005740F9 /* Build configuration list for PBXProject "Qmoji" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 105E33A11AEA86FC005740F9;
+			productRefGroup = 105E33AB1AEA86FC005740F9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				105E33A91AEA86FC005740F9 /* Qmoji */,
+				105E33C21AEA86FC005740F9 /* QmojiTests */,
+				105E33D61AEA876B005740F9 /* QmojiKeyboard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		105E33A81AEA86FC005740F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				105E33B91AEA86FC005740F9 /* Main.storyboard in Resources */,
+				105E33F71AEA9893005740F9 /* JosefinSans-Bold.ttf in Resources */,
+				105E33FB1AEA9893005740F9 /* JosefinSans-Italic.ttf in Resources */,
+				105E34051AEA9893005740F9 /* JosefinSans-SemiBoldItalic.ttf in Resources */,
+				105E34031AEA9893005740F9 /* JosefinSans-SemiBold.ttf in Resources */,
+				105E33F91AEA9893005740F9 /* JosefinSans-BoldItalic.ttf in Resources */,
+				105E33BE1AEA86FC005740F9 /* LaunchScreen.xib in Resources */,
+				105E34091AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */,
+				105E33FF1AEA9893005740F9 /* JosefinSans-LightItalic.ttf in Resources */,
+				105E33BB1AEA86FC005740F9 /* Images.xcassets in Resources */,
+				105E34011AEA9893005740F9 /* JosefinSans-Regular.ttf in Resources */,
+				105E33FD1AEA9893005740F9 /* JosefinSans-Light.ttf in Resources */,
+				105E34071AEA9893005740F9 /* JosefinSans-Thin.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		105E33C11AEA86FC005740F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		105E33D51AEA876B005740F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				105E33FC1AEA9893005740F9 /* JosefinSans-Italic.ttf in Resources */,
+				105E34001AEA9893005740F9 /* JosefinSans-LightItalic.ttf in Resources */,
+				105E33E61AEA884C005740F9 /* QmojiKeyboard.xib in Resources */,
+				105E34041AEA9893005740F9 /* JosefinSans-SemiBold.ttf in Resources */,
+				105E33FA1AEA9893005740F9 /* JosefinSans-BoldItalic.ttf in Resources */,
+				105E34021AEA9893005740F9 /* JosefinSans-Regular.ttf in Resources */,
+				105E34061AEA9893005740F9 /* JosefinSans-SemiBoldItalic.ttf in Resources */,
+				105E33FE1AEA9893005740F9 /* JosefinSans-Light.ttf in Resources */,
+				105E33F81AEA9893005740F9 /* JosefinSans-Bold.ttf in Resources */,
+				105E340A1AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */,
+				105E34081AEA9893005740F9 /* JosefinSans-Thin.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		105E33A61AEA86FC005740F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				105E33B61AEA86FC005740F9 /* ViewController.m in Sources */,
+				105E33B31AEA86FC005740F9 /* AppDelegate.m in Sources */,
+				105E33B01AEA86FC005740F9 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		105E33BF1AEA86FC005740F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				105E33CA1AEA86FC005740F9 /* QmojiTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		105E33D31AEA876B005740F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				105E33DD1AEA876B005740F9 /* KeyboardViewController.m in Sources */,
+				105E33E91AEA88C4005740F9 /* QmojiKeyboard.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		105E33C51AEA86FC005740F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 105E33A91AEA86FC005740F9 /* Qmoji */;
+			targetProxy = 105E33C41AEA86FC005740F9 /* PBXContainerItemProxy */;
+		};
+		105E33DF1AEA876B005740F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 105E33D61AEA876B005740F9 /* QmojiKeyboard */;
+			targetProxy = 105E33DE1AEA876B005740F9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		105E33B71AEA86FC005740F9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				105E33B81AEA86FC005740F9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		105E33BC1AEA86FC005740F9 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				105E33BD1AEA86FC005740F9 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		105E33CB1AEA86FC005740F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		105E33CC1AEA86FC005740F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		105E33CE1AEA86FC005740F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Qmoji/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		105E33CF1AEA86FC005740F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Qmoji/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		105E33D11AEA86FC005740F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = QmojiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Qmoji.app/Qmoji";
+			};
+			name = Debug;
+		};
+		105E33D21AEA86FC005740F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = QmojiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Qmoji.app/Qmoji";
+			};
+			name = Release;
+		};
+		105E33E21AEA876B005740F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = QmojiKeyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		105E33E31AEA876B005740F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = QmojiKeyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		105E33A51AEA86FC005740F9 /* Build configuration list for PBXProject "Qmoji" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				105E33CB1AEA86FC005740F9 /* Debug */,
+				105E33CC1AEA86FC005740F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		105E33CD1AEA86FC005740F9 /* Build configuration list for PBXNativeTarget "Qmoji" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				105E33CE1AEA86FC005740F9 /* Debug */,
+				105E33CF1AEA86FC005740F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		105E33D01AEA86FC005740F9 /* Build configuration list for PBXNativeTarget "QmojiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				105E33D11AEA86FC005740F9 /* Debug */,
+				105E33D21AEA86FC005740F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		105E33E11AEA876B005740F9 /* Build configuration list for PBXNativeTarget "QmojiKeyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				105E33E21AEA876B005740F9 /* Debug */,
+				105E33E31AEA876B005740F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 105E33A21AEA86FC005740F9 /* Project object */;
+}
