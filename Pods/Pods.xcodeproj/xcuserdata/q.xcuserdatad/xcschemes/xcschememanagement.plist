@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-KVNProgress.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -26,6 +31,32 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict>
+		<key>008A3FB38B1B72D53112CB78</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>15B56B053F40554E03D331A8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AD2BD972A908CF413F248C8F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D18891CDE055530DB6237EC6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DC6230EF3A39D25FFEC478B0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>

@@ -28,6 +28,7 @@ PODS:
   - Bolts/Tasks (1.1.5)
   - Facebook-iOS-SDK (3.23.2):
     - Bolts (~> 1.0)
+  - KVNProgress (2.2.1)
   - Parse (1.7.1):
     - Bolts (~> 1.1)
   - ParseFacebookUtils (1.7.1):
@@ -36,6 +37,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
+  - KVNProgress (~> 2.2.1)
   - Parse (~> 1.7.1)
   - ParseFacebookUtils (~> 1.7.1)
 
@@ -43,6 +45,7 @@ SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   Bolts: aac24961496d504aa56fc267cde95162a71bac39
   Facebook-iOS-SDK: cd87f0b2f0c1d9574b44e8fa2baacc275524bac3
+  KVNProgress: 7001d2d16a2755cee5599e8e485befe056f2197b
   Parse: fa8ec29de6d82035635986c11946299fb1b38316
   ParseFacebookUtils: fa09adf78372b589163b5a71a34d6ebc7eb83395
 
