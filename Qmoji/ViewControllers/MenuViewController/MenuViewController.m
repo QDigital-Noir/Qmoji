@@ -8,16 +8,31 @@
 
 #import "MenuViewController.h"
 #import "MenuTableViewCell.h"
+#import "AppDelegate.h"
 
-@interface MenuViewController ()
 
+@interface MenuViewController () <UITableViewDelegate, UITableViewDataSource>
+{
+    NSArray *images;
+    NSArray *titles;
+}
 @end
 
 @implementation MenuViewController
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    images = @[@"mail-ico",@"call-ico",@"camera-ico",@"contacts-ico",@"weather-ico",@"settings-ico"];
+    titles = @[@"Mail",@"Call",@"Camera",@"Contacts",@"Weather",@"Settings"];
+    
+    self.menuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.menuTableView.backgroundColor = [UIColor clearColor];
+    [self.menuTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,54 +40,50 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-#pragma mark - UITableViewDataSource
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section
-{
-    return 0;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return images.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *cellIdentifier = @"";
-    MenuTableViewCell *cell;
-    if(cell == nil)
-    {
-        cell = [[MenuTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 40;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString* cellIdentifier = @"CellIdentifier";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    [self configureCell:cell forRowAtIndexPath:indexPath];
+    cell.textLabel.text = [titles objectAtIndex:indexPath.row];
+    
+    UIFont *currentFont = cell.textLabel.font;
+    UIFont *correctFont = [UIFont fontWithName:currentFont.fontName size:currentFont.pointSize+5];
+    cell.textLabel.font = correctFont;
+    
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.imageView.image = [UIImage imageNamed:[images objectAtIndex:indexPath.row]];
+    cell.contentView.backgroundColor = [UIColor clearColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
 
-- (void)configureCell:(MenuTableViewCell *)cell
-    forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //TODO:Add configurations.
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [cell setBackgroundColor:[UIColor clearColor]];
 }
 
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //TODO:Add selection cell.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    if (indexPath.row % 2) {
+        [[AppDelegate mainDelegate] setFirstView];
+    }else{
+        [[AppDelegate mainDelegate] setFirstView];
+    }
 }
 
 @end

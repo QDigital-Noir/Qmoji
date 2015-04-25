@@ -7,9 +7,15 @@
 //
 
 #import "AppDelegate.h"
+#import "MenuViewController.h"
+#import "ViewController.h"
+
 
 @interface AppDelegate ()
-
+{
+    MenuViewController *menuVC;
+    UINavigationController *navMain;
+}
 @end
 
 @implementation AppDelegate
@@ -17,7 +23,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
     // Parse setup
     [Parse setApplicationId:@"VGBTWz7FYeSVcRq12XixARL7nQGOo08EADw92L8a"
                   clientKey:@"CW1d0mJAGTjBhvgLBs1WEay92o9reViZgtP76eZD"];
@@ -30,6 +35,33 @@
                                                                              categories:nil];
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
+    
+    // Setup menu.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    self.slideMenuVC = [[HKSlideMenu3DController alloc] init];
+    self.slideMenuVC.view.frame =  [[UIScreen mainScreen] bounds];
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    
+    menuVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
+    menuVC.view.backgroundColor = [UIColor clearColor];
+    navMain = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"MainNavController"];
+    
+    self.slideMenuVC.menuViewController = menuVC;
+    
+    self.slideMenuVC.mainViewController = navMain;
+    
+    self.slideMenuVC.backgroundImage = [UIImage imageNamed:@"cloud"];
+    self.slideMenuVC.backgroundImageContentMode = UIViewContentModeTopLeft;
+    
+    self.slideMenuVC.enablePan = NO;
+    
+    
+    [self.window setRootViewController:self.slideMenuVC];
+    
+    [self.window makeKeyAndVisible];
+
     
     return YES;
 }
@@ -65,6 +97,21 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
+}
+
++ (AppDelegate *)mainDelegate {
+    return (AppDelegate *)[UIApplication sharedApplication].delegate;
+}
+
+- (void)setFirstView{
+    
+    if (!navMain) {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        navMain = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"ViewController"];
+    }
+    
+    self.slideMenuVC.mainViewController = navMain;
+    
 }
 
 @end
