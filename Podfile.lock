@@ -34,12 +34,14 @@ PODS:
   - ParseFacebookUtils (1.7.1):
     - Facebook-iOS-SDK (~> 3.23)
     - Parse (~> 1.7.1)
+  - SlideMenu3D (0.1.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
   - KVNProgress (~> 2.2.1)
   - Parse (~> 1.7.1)
   - ParseFacebookUtils (~> 1.7.1)
+  - SlideMenu3D
 
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
@@ -48,5 +50,6 @@ SPEC CHECKSUMS:
   KVNProgress: 7001d2d16a2755cee5599e8e485befe056f2197b
   Parse: fa8ec29de6d82035635986c11946299fb1b38316
   ParseFacebookUtils: fa09adf78372b589163b5a71a34d6ebc7eb83395
+  SlideMenu3D: e3bf0771412404ab01c1437fe91f9c68ce39faba
 
 COCOAPODS: 0.36.3

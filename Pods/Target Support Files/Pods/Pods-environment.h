@@ -90,3 +90,9 @@
 #define COCOAPODS_VERSION_MINOR_ParseFacebookUtils 7
 #define COCOAPODS_VERSION_PATCH_ParseFacebookUtils 1
 
+// SlideMenu3D
+#define COCOAPODS_POD_AVAILABLE_SlideMenu3D
+#define COCOAPODS_VERSION_MAJOR_SlideMenu3D 0
+#define COCOAPODS_VERSION_MINOR_SlideMenu3D 1
+#define COCOAPODS_VERSION_PATCH_SlideMenu3D 1
+
