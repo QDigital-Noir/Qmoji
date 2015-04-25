@@ -1,0 +1,4 @@
+platform :ios, '8.0'
+  pod 'AFNetworking', '~> 2.5'
+  pod 'Parse', '~> 1.7.1'
+  pod 'ParseFacebookUtils', '~> 1.7.1'
