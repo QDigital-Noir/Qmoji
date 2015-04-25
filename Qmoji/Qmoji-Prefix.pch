@@ -1,0 +1,19 @@
+//
+//  Qmoji-Prefix.pch
+//  Qmoji
+//
+//  Created by Q on 4/25/15.
+//  Copyright (c) 2015 Q. All rights reserved.
+//
+
+#ifndef Qmoji_Qmoji_Prefix_pch
+#define Qmoji_Qmoji_Prefix_pch
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
+#import <FacebookSDK/FacebookSDK.h>
+#import <ParseFacebookUtils/PFFacebookUtils.h>
+#import <KVNProgress/KVNProgress.h>
+
+#endif

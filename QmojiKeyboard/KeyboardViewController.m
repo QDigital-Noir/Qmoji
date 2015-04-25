@@ -8,7 +8,6 @@
 
 #import "KeyboardViewController.h"
 #import "QmojiKeyboard.h"
-#import <Parse/Parse.h>
 
 @interface KeyboardViewController ()
 @property (nonatomic, strong) QmojiKeyboard *qmojiKeyboard;
