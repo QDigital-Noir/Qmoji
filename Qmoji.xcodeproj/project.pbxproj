@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1012AB671AEB73C8003659EE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1012AB661AEB73C8003659EE /* libPods.a */; };
+		10214DC11AECF1FC00BD56A3 /* APIClientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 10214DC01AECF1FC00BD56A3 /* APIClientHelper.m */; };
+		10214DC51AECFDB400BD56A3 /* GiphyObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 10214DC41AECFDB400BD56A3 /* GiphyObj.m */; };
+		10214DC91AED1CA700BD56A3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10214DC81AED1CA700BD56A3 /* ViewController.m */; };
+		10214DCD1AED240400BD56A3 /* MainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10214DCC1AED240400BD56A3 /* MainCollectionViewCell.m */; };
 		105E33B01AEA86FC005740F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E33AF1AEA86FC005740F9 /* main.m */; };
 		105E33B31AEA86FC005740F9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E33B21AEA86FC005740F9 /* AppDelegate.m */; };
-		105E33B61AEA86FC005740F9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E33B51AEA86FC005740F9 /* ViewController.m */; };
 		105E33B91AEA86FC005740F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 105E33B71AEA86FC005740F9 /* Main.storyboard */; };
 		105E33BB1AEA86FC005740F9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 105E33BA1AEA86FC005740F9 /* Images.xcassets */; };
 		105E33BE1AEA86FC005740F9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105E33BC1AEA86FC005740F9 /* LaunchScreen.xib */; };
@@ -79,13 +82,19 @@
 		1012AB621AEB7217003659EE /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		1012AB661AEB73C8003659EE /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		1012AB681AEB820C003659EE /* Qmoji-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Qmoji-Prefix.pch"; sourceTree = "<group>"; };
+		10214DBF1AECF1FC00BD56A3 /* APIClientHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIClientHelper.h; sourceTree = "<group>"; };
+		10214DC01AECF1FC00BD56A3 /* APIClientHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClientHelper.m; sourceTree = "<group>"; };
+		10214DC31AECFDB400BD56A3 /* GiphyObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiphyObj.h; sourceTree = "<group>"; };
+		10214DC41AECFDB400BD56A3 /* GiphyObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiphyObj.m; sourceTree = "<group>"; };
+		10214DC71AED1CA700BD56A3 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		10214DC81AED1CA700BD56A3 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		10214DCB1AED240400BD56A3 /* MainCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCollectionViewCell.h; sourceTree = "<group>"; };
+		10214DCC1AED240400BD56A3 /* MainCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCollectionViewCell.m; sourceTree = "<group>"; };
 		105E33AA1AEA86FC005740F9 /* Qmoji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qmoji.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		105E33AE1AEA86FC005740F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		105E33AF1AEA86FC005740F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		105E33B11AEA86FC005740F9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		105E33B21AEA86FC005740F9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		105E33B41AEA86FC005740F9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		105E33B51AEA86FC005740F9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		105E33B81AEA86FC005740F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		105E33BA1AEA86FC005740F9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		105E33BD1AEA86FC005740F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -155,6 +164,43 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		10214DBE1AECF1B900BD56A3 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				10214DBF1AECF1FC00BD56A3 /* APIClientHelper.h */,
+				10214DC01AECF1FC00BD56A3 /* APIClientHelper.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		10214DC21AECFD7800BD56A3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				10214DC31AECFDB400BD56A3 /* GiphyObj.h */,
+				10214DC41AECFDB400BD56A3 /* GiphyObj.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		10214DC61AED1C5500BD56A3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				10214DCA1AED23B500BD56A3 /* Cell */,
+				10214DC71AED1CA700BD56A3 /* ViewController.h */,
+				10214DC81AED1CA700BD56A3 /* ViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		10214DCA1AED23B500BD56A3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				10214DCB1AED240400BD56A3 /* MainCollectionViewCell.h */,
+				10214DCC1AED240400BD56A3 /* MainCollectionViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		105E33A11AEA86FC005740F9 = {
 			isa = PBXGroup;
 			children = (
@@ -180,12 +226,12 @@
 		105E33AC1AEA86FC005740F9 /* Qmoji */ = {
 			isa = PBXGroup;
 			children = (
+				10214DC21AECFD7800BD56A3 /* Models */,
+				10214DBE1AECF1B900BD56A3 /* Helper */,
 				10C83DEB1AEB9844003FD03F /* ViewControllers */,
 				105E33EB1AEA9824005740F9 /* Resources */,
 				105E33B11AEA86FC005740F9 /* AppDelegate.h */,
 				105E33B21AEA86FC005740F9 /* AppDelegate.m */,
-				105E33B41AEA86FC005740F9 /* ViewController.h */,
-				105E33B51AEA86FC005740F9 /* ViewController.m */,
 				105E33B71AEA86FC005740F9 /* Main.storyboard */,
 				105E33BA1AEA86FC005740F9 /* Images.xcassets */,
 				105E33BC1AEA86FC005740F9 /* LaunchScreen.xib */,
@@ -270,6 +316,7 @@
 		10C83DEB1AEB9844003FD03F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				10214DC61AED1C5500BD56A3 /* ViewController */,
 				10C83DEC1AEB98EF003FD03F /* MenuViewController */,
 			);
 			path = ViewControllers;
@@ -489,11 +536,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				105E33B61AEA86FC005740F9 /* ViewController.m in Sources */,
+				10214DC91AED1CA700BD56A3 /* ViewController.m in Sources */,
 				105E33B31AEA86FC005740F9 /* AppDelegate.m in Sources */,
 				10C83DF31AEB9BAF003FD03F /* MenuTableViewCell.m in Sources */,
+				10214DC11AECF1FC00BD56A3 /* APIClientHelper.m in Sources */,
 				105E33B01AEA86FC005740F9 /* main.m in Sources */,
+				10214DC51AECFDB400BD56A3 /* GiphyObj.m in Sources */,
 				10C83DEF1AEB9A31003FD03F /* MenuViewController.m in Sources */,
+				10214DCD1AED240400BD56A3 /* MainCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

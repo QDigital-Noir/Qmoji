@@ -49,17 +49,13 @@
     navMain = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"MainNavController"];
     
     self.slideMenuVC.menuViewController = menuVC;
-    
     self.slideMenuVC.mainViewController = navMain;
-    
     self.slideMenuVC.backgroundImage = [UIImage imageNamed:@"cloud"];
     self.slideMenuVC.backgroundImageContentMode = UIViewContentModeTopLeft;
-    
     self.slideMenuVC.enablePan = NO;
     
     
     [self.window setRootViewController:self.slideMenuVC];
-    
     [self.window makeKeyAndVisible];
 
     

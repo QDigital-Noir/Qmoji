@@ -34,6 +34,9 @@ PODS:
   - ParseFacebookUtils (1.7.1):
     - Facebook-iOS-SDK (~> 3.23)
     - Parse (~> 1.7.1)
+  - SDWebImage (3.7.2):
+    - SDWebImage/Core (= 3.7.2)
+  - SDWebImage/Core (3.7.2)
   - SlideMenu3D (0.1.1)
 
 DEPENDENCIES:
@@ -41,6 +44,7 @@ DEPENDENCIES:
   - KVNProgress (~> 2.2.1)
   - Parse (~> 1.7.1)
   - ParseFacebookUtils (~> 1.7.1)
+  - SDWebImage (~> 3.7.2)
   - SlideMenu3D
 
 SPEC CHECKSUMS:
@@ -50,6 +54,7 @@ SPEC CHECKSUMS:
   KVNProgress: 7001d2d16a2755cee5599e8e485befe056f2197b
   Parse: fa8ec29de6d82035635986c11946299fb1b38316
   ParseFacebookUtils: fa09adf78372b589163b5a71a34d6ebc7eb83395
+  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   SlideMenu3D: e3bf0771412404ab01c1437fe91f9c68ce39faba
 
 COCOAPODS: 0.36.3

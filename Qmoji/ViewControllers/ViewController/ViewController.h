@@ -10,6 +10,8 @@
 
 @interface ViewController : UIViewController
 
+@property (nonatomic, strong) NSArray *gifArray;
+@property (weak, nonatomic) IBOutlet UICollectionView *gifCollectionVIew;
 
 @end
 

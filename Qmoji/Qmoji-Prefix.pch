@@ -15,5 +15,12 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import <KVNProgress/KVNProgress.h>
+#import "APIClientHelper.h"
+#import "GiphyObj.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
+#define GiphyPublicKey "dc6zaTOxFJmzC"
+#define ParseAppID ""
+#define ParseClientKey ""
 
 #endif
