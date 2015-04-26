@@ -12,6 +12,8 @@
 #import "UIRefreshControl+AFNetworking.h"
 #import "UIAlertView+AFNetworking.h"
 
+#define kCellsPerRow 2
+
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -130,5 +132,17 @@
 //        }
 //    }
 }
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.gifCollectionVIew.collectionViewLayout;
+    CGFloat availableWidthForCells = CGRectGetWidth(self.gifCollectionVIew.frame) - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumInteritemSpacing * (kCellsPerRow - 1);
+    CGFloat cellWidth = availableWidthForCells / kCellsPerRow;
+    flowLayout.itemSize = CGSizeMake(cellWidth, flowLayout.itemSize.height);
+    return flowLayout.itemSize;
+}
+
 
 @end

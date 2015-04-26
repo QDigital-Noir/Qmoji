@@ -52,6 +52,7 @@
                                             <constraint firstItem="Tkw-3u-Pud" firstAttribute="leading" secondItem="HCf-ba-mOh" secondAttribute="leading" id="z2r-eQ-rta"/>
                                             <constraint firstItem="Tkw-3u-Pud" firstAttribute="leading" secondItem="8Hb-fY-mp3" secondAttribute="leading" id="zZq-QK-eHh"/>
                                         </constraints>
+                                        <size key="customSize" width="160" height="100"/>
                                         <variation key="default">
                                             <mask key="subviews">
                                                 <exclude reference="Tkw-3u-Pud"/>
