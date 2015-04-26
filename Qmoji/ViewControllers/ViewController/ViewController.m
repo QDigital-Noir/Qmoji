@@ -9,8 +9,12 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import "MainCollectionViewCell.h"
+#import "UIRefreshControl+AFNetworking.h"
+#import "UIAlertView+AFNetworking.h"
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -19,14 +23,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-    NSURLSessionTask *task = [GiphyObj searchGiphyWitKeyword:@"Animal" withBlock:^(NSArray *posts, NSError *error) {
+    [self configView];
+    [self reload:nil];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Setup view.
+
+- (void)configView
+{
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(reload:) forControlEvents:UIControlEventValueChanged];
+    [self.gifCollectionVIew addSubview:self.refreshControl];
+    self.gifCollectionVIew.alwaysBounceVertical = YES;
+}
+
+#pragma mark - Data Methods
+
+- (void)reload:(__unused id)sender
+{
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    NSURLSessionTask *task = [GiphyObj trendingGiphyWithBlock:^(NSArray *posts, NSError *error) {
         if (!error)
         {
-            GiphyObj *obj = (GiphyObj *)posts[0];
-            NSLog(@"giphyID : %@", obj.giphyID);
-            NSLog(@"giphyOriginal : %@", obj.giphyOriginal);
-            NSLog(@"giphyFixedWidth : %@", obj.giphyFixedWidth);
+//            GiphyObj *obj = (GiphyObj *)posts[0];
+//            NSLog(@"giphyID : %@", obj.giphyID);
+//            NSLog(@"giphyOriginal : %@", obj.giphyOriginal);
+//            NSLog(@"giphyFixedWidth : %@", obj.giphyFixedWidth);
+            self.gifArray = [NSArray arrayWithArray:posts];
+            [self.gifCollectionVIew reloadData];
         }
         else
         {
@@ -34,13 +63,11 @@
         }
     }];
     
-//    [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
+    [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
+    [self.refreshControl setRefreshingWithStateOfTask:task];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - Button Methods
 
 - (IBAction)menuAction:(id)sender
 {
@@ -58,10 +85,13 @@
 {
     static NSString *identifier = @"Cell";
     MainCollectionViewCell *cell = (MainCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-//    [cell setImageWithURL:self.stickerArray[indexPath.row][@"URL"]
-//                andIsPaid:[self.stickerArray[indexPath.row][@"isPaid"] boolValue]
-//              andCateName:self.cateName];
-//    
+    
+    GiphyObj *obj = (GiphyObj *)self.gifArray[indexPath.row];
+    
+    [cell setImageWithURL:obj.giphyFixedWidth
+                andIsPaid:@NO
+              andCateName:@"Test"];
+    
     return cell;
 }
 

@@ -15,7 +15,7 @@
     [self.image1 sd_setImageWithURL:[NSURL URLWithString:urlString]
                       placeholderImage:[UIImage imageNamed:@"placeholder"]
                                options:SDWebImageRefreshCached];
-    self.image1.contentMode = UIViewContentModeScaleAspectFit;
+    self.image1.contentMode = UIViewContentModeScaleAspectFill;
     
 //    BOOL isUnlock = [[Helper sharedHelper] getUnlockedStickerWithKey:cateName];
 //    BOOL isUnlockAll = [[Helper sharedHelper] getUnlockedStickerWithKey:@"All"];
