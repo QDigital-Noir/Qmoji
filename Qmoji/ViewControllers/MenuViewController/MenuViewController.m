@@ -27,8 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    images = @[@"mail-ico",@"call-ico",@"camera-ico",@"contacts-ico",@"weather-ico",@"settings-ico"];
-    titles = @[@"Mail",@"Call",@"Camera",@"Contacts",@"Weather",@"Settings"];
+    images = @[@"", @"", @"", @"", @"", @""];
+    titles = @[@"Unlock & Restore", @"Your collections", @"Animals", @"Sci-fi", @"Movies", @"More Apps"];
     
     self.menuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.menuTableView.backgroundColor = [UIColor clearColor];

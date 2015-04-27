@@ -23,4 +23,6 @@
 #define ParseAppID ""
 #define ParseClientKey ""
 
+#define AppDelegateAccessor ((AppDelegate *)[[UIApplication sharedApplication] delegate])
+
 #endif

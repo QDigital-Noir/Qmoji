@@ -14,9 +14,10 @@
 
 #define kCellsPerRow 2
 
-@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSMutableArray *resultArray;
 
 @end
 
@@ -52,10 +53,6 @@
     NSURLSessionTask *task = [GiphyObj trendingGiphyWithBlock:^(NSArray *posts, NSError *error) {
         if (!error)
         {
-//            GiphyObj *obj = (GiphyObj *)posts[0];
-//            NSLog(@"giphyID : %@", obj.giphyID);
-//            NSLog(@"giphyOriginal : %@", obj.giphyOriginal);
-//            NSLog(@"giphyFixedWidth : %@", obj.giphyFixedWidth);
             self.gifArray = [NSArray arrayWithArray:posts];
             [self.gifCollectionVIew reloadData];
         }
@@ -70,7 +67,6 @@
 }
 
 #pragma mark - Button Methods
-
 - (IBAction)menuAction:(id)sender
 {
     [[AppDelegate mainDelegate].slideMenuVC toggleMenu];
@@ -99,38 +95,40 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    BOOL isUnlock = [[Helper sharedHelper] getUnlockedStickerWithKey:self.cateName];
-//    BOOL isUnlockAll = [[Helper sharedHelper] getUnlockedStickerWithKey:@"All"];
-//    BOOL isPaid = [self.stickerArray[indexPath.row][@"isPaid"] boolValue];
-//    
-//    if (isUnlock || isUnlockAll)
-//    {
-//        NSLog(@"Unlocked %@", self.cateName);
-//        StickerCollectionViewCell *cell = (StickerCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-//        AppDelegateAccessor.stickerImage = cell.imageView.image;
-//        AppDelegateAccessor.isFromStickers = YES;
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }
-//    else
-//    {
-//        if (isPaid)
-//        {
-//            NSLog(@"Need to unlock!!!!!!");
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Movie FX Stickers"
-//                                                            message:@"This stickers need to unlock."
-//                                                           delegate:self
-//                                                  cancelButtonTitle:@"No, Thank you"
-//                                                  otherButtonTitles:@"Unlock now!", nil];
-//            [alert show];
-//        }
-//        else
-//        {
-//            StickerCollectionViewCell *cell = (StickerCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-//            AppDelegateAccessor.stickerImage = cell.imageView.image;
-//            AppDelegateAccessor.isFromStickers = YES;
-//            [self.navigationController popViewControllerAnimated:YES];
-//        }
-//    }
+    /*
+    BOOL isUnlock = [[Helper sharedHelper] getUnlockedStickerWithKey:self.cateName];
+    BOOL isUnlockAll = [[Helper sharedHelper] getUnlockedStickerWithKey:@"All"];
+    BOOL isPaid = [self.stickerArray[indexPath.row][@"isPaid"] boolValue];
+    
+    if (isUnlock || isUnlockAll)
+    {
+        NSLog(@"Unlocked %@", self.cateName);
+        MainCollectionViewCell *cell = (MainCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        AppDelegateAccessor.stickerImage = cell.imageView.image;
+        AppDelegateAccessor.isFromStickers = YES;
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else
+    {
+        if (isPaid)
+        {
+            NSLog(@"Need to unlock!!!!!!");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Movie FX Stickers"
+                                                            message:@"This stickers need to unlock."
+                                                           delegate:self
+                                                  cancelButtonTitle:@"No, Thank you"
+                                                  otherButtonTitles:@"Unlock now!", nil];
+            [alert show];
+        }
+        else
+        {
+            StickerCollectionViewCell *cell = (StickerCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+            AppDelegateAccessor.stickerImage = cell.imageView.image;
+            AppDelegateAccessor.isFromStickers = YES;
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
+    */
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
@@ -142,6 +140,54 @@
     CGFloat cellWidth = availableWidthForCells / kCellsPerRow;
     flowLayout.itemSize = CGSizeMake(cellWidth, flowLayout.itemSize.height);
     return flowLayout.itemSize;
+}
+
+#pragma mark - TextField Delegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *searchText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    [self filterContentForSearchText:searchText scope:nil];
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+#pragma mark - Filtering SearchResult
+
+- (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope
+{
+//    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"beerName CONTAINS[c] %@", searchText];
+//    self.resultArray = [[self.allListArray objectsWithPredicate:resultPredicate] arraySortedByProperty:@"beerName" ascending:YES];
+//    
+//    if ((self.resultArray.count == 0) && (searchText.length <= 0))
+//    {
+//        self.resultArray = self.allListArray;
+//    }
+//    
+//    [self.beerCollectionView reloadData];
+//    [self.beerCollectionView reloadItemsAtIndexPaths:[self.beerCollectionView indexPathsForVisibleItems]];
+    
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    NSURLSessionTask *task = [GiphyObj searchGiphyWitKeyword:searchText withBlock:^(NSArray *posts, NSError *error) {
+        if (!error)
+        {
+            self.gifArray = [NSArray arrayWithArray:posts];
+            [self.gifCollectionVIew reloadData];
+        }
+        else
+        {
+            
+        }
+    }];
+    
+    [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
+    [self.refreshControl setRefreshingWithStateOfTask:task];
 }
 
 

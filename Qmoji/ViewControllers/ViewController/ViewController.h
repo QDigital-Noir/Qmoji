@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSArray *gifArray;
 @property (weak, nonatomic) IBOutlet UICollectionView *gifCollectionVIew;
+@property (nonatomic, weak) IBOutlet UITextField *searchTextField;
 
 @end
 
