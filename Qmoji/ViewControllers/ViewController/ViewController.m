@@ -189,6 +189,4 @@
     [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
     [self.refreshControl setRefreshingWithStateOfTask:task];
 }
-
-
 @end
