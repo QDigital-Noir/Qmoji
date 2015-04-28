@@ -129,6 +129,21 @@
         }
     }
     */
+    
+    GiphyObj *obj = (GiphyObj *)self.gifArray[indexPath.row];
+    
+    // Tap to download.
+    NSMutableArray *collectionArray = [NSMutableArray arrayWithArray:[[Helper sharedHelper] getUserCollection]];
+    
+    NSDictionary *tempDict = @{@"giphyID" : obj.giphyID,
+                               @"giphyOriginal" : obj.giphyOriginal,
+                               @"giphyFixedWidth" : obj.giphyFixedWidth};
+    
+    [collectionArray addObject:tempDict];
+    
+    NSLog(@"collectionArray:\n%@", collectionArray);
+    
+    [[Helper sharedHelper] updateUserCollectionWithArray:collectionArray];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView

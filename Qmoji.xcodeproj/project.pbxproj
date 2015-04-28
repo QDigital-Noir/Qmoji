@@ -47,6 +47,8 @@
 		105E34081AEA9893005740F9 /* JosefinSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F51AEA9893005740F9 /* JosefinSans-Thin.ttf */; };
 		105E34091AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */; };
 		105E340A1AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */; };
+		1097AB471AEFB17700BEA773 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1097AB461AEFB17700BEA773 /* IAPHelper.m */; };
+		1097AB481AEFB17700BEA773 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1097AB461AEFB17700BEA773 /* IAPHelper.m */; };
 		10C83DEF1AEB9A31003FD03F /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C83DEE1AEB9A31003FD03F /* MenuViewController.m */; };
 		10C83DF31AEB9BAF003FD03F /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C83DF21AEB9BAF003FD03F /* MenuTableViewCell.m */; };
 		7839B9B4261E064C5F06EA71 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFF9F44255343DDF080420C /* libPods.a */; };
@@ -133,6 +135,8 @@
 		105E33F41AEA9893005740F9 /* JosefinSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		105E33F51AEA9893005740F9 /* JosefinSans-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Thin.ttf"; sourceTree = "<group>"; };
 		105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-ThinItalic.ttf"; sourceTree = "<group>"; };
+		1097AB451AEFB17700BEA773 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		1097AB461AEFB17700BEA773 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		10C83DED1AEB9A31003FD03F /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		10C83DEE1AEB9A31003FD03F /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		10C83DF11AEB9BAF003FD03F /* MenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewCell.h; sourceTree = "<group>"; };
@@ -182,6 +186,8 @@
 		10214DBE1AECF1B900BD56A3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				1097AB451AEFB17700BEA773 /* IAPHelper.h */,
+				1097AB461AEFB17700BEA773 /* IAPHelper.m */,
 				10214DBF1AECF1FC00BD56A3 /* APIClientHelper.h */,
 				10214DC01AECF1FC00BD56A3 /* APIClientHelper.m */,
 				10214DCE1AED336000BD56A3 /* Helper.h */,
@@ -599,6 +605,7 @@
 				103F9E5F1AEE84DB0089BE34 /* CategoryViewController.m in Sources */,
 				10214DC11AECF1FC00BD56A3 /* APIClientHelper.m in Sources */,
 				105E33B01AEA86FC005740F9 /* main.m in Sources */,
+				1097AB471AEFB17700BEA773 /* IAPHelper.m in Sources */,
 				10214DC51AECFDB400BD56A3 /* GiphyObj.m in Sources */,
 				103F9E671AEE85420089BE34 /* CategoryCollectionViewCell.m in Sources */,
 				10C83DEF1AEB9A31003FD03F /* MenuViewController.m in Sources */,
@@ -622,6 +629,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				105E33DD1AEA876B005740F9 /* KeyboardViewController.m in Sources */,
+				1097AB481AEFB17700BEA773 /* IAPHelper.m in Sources */,
 				105E33E91AEA88C4005740F9 /* QmojiKeyboard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

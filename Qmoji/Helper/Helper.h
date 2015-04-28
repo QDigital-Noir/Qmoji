@@ -17,5 +17,7 @@
 - (NSString *)getIAPIdentifierWithKey:(NSString *)key;
 - (void)updateUnlockedSticker:(BOOL)unlocked withKey:(NSString *)key;
 - (BOOL)getUnlockedStickerWithKey:(NSString *)key;
+- (void)updateUserCollectionWithArray:(NSMutableArray *)collectionArray;
+- (NSArray *)getUserCollection;
 
 @end

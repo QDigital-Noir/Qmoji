@@ -67,5 +67,19 @@
     return isUnlock;
 }
 
+#pragma mark - Update user's collections
+
+- (void)updateUserCollectionWithArray:(NSMutableArray *)collectionArray
+{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setObject:collectionArray forKey:@"UserCollection"];
+}
+
+- (NSArray *)getUserCollection
+{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSArray *collectionArray = [NSArray arrayWithArray:(NSArray *)[userDefault objectForKey:@"UserCollection"]];
+                                return collectionArray;
+}
 
 @end
