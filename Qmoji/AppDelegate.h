@@ -17,7 +17,8 @@
 
 + (AppDelegate *)mainDelegate;
 - (void)setFirstView;
-//- (void)setSecondView;
+- (void)setCateView;
+- (void)setCollectionView;
 
 @end
 

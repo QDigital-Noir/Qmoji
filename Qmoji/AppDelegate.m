@@ -9,11 +9,15 @@
 #import "AppDelegate.h"
 #import "MenuViewController.h"
 #import "ViewController.h"
+#import "CategoryViewController.h"
+#import "CollectionViewController.h"
 
 
 @interface AppDelegate ()
 {
     MenuViewController *menuVC;
+    CategoryViewController *categoryVC;
+    CollectionViewController *collectionVC;
     UINavigationController *navMain;
 }
 @end
@@ -99,15 +103,35 @@
     return (AppDelegate *)[UIApplication sharedApplication].delegate;
 }
 
-- (void)setFirstView{
-    
-    if (!navMain) {
+- (void)setFirstView
+{
+    if (!navMain)
+    {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-        navMain = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"ViewController"];
+        navMain = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"ViewController"];
     }
     
     self.slideMenuVC.mainViewController = navMain;
-    
+}
+
+- (void)setCateView
+{
+    if (!categoryVC)
+    {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        categoryVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"CategoryViewController"];
+    }
+    self.slideMenuVC.mainViewController = categoryVC;
+}
+
+- (void)setCollectionView
+{
+    if (!collectionVC)
+    {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        collectionVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"CollectionViewController"];
+    }
+    self.slideMenuVC.mainViewController = collectionVC;
 }
 
 @end

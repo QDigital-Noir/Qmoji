@@ -259,7 +259,7 @@
         <!--Qmoji-->
         <scene sceneID="uSE-Tk-DaI">
             <objects>
-                <viewController storyboardIdentifier="CategoryViewController" id="YP1-5b-izW" customClass="CategoryViewController" sceneMemberID="viewController">
+                <viewController id="YP1-5b-izW" customClass="CategoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gwY-Ui-Rxn"/>
                         <viewControllerLayoutGuide type="bottom" id="hHO-Nt-jdd"/>
@@ -312,13 +312,13 @@
                                             </mask>
                                             <mask key="constraints">
                                                 <exclude reference="07A-ec-z5d"/>
+                                                <exclude reference="AgC-mP-AFQ"/>
                                                 <exclude reference="AiJ-H8-L5N"/>
                                                 <exclude reference="Xpp-Uk-G1y"/>
                                                 <exclude reference="jK7-B8-XRd"/>
-                                                <exclude reference="AgC-mP-AFQ"/>
-                                                <exclude reference="uMG-UW-fNo"/>
                                                 <exclude reference="Dbu-OA-6N5"/>
                                                 <exclude reference="GVs-8q-RXM"/>
+                                                <exclude reference="uMG-UW-fNo"/>
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=compact">
@@ -328,13 +328,13 @@
                                             </mask>
                                             <mask key="constraints">
                                                 <include reference="07A-ec-z5d"/>
+                                                <include reference="AgC-mP-AFQ"/>
                                                 <include reference="AiJ-H8-L5N"/>
                                                 <include reference="Xpp-Uk-G1y"/>
                                                 <include reference="jK7-B8-XRd"/>
-                                                <include reference="AgC-mP-AFQ"/>
-                                                <include reference="uMG-UW-fNo"/>
                                                 <include reference="Dbu-OA-6N5"/>
                                                 <include reference="GVs-8q-RXM"/>
+                                                <include reference="uMG-UW-fNo"/>
                                             </mask>
                                         </variation>
                                         <connections>
@@ -365,10 +365,10 @@
                                 <exclude reference="M6B-tR-ne0"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="69j-Fs-Yy9"/>
+                                <exclude reference="9Vt-IL-fRh"/>
                                 <exclude reference="AH9-lz-bNm"/>
                                 <exclude reference="Ub9-fW-mhl"/>
-                                <exclude reference="9Vt-IL-fRh"/>
-                                <exclude reference="69j-Fs-Yy9"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -376,10 +376,10 @@
                                 <include reference="M6B-tR-ne0"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="69j-Fs-Yy9"/>
+                                <include reference="9Vt-IL-fRh"/>
                                 <include reference="AH9-lz-bNm"/>
                                 <include reference="Ub9-fW-mhl"/>
-                                <include reference="9Vt-IL-fRh"/>
-                                <include reference="69j-Fs-Yy9"/>
                             </mask>
                         </variation>
                     </view>
@@ -401,7 +401,7 @@
         <!--Qmoji-->
         <scene sceneID="cbg-8E-K5Y">
             <objects>
-                <viewController storyboardIdentifier="CollectionViewController" id="w7H-Dz-ynO" customClass="CollectionViewController" sceneMemberID="viewController">
+                <viewController id="w7H-Dz-ynO" customClass="CollectionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="K0C-ej-paw"/>
                         <viewControllerLayoutGuide type="bottom" id="C4j-wM-bmt"/>
@@ -453,14 +453,14 @@
                                                 <exclude reference="dLZ-yk-A4o"/>
                                             </mask>
                                             <mask key="constraints">
-                                                <exclude reference="7St-aS-aQU"/>
-                                                <exclude reference="u3c-sF-9bZ"/>
-                                                <exclude reference="TSI-pB-cow"/>
-                                                <exclude reference="Ejh-2J-ew8"/>
-                                                <exclude reference="0Nv-a9-jGn"/>
-                                                <exclude reference="dqa-GB-bQL"/>
                                                 <exclude reference="2iQ-aS-jdq"/>
                                                 <exclude reference="SMZ-8k-rTO"/>
+                                                <exclude reference="dqa-GB-bQL"/>
+                                                <exclude reference="0Nv-a9-jGn"/>
+                                                <exclude reference="7St-aS-aQU"/>
+                                                <exclude reference="Ejh-2J-ew8"/>
+                                                <exclude reference="TSI-pB-cow"/>
+                                                <exclude reference="u3c-sF-9bZ"/>
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=compact">
@@ -469,14 +469,14 @@
                                                 <include reference="dLZ-yk-A4o"/>
                                             </mask>
                                             <mask key="constraints">
-                                                <include reference="7St-aS-aQU"/>
-                                                <include reference="u3c-sF-9bZ"/>
-                                                <include reference="TSI-pB-cow"/>
-                                                <include reference="Ejh-2J-ew8"/>
-                                                <include reference="0Nv-a9-jGn"/>
-                                                <include reference="dqa-GB-bQL"/>
                                                 <include reference="2iQ-aS-jdq"/>
                                                 <include reference="SMZ-8k-rTO"/>
+                                                <include reference="dqa-GB-bQL"/>
+                                                <include reference="0Nv-a9-jGn"/>
+                                                <include reference="7St-aS-aQU"/>
+                                                <include reference="Ejh-2J-ew8"/>
+                                                <include reference="TSI-pB-cow"/>
+                                                <include reference="u3c-sF-9bZ"/>
                                             </mask>
                                         </variation>
                                         <connections>
@@ -507,10 +507,10 @@
                                 <exclude reference="OQH-AV-H0c"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="z8m-MH-tik"/>
                                 <exclude reference="Nql-Cz-Vp1"/>
                                 <exclude reference="r5G-RC-yWp"/>
                                 <exclude reference="yKd-GR-cNZ"/>
+                                <exclude reference="z8m-MH-tik"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -518,10 +518,10 @@
                                 <include reference="OQH-AV-H0c"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="z8m-MH-tik"/>
                                 <include reference="Nql-Cz-Vp1"/>
                                 <include reference="r5G-RC-yWp"/>
                                 <include reference="yKd-GR-cNZ"/>
+                                <include reference="z8m-MH-tik"/>
                             </mask>
                         </variation>
                     </view>
@@ -543,7 +543,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Axc-6I-OnA">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="avc-iw-NpV" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CategoryViewController" automaticallyAdjustsScrollViewInsets="NO" id="avc-iw-NpV" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ckc-8f-NrZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -561,7 +561,7 @@
         <!--Navigation Controller-->
         <scene sceneID="4Fn-Sq-wkN">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jk7-Bp-aCM" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CollectionViewController" automaticallyAdjustsScrollViewInsets="NO" id="Jk7-Bp-aCM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MMe-cV-9WV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self reload:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,7 +58,7 @@
 - (void)reload:(__unused id)sender
 {
     self.navigationItem.rightBarButtonItem.enabled = NO;
-    NSURLSessionTask *task = [GiphyObj trendingGiphyWithBlock:^(NSArray *posts, NSError *error) {
+    NSURLSessionTask *task = [GiphyObj searchGiphyWitKeyword:self.categoryName withBlock:^(NSArray *posts, NSError *error) {
         if (!error)
         {
             self.gifArray = [NSArray arrayWithArray:posts];

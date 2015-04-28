@@ -79,10 +79,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    if (indexPath.row % 2) {
+    if (indexPath.row == 0)
+    {
         [[AppDelegate mainDelegate] setFirstView];
-    }else{
-        [[AppDelegate mainDelegate] setFirstView];
+    }
+    else if (indexPath.row == 1)
+    {
+        [[AppDelegate mainDelegate] setCollectionView];
+    }
+    else
+    {
+        [[AppDelegate mainDelegate] setCateView];
     }
 }
 

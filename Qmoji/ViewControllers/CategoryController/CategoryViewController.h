@@ -11,6 +11,7 @@
 @interface CategoryViewController : UIViewController
 
 @property (nonatomic, strong) NSArray *gifArray;
+@property (nonatomic, strong) NSString *categoryName;
 @property (weak, nonatomic) IBOutlet UICollectionView *gifCollectionVIew;
 
 @end
