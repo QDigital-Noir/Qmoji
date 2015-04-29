@@ -14,7 +14,8 @@
 @interface MenuViewController () <UITableViewDelegate, UITableViewDataSource>
 {
     NSArray *images;
-    NSArray *titles;
+    NSArray *menus;
+    NSArray *categories;
 }
 @end
 
@@ -28,7 +29,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     images = @[@"", @"", @"", @"", @"", @""];
-    titles = @[@"Unlock & Restore", @"Your collections", @"Animals", @"Sci-fi", @"Movies", @"More Apps"];
+    menus = @[@"My Collections", @"Restore", @"Get more apps"];
+    categories = @[@"Trending", @"Animals", @"Sci-Fi", @"Movies", @"Funnies", @"Meme", @"Cartoons"];
     
     self.menuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.menuTableView.backgroundColor = [UIColor clearColor];
@@ -41,15 +43,22 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return images.count;
+    if (section == 0)
+    {
+        return menus.count;
+    }
+    else
+    {
+        return categories.count;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 40;
+    return 50;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -59,14 +68,19 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    cell.textLabel.text = [titles objectAtIndex:indexPath.row];
+    if (indexPath.section == 0)
+    {
+        cell.textLabel.text = [menus objectAtIndex:indexPath.row];
+        cell.imageView.image = [UIImage imageNamed:[menus objectAtIndex:indexPath.row]];
+    }
+    else
+    {
+        cell.textLabel.text = [categories objectAtIndex:indexPath.row];
+        cell.imageView.image = [UIImage imageNamed:[categories objectAtIndex:indexPath.row]];
+    }
     
-    UIFont *currentFont = cell.textLabel.font;
-    UIFont *correctFont = [UIFont fontWithName:currentFont.fontName size:currentFont.pointSize+5];
-    cell.textLabel.font = correctFont;
-    
+    cell.textLabel.font = [UIFont fontWithName:@"JosefinSans-SemiBold" size:20.0f];
     cell.textLabel.textColor = [UIColor whiteColor];
-    cell.imageView.image = [UIImage imageNamed:[images objectAtIndex:indexPath.row]];
     cell.contentView.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -79,17 +93,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    if (indexPath.row == 0)
+    
+    if (indexPath.section == 0)
     {
-        [[AppDelegate mainDelegate] setFirstView];
-    }
-    else if (indexPath.row == 1)
-    {
-        [[AppDelegate mainDelegate] setCollectionView];
+        if (indexPath.row == 0)
+        {
+            // My collection
+        }
+        else if (indexPath.row == 1)
+        {
+            // Restore purcheased
+        }
+        else
+        {
+            // Get more app
+        }
     }
     else
     {
-        [[AppDelegate mainDelegate] setCateView];
+        NSString *cateName = categories[indexPath.row];
+        [[AppDelegate mainDelegate] setCateViewWithName:cateName];
     }
 }
 

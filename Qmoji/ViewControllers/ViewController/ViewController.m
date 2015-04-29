@@ -28,6 +28,16 @@
     // Do any additional setup after loading the view, typically from a nib.
     [self configView];
     [self reload:nil];
+    
+    for (NSString* family in [UIFont familyNames])
+    {
+        NSLog(@"%@", family);
+        
+        for (NSString* name in [UIFont fontNamesForFamilyName: family])
+        {
+            NSLog(@"  %@", name);
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -130,19 +140,13 @@
     }
     */
     
+    // Update user collection.
     GiphyObj *obj = (GiphyObj *)self.gifArray[indexPath.row];
-    
-    // Tap to download.
     NSMutableArray *collectionArray = [NSMutableArray arrayWithArray:[[Helper sharedHelper] getUserCollection]];
-    
     NSDictionary *tempDict = @{@"giphyID" : obj.giphyID,
                                @"giphyOriginal" : obj.giphyOriginal,
                                @"giphyFixedWidth" : obj.giphyFixedWidth};
-    
     [collectionArray addObject:tempDict];
-    
-    NSLog(@"collectionArray:\n%@", collectionArray);
-    
     [[Helper sharedHelper] updateUserCollectionWithArray:collectionArray];
 }
 

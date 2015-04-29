@@ -103,42 +103,14 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-     BOOL isUnlock = [[Helper sharedHelper] getUnlockedStickerWithKey:self.cateName];
-     BOOL isUnlockAll = [[Helper sharedHelper] getUnlockedStickerWithKey:@"All"];
-     BOOL isPaid = [self.stickerArray[indexPath.row][@"isPaid"] boolValue];
-     
-     if (isUnlock || isUnlockAll)
-     {
-     NSLog(@"Unlocked %@", self.cateName);
-     MainCollectionViewCell *cell = (MainCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-     AppDelegateAccessor.stickerImage = cell.imageView.image;
-     AppDelegateAccessor.isFromStickers = YES;
-     [self.navigationController popViewControllerAnimated:YES];
-     }
-     else
-     {
-     if (isPaid)
-     {
-     NSLog(@"Need to unlock!!!!!!");
-     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Movie FX Stickers"
-     message:@"This stickers need to unlock."
-     delegate:self
-     cancelButtonTitle:@"No, Thank you"
-     otherButtonTitles:@"Unlock now!", nil];
-     [alert show];
-     }
-     else
-     {
-     StickerCollectionViewCell *cell = (StickerCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-     AppDelegateAccessor.stickerImage = cell.imageView.image;
-     AppDelegateAccessor.isFromStickers = YES;
-     [self.navigationController popViewControllerAnimated:YES];
-     }
-     }
-     */
-    
-    //TODO:Remove gif from collection
+    // Update user collection.
+    GiphyObj *obj = (GiphyObj *)self.gifArray[indexPath.row];
+    NSMutableArray *collectionArray = [NSMutableArray arrayWithArray:[[Helper sharedHelper] getUserCollection]];
+    NSDictionary *tempDict = @{@"giphyID" : obj.giphyID,
+                               @"giphyOriginal" : obj.giphyOriginal,
+                               @"giphyFixedWidth" : obj.giphyFixedWidth};
+    [collectionArray addObject:tempDict];
+    [[Helper sharedHelper] updateUserCollectionWithArray:collectionArray];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView

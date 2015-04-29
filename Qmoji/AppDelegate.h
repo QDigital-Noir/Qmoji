@@ -27,7 +27,7 @@
 
 + (AppDelegate *)mainDelegate;
 - (void)setFirstView;
-- (void)setCateView;
+- (void)setCateViewWithName:(NSString *)cateName;
 - (void)setCollectionView;
 
 @end

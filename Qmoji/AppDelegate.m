@@ -116,14 +116,23 @@
 //                                }];
 
     
+    // Setup navigationbar style
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+    shadow.shadowOffset = CGSizeMake(0, 1);
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]]; // Set bar button color
+    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]]; // Set bar background color
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
+                                                           shadow, NSShadowAttributeName,
+                                                           [UIFont fontWithName:@"JosefinSans-Bold" size:26.0], NSFontAttributeName, nil]];
+    
     // Setup menu.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     self.slideMenuVC = [[HKSlideMenu3DController alloc] init];
     self.slideMenuVC.view.frame =  [[UIScreen mainScreen] bounds];
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    
     menuVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
     menuVC.view.backgroundColor = [UIColor clearColor];
     navMain = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"MainNavController"];
@@ -133,11 +142,8 @@
     self.slideMenuVC.backgroundImage = [UIImage imageNamed:@"cloud"];
     self.slideMenuVC.backgroundImageContentMode = UIViewContentModeTopLeft;
     self.slideMenuVC.enablePan = NO;
-    
-    
     [self.window setRootViewController:self.slideMenuVC];
     [self.window makeKeyAndVisible];
-
     
     return YES;
 }
@@ -190,12 +196,13 @@
     self.slideMenuVC.mainViewController = navMain;
 }
 
-- (void)setCateView
+- (void)setCateViewWithName:(NSString *)cateName
 {
     if (!categoryVC)
     {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         categoryVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"CategoryViewController"];
+        categoryVC.categoryName = cateName;
     }
     self.slideMenuVC.mainViewController = categoryVC;
 }
