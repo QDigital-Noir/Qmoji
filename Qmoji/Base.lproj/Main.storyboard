@@ -384,7 +384,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Qmoji" id="IsZ-gk-ord">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="SC2-IN-wfr">
+                        <barButtonItem key="leftBarButtonItem" image="menu_icon" id="SC2-IN-wfr">
                             <connections>
                                 <action selector="menuAction:" destination="YP1-5b-izW" id="9M7-Xi-IBc"/>
                             </connections>
@@ -526,7 +526,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Qmoji" id="Lmi-pq-gwG">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="8xy-kE-ylu">
+                        <barButtonItem key="leftBarButtonItem" image="menu_icon" id="8xy-kE-ylu">
                             <connections>
                                 <action selector="menuAction:" destination="w7H-Dz-ynO" id="eat-wa-Vrt"/>
                             </connections>
@@ -578,6 +578,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="menu_icon" width="128" height="128"/>
+        <image name="menu_icon" width="24" height="24"/>
     </resources>
 </document>

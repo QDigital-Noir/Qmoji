@@ -61,7 +61,7 @@
 {
     self.navigationItem.rightBarButtonItem.enabled = NO;
     NSURLSessionTask *task = [GiphyObj trendingGiphyWithBlock:^(NSArray *posts, NSError *error) {
-        if (!error)
+        if (!error && posts.count != 0)
         {
             self.gifArray = [NSArray arrayWithArray:posts];
             [self.gifCollectionVIew reloadData];

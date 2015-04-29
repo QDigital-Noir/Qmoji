@@ -58,6 +58,7 @@
 - (void)reload:(__unused id)sender
 {
     self.navigationItem.rightBarButtonItem.enabled = NO;
+    /*
     NSURLSessionTask *task = [GiphyObj trendingGiphyWithBlock:^(NSArray *posts, NSError *error) {
         if (!error)
         {
@@ -72,6 +73,10 @@
     
     [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
     [self.refreshControl setRefreshingWithStateOfTask:task];
+    */
+    
+    self.gifArray = [[Helper sharedHelper] getUserCollection];
+    [self.gifCollectionVIew reloadData];
 }
 
 #pragma mark - Button Methods
@@ -92,9 +97,9 @@
     static NSString *identifier = @"Cell";
     UserCollectionViewCell *cell = (UserCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
-    GiphyObj *obj = (GiphyObj *)self.gifArray[indexPath.row];
+    NSDictionary *obj = (NSDictionary *)self.gifArray[indexPath.row];
     
-    [cell setImageWithURL:obj.giphyFixedWidth
+    [cell setImageWithURL:obj[@"giphyFixedWidth"]
                 andIsPaid:@NO
               andCateName:@"Test"];
     
@@ -103,14 +108,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Update user collection.
-    GiphyObj *obj = (GiphyObj *)self.gifArray[indexPath.row];
-    NSMutableArray *collectionArray = [NSMutableArray arrayWithArray:[[Helper sharedHelper] getUserCollection]];
-    NSDictionary *tempDict = @{@"giphyID" : obj.giphyID,
-                               @"giphyOriginal" : obj.giphyOriginal,
-                               @"giphyFixedWidth" : obj.giphyFixedWidth};
-    [collectionArray addObject:tempDict];
-    [[Helper sharedHelper] updateUserCollectionWithArray:collectionArray];
+
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView

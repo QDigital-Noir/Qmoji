@@ -99,6 +99,7 @@
         if (indexPath.row == 0)
         {
             // My collection
+            [[AppDelegate mainDelegate] setCollectionView];
         }
         else if (indexPath.row == 1)
         {

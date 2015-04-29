@@ -216,7 +216,9 @@
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         collectionVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"CollectionViewController"];
     }
-    self.slideMenuVC.mainViewController = collectionVC;
+    
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:collectionVC];
+    self.slideMenuVC.mainViewController = navVC;
 }
 
 @end
