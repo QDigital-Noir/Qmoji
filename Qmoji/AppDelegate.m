@@ -204,7 +204,9 @@
         categoryVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"CategoryViewController"];
         categoryVC.categoryName = cateName;
     }
-    self.slideMenuVC.mainViewController = categoryVC;
+    
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:categoryVC];
+    self.slideMenuVC.mainViewController = navVC;
 }
 
 - (void)setCollectionView

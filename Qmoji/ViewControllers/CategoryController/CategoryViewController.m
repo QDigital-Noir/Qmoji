@@ -58,15 +58,17 @@
 - (void)reload:(__unused id)sender
 {
     self.navigationItem.rightBarButtonItem.enabled = NO;
-    NSURLSessionTask *task = [GiphyObj searchGiphyWitKeyword:self.categoryName withBlock:^(NSArray *posts, NSError *error) {
-        if (!error)
+    NSURLSessionTask *task = [GiphyObj searchGiphyWitKeyword:@"" withBlock:^(NSArray *posts, NSError *error) {
+        if (!error && posts.count != 0)
         {
+            NSLog(@"Found %@ : %lu", self.categoryName, (unsigned long)posts.count);
             self.gifArray = [NSArray arrayWithArray:posts];
             [self.gifCollectionVIew reloadData];
         }
         else
         {
-            
+            // Redirect back to trending screen.
+            [[AppDelegate mainDelegate] setFirstView];
         }
     }];
     

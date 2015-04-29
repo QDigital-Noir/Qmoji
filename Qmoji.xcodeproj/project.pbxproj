@@ -20,7 +20,6 @@
 		105E33B01AEA86FC005740F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E33AF1AEA86FC005740F9 /* main.m */; };
 		105E33B31AEA86FC005740F9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E33B21AEA86FC005740F9 /* AppDelegate.m */; };
 		105E33B91AEA86FC005740F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 105E33B71AEA86FC005740F9 /* Main.storyboard */; };
-		105E33BB1AEA86FC005740F9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 105E33BA1AEA86FC005740F9 /* Images.xcassets */; };
 		105E33BE1AEA86FC005740F9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105E33BC1AEA86FC005740F9 /* LaunchScreen.xib */; };
 		105E33CA1AEA86FC005740F9 /* QmojiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E33C91AEA86FC005740F9 /* QmojiTests.m */; };
 		105E33DD1AEA876B005740F9 /* KeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E33DC1AEA876B005740F9 /* KeyboardViewController.m */; };
@@ -47,6 +46,8 @@
 		105E34081AEA9893005740F9 /* JosefinSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F51AEA9893005740F9 /* JosefinSans-Thin.ttf */; };
 		105E34091AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */; };
 		105E340A1AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */; };
+		107FCA5A1AF14BF600F0455F /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 107FCA591AF14BF600F0455F /* image.xcassets */; };
+		107FCA5B1AF14BF600F0455F /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 107FCA591AF14BF600F0455F /* image.xcassets */; };
 		1097AB471AEFB17700BEA773 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1097AB461AEFB17700BEA773 /* IAPHelper.m */; };
 		1097AB481AEFB17700BEA773 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1097AB461AEFB17700BEA773 /* IAPHelper.m */; };
 		10C83DEF1AEB9A31003FD03F /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C83DEE1AEB9A31003FD03F /* MenuViewController.m */; };
@@ -113,7 +114,6 @@
 		105E33B11AEA86FC005740F9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		105E33B21AEA86FC005740F9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		105E33B81AEA86FC005740F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		105E33BA1AEA86FC005740F9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		105E33BD1AEA86FC005740F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		105E33C31AEA86FC005740F9 /* QmojiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QmojiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		105E33C81AEA86FC005740F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -135,6 +135,7 @@
 		105E33F41AEA9893005740F9 /* JosefinSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		105E33F51AEA9893005740F9 /* JosefinSans-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Thin.ttf"; sourceTree = "<group>"; };
 		105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-ThinItalic.ttf"; sourceTree = "<group>"; };
+		107FCA591AF14BF600F0455F /* image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = image.xcassets; sourceTree = "<group>"; };
 		1097AB451AEFB17700BEA773 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		1097AB461AEFB17700BEA773 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		10C83DED1AEB9A31003FD03F /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -294,9 +295,9 @@
 				105E33B11AEA86FC005740F9 /* AppDelegate.h */,
 				105E33B21AEA86FC005740F9 /* AppDelegate.m */,
 				105E33B71AEA86FC005740F9 /* Main.storyboard */,
-				105E33BA1AEA86FC005740F9 /* Images.xcassets */,
 				105E33BC1AEA86FC005740F9 /* LaunchScreen.xib */,
 				105E33AD1AEA86FC005740F9 /* Supporting Files */,
+				107FCA591AF14BF600F0455F /* image.xcassets */,
 			);
 			path = Qmoji;
 			sourceTree = "<group>";
@@ -525,9 +526,9 @@
 				105E34031AEA9893005740F9 /* JosefinSans-SemiBold.ttf in Resources */,
 				105E33F91AEA9893005740F9 /* JosefinSans-BoldItalic.ttf in Resources */,
 				105E33BE1AEA86FC005740F9 /* LaunchScreen.xib in Resources */,
+				107FCA5A1AF14BF600F0455F /* image.xcassets in Resources */,
 				105E34091AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */,
 				105E33FF1AEA9893005740F9 /* JosefinSans-LightItalic.ttf in Resources */,
-				105E33BB1AEA86FC005740F9 /* Images.xcassets in Resources */,
 				105E34011AEA9893005740F9 /* JosefinSans-Regular.ttf in Resources */,
 				105E33FD1AEA9893005740F9 /* JosefinSans-Light.ttf in Resources */,
 				105E34071AEA9893005740F9 /* JosefinSans-Thin.ttf in Resources */,
@@ -554,6 +555,7 @@
 				105E34061AEA9893005740F9 /* JosefinSans-SemiBoldItalic.ttf in Resources */,
 				105E33FE1AEA9893005740F9 /* JosefinSans-Light.ttf in Resources */,
 				105E33F81AEA9893005740F9 /* JosefinSans-Bold.ttf in Resources */,
+				107FCA5B1AF14BF600F0455F /* image.xcassets in Resources */,
 				105E340A1AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */,
 				105E34081AEA9893005740F9 /* JosefinSans-Thin.ttf in Resources */,
 			);
