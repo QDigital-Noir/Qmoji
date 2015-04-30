@@ -104,10 +104,17 @@
         else if (indexPath.row == 1)
         {
             // Restore purcheased
+            KVNProgressConfiguration *basicConfiguration = [[KVNProgressConfiguration alloc] init];;
+            basicConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
+            basicConfiguration.fullScreen = YES;
+            [KVNProgress showWithStatus:@"Restoring purcheased..."];
+//            [PFPurchase restore];
         }
         else
         {
             // Get more app
+            NSString *iTunesLink = @"https://itunes.apple.com/us/artist/intence-media/id592330573";
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
         }
     }
     else
