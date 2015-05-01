@@ -9,7 +9,7 @@
 #import "KeyboardViewController.h"
 #import "QmojiKeyboard.h"
 
-@interface KeyboardViewController ()
+@interface KeyboardViewController () <UIScrollViewDelegate>
 @property (nonatomic, strong) QmojiKeyboard *qmojiKeyboard;
 @end
 
@@ -26,19 +26,15 @@
     
     // Keyboard
     self.qmojiKeyboard = [[[NSBundle mainBundle] loadNibNamed:@"QmojiKeyboard" owner:nil options:nil] objectAtIndex:0];
+    self.qmojiKeyboard.scrollView.delegate = self;
+    self.qmojiKeyboard.scrollView.contentSize = CGSizeMake(500, self.qmojiKeyboard.scrollView.frame.size.height);
+    
+    NSArray *array = [[Helper sharedHelper] getUserCollection];
+    NSLog(@"array : %@", array);
+    
     self.inputView = self.qmojiKeyboard;
     
     [self addGuestureToKeyboard];
-    
-    for (NSString* family in [UIFont familyNames])
-    {
-        NSLog(@"%@", family);
-        
-        for (NSString* name in [UIFont fontNamesForFamilyName: family])
-        {
-            NSLog(@"  %@", name);
-        }
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,6 +76,13 @@
 - (void)pressDeleteKey
 {
     [self.textDocumentProxy deleteBackward];
+}
+
+#pragma mark - UIScrollView Delegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    NSLog(@"scroll offset x : %f", scrollView.contentOffset.x);
 }
 
 @end
