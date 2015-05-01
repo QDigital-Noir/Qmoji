@@ -24,10 +24,13 @@
 @property (nonatomic, assign) BOOL unlockedWar;
 @property (nonatomic, assign) BOOL unlockedZombie;
 @property (nonatomic, assign) BOOL isFromStickers;
+@property (nonatomic, assign) BOOL isFromCollectionScreen;
+@property (nonatomic, assign) BOOL isFromTrendingScreen;
+@property (nonatomic, strong) NSString *categoryName;
 
 + (AppDelegate *)mainDelegate;
 - (void)setFirstView;
-- (void)setCateViewWithName:(NSString *)cateName;
+- (void)setCateView;
 - (void)setCollectionView;
 
 @end

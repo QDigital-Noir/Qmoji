@@ -76,12 +76,15 @@
     */
     
     self.gifArray = [[Helper sharedHelper] getUserCollection];
+    NSLog(@"Count collections : %lu", (unsigned long)self.gifArray.count);
     [self.gifCollectionVIew reloadData];
 }
 
 #pragma mark - Button Methods
 - (IBAction)menuAction:(id)sender
 {
+    AppDelegateAccessor.isFromCollectionScreen = YES;
+    AppDelegateAccessor.isFromTrendingScreen = NO;
     [[AppDelegate mainDelegate].slideMenuVC toggleMenu];
 }
 

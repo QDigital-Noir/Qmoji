@@ -22,13 +22,29 @@
 
 @implementation CategoryViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [self reload:nil];
+    
+    if (AppDelegateAccessor.isFromTrendingScreen)
+    {
+        [self reload:nil];
+    }
+    
+    if (AppDelegateAccessor.isFromCollectionScreen)
+    {
+        [self reload:nil];
+    }
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)viewWillAppear:(BOOL)animated
+{
+    // Add notification observer
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload:) name:@"CHANGED_CATEGORY" object:nil];
+}
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -57,13 +73,25 @@
 
 - (void)reload:(__unused id)sender
 {
+    KVNProgressConfiguration *basicConfiguration = [[KVNProgressConfiguration alloc] init];;
+    basicConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
+    basicConfiguration.fullScreen = YES;
+    [KVNProgress showWithStatus:@"Loading..."];
+    
+    if (self.gifArray != nil && self.gifArray.count > 0)
+    {
+        self.gifArray = nil;
+        [self.gifCollectionVIew reloadData];
+    }
+    
     self.navigationItem.rightBarButtonItem.enabled = NO;
-    NSURLSessionTask *task = [GiphyObj searchGiphyWitKeyword:self.categoryName withBlock:^(NSArray *posts, NSError *error) {
+    NSURLSessionTask *task = [GiphyObj searchGiphyWitKeyword:AppDelegateAccessor.categoryName withBlock:^(NSArray *posts, NSError *error) {
         if (!error && posts.count != 0)
         {
-            NSLog(@"Found %@ : %lu", self.categoryName, (unsigned long)posts.count);
+            NSLog(@"Found %@ : %lu", AppDelegateAccessor.categoryName, (unsigned long)posts.count);
             self.gifArray = [NSArray arrayWithArray:posts];
             [self.gifCollectionVIew reloadData];
+            [KVNProgress dismiss];
         }
         else
         {
@@ -79,6 +107,8 @@
 #pragma mark - Button Methods
 - (IBAction)menuAction:(id)sender
 {
+    AppDelegateAccessor.isFromCollectionScreen = NO;
+    AppDelegateAccessor.isFromTrendingScreen = NO;
     [[AppDelegate mainDelegate].slideMenuVC toggleMenu];
 }
 
@@ -113,6 +143,11 @@
                                @"giphyFixedWidth" : obj.giphyFixedWidth};
     [collectionArray addObject:tempDict];
     [[Helper sharedHelper] updateUserCollectionWithArray:collectionArray];
+    
+    KVNProgressConfiguration *basicConfiguration = [[KVNProgressConfiguration alloc] init];;
+    basicConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
+    basicConfiguration.fullScreen = YES;
+    [KVNProgress showSuccessWithStatus:@"Added to your collection"];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView

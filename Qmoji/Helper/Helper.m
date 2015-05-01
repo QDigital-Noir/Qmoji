@@ -71,13 +71,13 @@
 
 - (void)updateUserCollectionWithArray:(NSMutableArray *)collectionArray
 {
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.intencemedia.animatedgifkeyboard"];
     [userDefault setObject:collectionArray forKey:@"UserCollection"];
 }
 
 - (NSArray *)getUserCollection
 {
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.intencemedia.animatedgifkeyboard"];
     NSArray *collectionArray = [NSArray arrayWithArray:(NSArray *)[userDefault objectForKey:@"UserCollection"]];
                                 return collectionArray;
 }

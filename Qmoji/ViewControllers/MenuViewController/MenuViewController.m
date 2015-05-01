@@ -31,7 +31,7 @@
     images = @[@"", @"", @"", @"", @"", @""];
     menus = @[@"My Collections", @"Restore", @"Get more apps"];
     categories = @[@"Trending", @"Animals", @"Sci-Fi", @"Movies", @"Funnies", @"Meme", @"Cartoons"];
-    
+        
     self.menuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.menuTableView.backgroundColor = [UIColor clearColor];
     [self.menuTableView reloadData];
@@ -119,8 +119,49 @@
     }
     else
     {
-        NSString *cateName = categories[indexPath.row];
-        [[AppDelegate mainDelegate] setCateViewWithName:cateName];
+        if (indexPath.row == 0)
+        {
+            [[AppDelegate mainDelegate] setFirstView];
+        }
+        else
+        {
+            AppDelegateAccessor.categoryName = categories[indexPath.row];
+            [[AppDelegate mainDelegate] setCateView];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGED_CATEGORY" object:nil];
+        }
+        
+//        if (AppDelegateAccessor.isFromCollectionScreen)
+//        {
+//            [[AppDelegate mainDelegate] setCateView];
+//        }
+//        else
+//        {
+//            if (AppDelegateAccessor.isFromTrendingScreen)
+//            {
+//                [[AppDelegate mainDelegate] setCateView];
+//            }
+//            else
+//            {
+//                [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGED_CATEGORY" object:nil];
+//                [[AppDelegate mainDelegate].slideMenuVC toggleMenu];
+//            }
+//        }
+        
+//        if (AppDelegateAccessor.isFromCollectionScreen == NO && AppDelegateAccessor.isFromTrendingScreen == NO)
+//        {
+//            // From Category to Trending
+//            [[AppDelegate mainDelegate] setFirstView];
+//        }
+//        else if (AppDelegateAccessor.isFromCollectionScreen == YES && AppDelegateAccessor.isFromTrendingScreen == NO)
+//        {
+//            // From Collection to Trending
+//            [[AppDelegate mainDelegate] setFirstView];
+//        }
+//        else if (AppDelegateAccessor.isFromCollectionScreen == NO && AppDelegateAccessor.isFromTrendingScreen == YES)
+//        {
+//            // From Trending
+//            [[AppDelegate mainDelegate] setCateView];
+//        }
     }
 }
 

@@ -79,6 +79,8 @@
 #pragma mark - Button Methods
 - (IBAction)menuAction:(id)sender
 {
+    AppDelegateAccessor.isFromCollectionScreen = NO;
+    AppDelegateAccessor.isFromTrendingScreen = YES;
     [[AppDelegate mainDelegate].slideMenuVC toggleMenu];
 }
 

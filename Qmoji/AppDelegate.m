@@ -196,13 +196,12 @@
     self.slideMenuVC.mainViewController = navMain;
 }
 
-- (void)setCateViewWithName:(NSString *)cateName
+- (void)setCateView
 {
     if (!categoryVC)
     {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         categoryVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"CategoryViewController"];
-        categoryVC.categoryName = cateName;
     }
     
     UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:categoryVC];
