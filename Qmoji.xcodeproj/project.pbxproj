@@ -144,6 +144,7 @@
 		10C83DEE1AEB9A31003FD03F /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		10C83DF11AEB9BAF003FD03F /* MenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewCell.h; sourceTree = "<group>"; };
 		10C83DF21AEB9BAF003FD03F /* MenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewCell.m; sourceTree = "<group>"; };
+		10F4C9691AF35E93004DAED9 /* QmojiKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = QmojiKeyboard.entitlements; sourceTree = "<group>"; };
 		271F6D1A70E3F5C7576154B2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3F45852CDF787F419CE16EC1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9AFF9F44255343DDF080420C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -335,6 +336,7 @@
 		105E33D81AEA876B005740F9 /* QmojiKeyboard */ = {
 			isa = PBXGroup;
 			children = (
+				10F4C9691AF35E93004DAED9 /* QmojiKeyboard.entitlements */,
 				105E33DB1AEA876B005740F9 /* KeyboardViewController.h */,
 				105E33DC1AEA876B005740F9 /* KeyboardViewController.m */,
 				105E33D91AEA876B005740F9 /* Supporting Files */,
@@ -490,7 +492,7 @@
 						DevelopmentTeam = UH5VVTMLZZ;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -500,6 +502,12 @@
 					};
 					105E33D61AEA876B005740F9 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = UH5VVTMLZZ;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -767,13 +775,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Qmoji/Qmoji.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alan Dang (J2EG24V3F8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alan Dang (J2EG24V3F8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Qmoji/Qmoji-Prefix.pch";
 				INFOPLIST_FILE = Qmoji/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bfe823a2-796d-4547-991c-ae468fe2383d";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -783,13 +791,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Qmoji/Qmoji.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: intence media, LLC (UH5VVTMLZZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: intence media, LLC (UH5VVTMLZZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Qmoji/Qmoji-Prefix.pch";
 				INFOPLIST_FILE = Qmoji/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "577767f6-f1ba-4a85-a828-e49959ad04bc";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -831,6 +839,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 271F6D1A70E3F5C7576154B2 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = QmojiKeyboard/QmojiKeyboard.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Alan Dang (J2EG24V3F8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alan Dang (J2EG24V3F8)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Qmoji/Qmoji-Prefix.pch";
@@ -854,6 +863,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3F45852CDF787F419CE16EC1 /* Pods.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = QmojiKeyboard/QmojiKeyboard.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: intence media, LLC (UH5VVTMLZZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: intence media, LLC (UH5VVTMLZZ)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Qmoji/Qmoji-Prefix.pch";
