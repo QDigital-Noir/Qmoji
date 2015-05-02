@@ -8,6 +8,7 @@
 
 #import "KeyboardViewController.h"
 #import "QmojiKeyboard.h"
+#import "UIDeviceHardware.h"
 
 @interface KeyboardViewController () <UIScrollViewDelegate>
 @property (nonatomic, strong) QmojiKeyboard *qmojiKeyboard;
@@ -25,15 +26,96 @@
     [super viewDidLoad];
     
     // Keyboard
+    
+    UIDeviceHardware *h = [[UIDeviceHardware alloc] init];
+    NSLog(@"%@", [h platformString]);
+    
     self.qmojiKeyboard = [[[NSBundle mainBundle] loadNibNamed:@"QmojiKeyboard" owner:nil options:nil] objectAtIndex:0];
     self.qmojiKeyboard.scrollView.delegate = self;
-    self.qmojiKeyboard.scrollView.contentSize = CGSizeMake(500, self.qmojiKeyboard.scrollView.frame.size.height);
+
+    float width = 0;
+    float heigh = 0;
+    
+    if ([[h platformString] isEqualToString:@"iPhone 6"])
+    {
+        self.qmojiKeyboard.frame = CGRectMake(0, 0, 375, 258);
+        self.qmojiKeyboard.scrollView.frame = CGRectMake(0, 0, self.qmojiKeyboard.frame.size.width, 158);
+        self.qmojiKeyboard.scrollView.backgroundColor = [UIColor clearColor];
+        self.qmojiKeyboard.globalButton.frame = CGRectMake(0, self.qmojiKeyboard.scrollView.frame.size.height, 45, 55);
+        self.qmojiKeyboard.statusLabel.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.scrollView.frame.size.height, 375 - 90, 55);
+        self.qmojiKeyboard.statusLabel.backgroundColor = [UIColor clearColor];
+        self.qmojiKeyboard.deleteButton.frame = CGRectMake(375 - 45, self.qmojiKeyboard.scrollView.frame.size.height, 45, 55);
+        width = 125;
+        heigh = 79;
+    }
+    else if ([[h platformString] isEqualToString:@"iPhone 6 Plus"])
+    {
+        self.qmojiKeyboard.frame = CGRectMake(0, 0, 414, 271);
+        self.qmojiKeyboard.scrollView.frame = CGRectMake(0, 0, 414, 170);
+        self.qmojiKeyboard.scrollView.backgroundColor = [UIColor clearColor];
+        self.qmojiKeyboard.globalButton.frame = CGRectMake(0, self.qmojiKeyboard.scrollView.frame.size.height, 45, 50);
+        self.qmojiKeyboard.statusLabel.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.scrollView.frame.size.height, 414 - 90, 50);
+        self.qmojiKeyboard.statusLabel.backgroundColor = [UIColor clearColor];
+        self.qmojiKeyboard.deleteButton.frame = CGRectMake(414 - 45, self.qmojiKeyboard.scrollView.frame.size.height, 45, 50);
+        
+        width = 137;
+        heigh = 85;
+    }
+    else
+    {
+        self.qmojiKeyboard.frame = CGRectMake(0, 0, 320, 253);
+        self.qmojiKeyboard.scrollView.frame = CGRectMake(0, 0, 320, 158);
+        self.qmojiKeyboard.scrollView.backgroundColor = [UIColor clearColor];
+        self.qmojiKeyboard.globalButton.frame = CGRectMake(0, self.qmojiKeyboard.scrollView.frame.size.height, 45, 50);
+        self.qmojiKeyboard.statusLabel.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.scrollView.frame.size.height, 320 - 90, 50);
+        self.qmojiKeyboard.statusLabel.backgroundColor = [UIColor clearColor];
+        self.qmojiKeyboard.deleteButton.frame = CGRectMake(320 - 45, self.qmojiKeyboard.scrollView.frame.size.height, 45, 50);
+        
+        width = 125;
+        heigh = 79;
+    }
     
     NSArray *array = [[Helper sharedHelper] getUserCollection];
     NSLog(@"array : %@", array);
     
-    self.inputView = self.qmojiKeyboard;
+    float xpos = 0;
+    float ypos = 0;
     
+    for (int i = 0; i < array.count; i++)
+    {
+        NSDictionary *dict = array[i];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(xpos, ypos, width, heigh)];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]
+                     placeholderImage:[UIImage imageNamed:@"placeholder"]
+                              options:SDWebImageRefreshCached];
+        imageView.contentMode = UIViewContentModeScaleToFill;
+        imageView.userInteractionEnabled = YES;
+        imageView.backgroundColor = [UIColor grayColor];
+        imageView.tag = i;
+        UITapGestureRecognizer *guesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(test:)];
+        guesture.numberOfTapsRequired = 1;
+        guesture.numberOfTouchesRequired = 1;
+        [imageView addGestureRecognizer:guesture];
+
+        if (i % 2 == 0)
+        {
+            ypos = ypos + heigh + 1;
+            self.qmojiKeyboard.scrollView.contentSize = CGSizeMake(xpos + width + 1, self.qmojiKeyboard.scrollView.frame.size.height);
+
+        }
+        else
+        {
+            xpos = xpos + width + 1;
+            ypos = 0;
+            self.qmojiKeyboard.scrollView.contentSize = CGSizeMake(xpos + width, self.qmojiKeyboard.scrollView.frame.size.height);
+
+        }
+        
+        [self.qmojiKeyboard.scrollView addSubview:imageView];
+    }
+    
+    self.inputView = self.qmojiKeyboard;
     [self addGuestureToKeyboard];
 }
 
@@ -44,6 +126,11 @@
 
 - (void)textWillChange:(id<UITextInput>)textInput {
     // The app is about to change the document's contents. Perform any preparation here.
+    NSLog(@"Test 1");
+//    UIPasteboard *appPasteBoard = [UIPasteboard generalPasteboard];//[UIPasteboard pasteboardWithName:@"CopyPaste" create:YES];
+//    //    appPasteBoard.persistent = YES;
+//    NSData *data = UIImagePNGRepresentation([UIImage imageNamed:@"keyboardcat.gif"]);
+//    [appPasteBoard setData:data forPasteboardType:@"com.intencemedia.animatedgifkeyboard"];
 }
 
 - (void)textDidChange:(id<UITextInput>)textInput {
@@ -66,11 +153,6 @@
     [self.qmojiKeyboard.globalButton addTarget:self
                                         action:@selector(advanceToNextInputMode)
                               forControlEvents:UIControlEventTouchUpInside];
-    
-//    for (UIButton *key in self.keyCommands)
-//    {
-//    
-//    }
 }
 
 - (void)pressDeleteKey
@@ -78,11 +160,19 @@
     [self.textDocumentProxy deleteBackward];
 }
 
-#pragma mark - UIScrollView Delegate
+#pragma mark - Copy function
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)test:(id)sender
 {
-    NSLog(@"scroll offset x : %f", scrollView.contentOffset.x);
+    NSLog(@"Test");
+//     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://media4.giphy.com/media/8CSflsMG1IFos/200w.gif"]];
+//     UIPasteboard *pasteBoard=[UIPasteboard generalPasteboard];
+//     [pasteBoard setData:data forPasteboardType:@"com.intencemedia.animatedgifkeyboard.extension"];
+    
+//    UIPasteboard *appPasteBoard = [UIPasteboard generalPasteboard];//[UIPasteboard pasteboardWithName:@"CopyPaste" create:YES];
+////    appPasteBoard.persistent = YES;
+//    NSData *data = UIImagePNGRepresentation([UIImage imageNamed:@"keyboardcat.gif"]);
+//    [appPasteBoard setData:data forPasteboardType:@"com.intencemedia.animatedgifkeyboard.extension"];
 }
 
 @end

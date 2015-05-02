@@ -17,15 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Search your gif" placeholder="Search beers.." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CEy-Nf-TXQ">
-                                <rect key="frame" x="-1" y="64" width="322" height="44"/>
-                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="19"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                <connections>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="UAa-Gd-WTF"/>
-                                </connections>
-                            </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8Bh-xE-tlp">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -109,29 +100,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8Bh-xE-tlp" firstAttribute="top" secondItem="CEy-Nf-TXQ" secondAttribute="bottom" constant="1" id="44H-BG-rJn"/>
-                            <constraint firstItem="CEy-Nf-TXQ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="Ina-my-pHG"/>
                             <constraint firstItem="8Bh-xE-tlp" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="dBd-0G-3qI"/>
                             <constraint firstItem="8Bh-xE-tlp" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="fwC-jF-hvk">
-                                <variation key="heightClass=regular-widthClass=compact" constant="44"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="-64"/>
                             </constraint>
-                            <constraint firstItem="CEy-Nf-TXQ" firstAttribute="trailing" secondItem="8Bh-xE-tlp" secondAttribute="trailing" id="j2M-cC-9vu"/>
                             <constraint firstAttribute="trailing" secondItem="8Bh-xE-tlp" secondAttribute="trailing" id="lJw-Uh-nM5"/>
                             <constraint firstAttribute="bottomMargin" secondItem="8Bh-xE-tlp" secondAttribute="bottom" constant="-64" id="lxl-7g-aYr">
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
-                            <constraint firstItem="CEy-Nf-TXQ" firstAttribute="leading" secondItem="8Bh-xE-tlp" secondAttribute="leading" id="m82-lg-jXc"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="CEy-Nf-TXQ"/>
                                 <exclude reference="8Bh-xE-tlp"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Ina-my-pHG"/>
-                                <exclude reference="j2M-cC-9vu"/>
-                                <exclude reference="m82-lg-jXc"/>
-                                <exclude reference="44H-BG-rJn"/>
                                 <exclude reference="dBd-0G-3qI"/>
                                 <exclude reference="fwC-jF-hvk"/>
                                 <exclude reference="lJw-Uh-nM5"/>
@@ -140,14 +122,9 @@
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="CEy-Nf-TXQ"/>
                                 <include reference="8Bh-xE-tlp"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Ina-my-pHG"/>
-                                <include reference="j2M-cC-9vu"/>
-                                <include reference="m82-lg-jXc"/>
-                                <include reference="44H-BG-rJn"/>
                                 <include reference="dBd-0G-3qI"/>
                                 <include reference="fwC-jF-hvk"/>
                                 <include reference="lJw-Uh-nM5"/>
@@ -164,7 +141,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="gifCollectionVIew" destination="8Bh-xE-tlp" id="old-cY-JGW"/>
-                        <outlet property="searchTextField" destination="CEy-Nf-TXQ" id="SjK-a3-0P4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

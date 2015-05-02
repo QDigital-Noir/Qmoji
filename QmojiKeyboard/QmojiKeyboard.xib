@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
@@ -7,87 +7,57 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="QmojiKeyboard">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="253"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Tap to copy, then paste in IMessage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QT5-p2-vKE">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gMS-ob-hbb">
+                    <rect key="frame" x="0.0" y="221" width="45" height="24"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="global_icon">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="global_icon"/>
+                </button>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="o5x-vB-SbT">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="213"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </scrollView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to copy, Then paste to use" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L9N-y6-OTL">
+                    <rect key="frame" x="45" y="221" width="222" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMS-ob-hbb">
-                    <rect key="frame" x="0.0" y="186" width="46" height="30"/>
-                    <state key="normal" title="Button">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Gp9-k2-hxl">
+                    <rect key="frame" x="267" y="221" width="54" height="24"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="backspace_icon">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="selected" image="global_icon"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOQ-0S-d3Q">
-                    <rect key="frame" x="274" y="186" width="46" height="30"/>
-                    <state key="normal" title="Button">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o5x-vB-SbT">
-                    <rect key="frame" x="0.0" y="38" width="320" height="140"/>
-                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                </scrollView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="o5x-vB-SbT" firstAttribute="top" secondItem="QT5-p2-vKE" secondAttribute="bottom" constant="8" symbolic="YES" id="3Ca-OA-FvZ"/>
-                <constraint firstAttribute="trailing" secondItem="QT5-p2-vKE" secondAttribute="trailing" id="552-ZY-z9r"/>
-                <constraint firstItem="o5x-vB-SbT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5cT-EN-ef1"/>
-                <constraint firstItem="QT5-p2-vKE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6kN-Gw-iTS"/>
-                <constraint firstItem="o5x-vB-SbT" firstAttribute="trailing" secondItem="QT5-p2-vKE" secondAttribute="trailing" id="8tm-Wt-qIo"/>
-                <constraint firstItem="gMS-ob-hbb" firstAttribute="top" secondItem="o5x-vB-SbT" secondAttribute="bottom" constant="8" symbolic="YES" id="BF3-1g-mn3"/>
-                <constraint firstItem="gMS-ob-hbb" firstAttribute="leading" secondItem="o5x-vB-SbT" secondAttribute="leading" id="FEA-on-4fk"/>
-                <constraint firstItem="o5x-vB-SbT" firstAttribute="leading" secondItem="QT5-p2-vKE" secondAttribute="leading" id="QMQ-Mq-GkY"/>
-                <constraint firstItem="o5x-vB-SbT" firstAttribute="trailing" secondItem="kOQ-0S-d3Q" secondAttribute="trailing" id="Sb7-n6-V58"/>
-                <constraint firstItem="o5x-vB-SbT" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="hvi-qU-ihO"/>
-                <constraint firstAttribute="bottom" secondItem="gMS-ob-hbb" secondAttribute="bottom" id="pkW-T1-fDO"/>
-                <constraint firstItem="kOQ-0S-d3Q" firstAttribute="baseline" secondItem="gMS-ob-hbb" secondAttribute="baseline" id="unq-lp-AtH"/>
-            </constraints>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="552-ZY-z9r"/>
-                    <exclude reference="6kN-Gw-iTS"/>
-                    <exclude reference="3Ca-OA-FvZ"/>
-                    <exclude reference="5cT-EN-ef1"/>
-                    <exclude reference="8tm-Wt-qIo"/>
-                    <exclude reference="QMQ-Mq-GkY"/>
-                    <exclude reference="Sb7-n6-V58"/>
-                    <exclude reference="hvi-qU-ihO"/>
-                    <exclude reference="BF3-1g-mn3"/>
-                    <exclude reference="FEA-on-4fk"/>
-                    <exclude reference="pkW-T1-fDO"/>
-                    <exclude reference="unq-lp-AtH"/>
-                </mask>
-            </variation>
-            <variation key="heightClass=regular-widthClass=compact">
-                <mask key="constraints">
-                    <include reference="552-ZY-z9r"/>
-                    <include reference="6kN-Gw-iTS"/>
-                    <include reference="3Ca-OA-FvZ"/>
-                    <include reference="5cT-EN-ef1"/>
-                    <include reference="8tm-Wt-qIo"/>
-                    <include reference="QMQ-Mq-GkY"/>
-                    <include reference="Sb7-n6-V58"/>
-                    <include reference="hvi-qU-ihO"/>
-                    <include reference="BF3-1g-mn3"/>
-                    <include reference="FEA-on-4fk"/>
-                    <include reference="pkW-T1-fDO"/>
-                    <include reference="unq-lp-AtH"/>
-                </mask>
-            </variation>
             <connections>
-                <outlet property="deleteButton" destination="kOQ-0S-d3Q" id="G7h-yh-IvW"/>
+                <outlet property="deleteButton" destination="Gp9-k2-hxl" id="Dxa-JA-IKi"/>
                 <outlet property="globalButton" destination="gMS-ob-hbb" id="JvW-bm-7uS"/>
                 <outlet property="scrollView" destination="o5x-vB-SbT" id="wSU-xe-Xvc"/>
-                <outlet property="statusLabel" destination="QT5-p2-vKE" id="5Xl-kA-pxo"/>
+                <outlet property="statusLabel" destination="L9N-y6-OTL" id="bBh-LW-mJb"/>
             </connections>
+            <point key="canvasLocation" x="340" y="392.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="backspace_icon" width="24" height="24"/>
+        <image name="global_icon" width="24" height="24"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

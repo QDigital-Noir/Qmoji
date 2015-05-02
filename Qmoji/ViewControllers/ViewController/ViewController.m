@@ -28,16 +28,16 @@
     // Do any additional setup after loading the view, typically from a nib.
     [self configView];
     [self reload:nil];
-    
-    for (NSString* family in [UIFont familyNames])
-    {
-        NSLog(@"%@", family);
-        
-        for (NSString* name in [UIFont fontNamesForFamilyName: family])
-        {
-            NSLog(@"  %@", name);
-        }
-    }
+
+//    for (NSString* family in [UIFont familyNames])
+//    {
+//        NSLog(@"%@", family);
+//        
+//        for (NSString* name in [UIFont fontNamesForFamilyName: family])
+//        {
+//            NSLog(@"  %@", name);
+//        }
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,20 +60,62 @@
 - (void)reload:(__unused id)sender
 {
     self.navigationItem.rightBarButtonItem.enabled = NO;
-    NSURLSessionTask *task = [GiphyObj trendingGiphyWithBlock:^(NSArray *posts, NSError *error) {
-        if (!error && posts.count != 0)
+//    NSURLSessionTask *task = [GiphyObj trendingGiphyWithBlock:^(NSArray *posts, NSError *error) {
+//        if (!error && posts.count != 0)
+//        {
+//            self.gifArray = [NSArray arrayWithArray:posts];
+//            [self.gifCollectionVIew reloadData];
+//        }
+//        else
+//        {
+//            
+//        }
+//    }];
+//    
+//    [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
+//    [self.refreshControl setRefreshingWithStateOfTask:task];
+    
+    KVNProgressConfiguration *basicConfiguration = [[KVNProgressConfiguration alloc] init];;
+    basicConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
+    basicConfiguration.fullScreen = YES;
+    [KVNProgress showWithStatus:@"Loading..."];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Giphy"];
+    [query whereKey:@"category" equalTo:@"Trending"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error)
         {
-            self.gifArray = [NSArray arrayWithArray:posts];
-            [self.gifCollectionVIew reloadData];
+            //success
+            if (!error)
+            {
+                if (objects != nil && objects.count != 0)
+                {
+                    // success
+                    self.gifArray = [NSArray arrayWithArray:objects];
+                    [self.gifCollectionVIew reloadData];
+                    [KVNProgress dismiss];
+                }
+                else
+                {
+                    // success but not found
+                    NSLog(@"No data found");
+                    [KVNProgress dismiss];
+                }
+            }
+            else
+            {
+                // error
+                NSLog(@"Error");
+                [KVNProgress dismiss];
+            }
         }
         else
         {
-            
+            //error
+            NSLog(@"Error");
+            [KVNProgress dismiss];
         }
     }];
-    
-    [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
-    [self.refreshControl setRefreshingWithStateOfTask:task];
 }
 
 #pragma mark - Button Methods
@@ -96,9 +138,9 @@
     static NSString *identifier = @"Cell";
     MainCollectionViewCell *cell = (MainCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
-    GiphyObj *obj = (GiphyObj *)self.gifArray[indexPath.row];
+    PFObject *obj = (PFObject *)self.gifArray[indexPath.row];
     
-    [cell setImageWithURL:obj.giphyFixedWidth
+    [cell setImageWithURL:obj[@"giphyFixedWidth"]
                 andIsPaid:@NO
               andCateName:@"Test"];
     
@@ -107,49 +149,19 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    BOOL isUnlock = [[Helper sharedHelper] getUnlockedStickerWithKey:self.cateName];
-    BOOL isUnlockAll = [[Helper sharedHelper] getUnlockedStickerWithKey:@"All"];
-    BOOL isPaid = [self.stickerArray[indexPath.row][@"isPaid"] boolValue];
-    
-    if (isUnlock || isUnlockAll)
-    {
-        NSLog(@"Unlocked %@", self.cateName);
-        MainCollectionViewCell *cell = (MainCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-        AppDelegateAccessor.stickerImage = cell.imageView.image;
-        AppDelegateAccessor.isFromStickers = YES;
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    else
-    {
-        if (isPaid)
-        {
-            NSLog(@"Need to unlock!!!!!!");
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Movie FX Stickers"
-                                                            message:@"This stickers need to unlock."
-                                                           delegate:self
-                                                  cancelButtonTitle:@"No, Thank you"
-                                                  otherButtonTitles:@"Unlock now!", nil];
-            [alert show];
-        }
-        else
-        {
-            StickerCollectionViewCell *cell = (StickerCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-            AppDelegateAccessor.stickerImage = cell.imageView.image;
-            AppDelegateAccessor.isFromStickers = YES;
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-    }
-    */
-    
     // Update user collection.
-    GiphyObj *obj = (GiphyObj *)self.gifArray[indexPath.row];
+    PFObject *obj = (PFObject *)self.gifArray[indexPath.row];
     NSMutableArray *collectionArray = [NSMutableArray arrayWithArray:[[Helper sharedHelper] getUserCollection]];
-    NSDictionary *tempDict = @{@"giphyID" : obj.giphyID,
-                               @"giphyOriginal" : obj.giphyOriginal,
-                               @"giphyFixedWidth" : obj.giphyFixedWidth};
+    NSDictionary *tempDict = @{@"giphyID" : obj[@"giphyID"],
+                               @"giphyOriginal" : obj[@"giphyOriginal"],
+                               @"giphyFixedWidth" : obj[@"giphyFixedWidth"]};
     [collectionArray addObject:tempDict];
     [[Helper sharedHelper] updateUserCollectionWithArray:collectionArray];
+    
+    KVNProgressConfiguration *basicConfiguration = [[KVNProgressConfiguration alloc] init];;
+    basicConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
+    basicConfiguration.fullScreen = YES;
+    [KVNProgress showSuccessWithStatus:@"Added to your collection"];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView

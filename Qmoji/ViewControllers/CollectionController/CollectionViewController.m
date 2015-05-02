@@ -25,6 +25,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+//    [self reload:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
     [self reload:nil];
 }
 

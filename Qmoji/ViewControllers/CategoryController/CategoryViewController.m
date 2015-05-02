@@ -85,23 +85,60 @@
     }
     
     self.navigationItem.rightBarButtonItem.enabled = NO;
-    NSURLSessionTask *task = [GiphyObj searchGiphyWitKeyword:AppDelegateAccessor.categoryName withBlock:^(NSArray *posts, NSError *error) {
-        if (!error && posts.count != 0)
+//    NSURLSessionTask *task = [GiphyObj searchGiphyWitKeyword:AppDelegateAccessor.categoryName withBlock:^(NSArray *posts, NSError *error) {
+//        if (!error && posts.count != 0)
+//        {
+//            NSLog(@"Found %@ : %lu", AppDelegateAccessor.categoryName, (unsigned long)posts.count);
+//            self.gifArray = [NSArray arrayWithArray:posts];
+//            [self.gifCollectionVIew reloadData];
+//            [KVNProgress dismiss];
+//        }
+//        else
+//        {
+//            // Redirect back to trending screen.
+//            [[AppDelegate mainDelegate] setFirstView];
+//        }
+//    }];
+//    
+//    [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
+//    [self.refreshControl setRefreshingWithStateOfTask:task];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Giphy"];
+    [query whereKey:@"category" equalTo:AppDelegateAccessor.categoryName];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error)
         {
-            NSLog(@"Found %@ : %lu", AppDelegateAccessor.categoryName, (unsigned long)posts.count);
-            self.gifArray = [NSArray arrayWithArray:posts];
-            [self.gifCollectionVIew reloadData];
-            [KVNProgress dismiss];
+            //success
+            if (!error)
+            {
+                if (objects != nil && objects.count != 0)
+                {
+                    // success
+                    self.gifArray = [NSArray arrayWithArray:objects];
+                    [self.gifCollectionVIew reloadData];
+                    [KVNProgress dismiss];
+                }
+                else
+                {
+                    // success but not found
+                    NSLog(@"No data found");
+                    [KVNProgress dismiss];
+                }
+            }
+            else
+            {
+                // error
+                NSLog(@"Error");
+                [KVNProgress dismiss];
+            }
         }
         else
         {
-            // Redirect back to trending screen.
-            [[AppDelegate mainDelegate] setFirstView];
+            //error
+            NSLog(@"Error");
+            [KVNProgress dismiss];
         }
     }];
-    
-    [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
-    [self.refreshControl setRefreshingWithStateOfTask:task];
 }
 
 #pragma mark - Button Methods
@@ -124,9 +161,9 @@
     static NSString *identifier = @"Cell";
     CategoryCollectionViewCell *cell = (CategoryCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
-    GiphyObj *obj = (GiphyObj *)self.gifArray[indexPath.row];
+    PFObject *obj = (PFObject *)self.gifArray[indexPath.row];
     
-    [cell setImageWithURL:obj.giphyFixedWidth
+    [cell setImageWithURL:obj[@"giphyFixedWidth"]
                 andIsPaid:@NO
               andCateName:@"Test"];
     
@@ -136,11 +173,11 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // Update user collection.
-    GiphyObj *obj = (GiphyObj *)self.gifArray[indexPath.row];
+    PFObject *obj = (PFObject *)self.gifArray[indexPath.row];
     NSMutableArray *collectionArray = [NSMutableArray arrayWithArray:[[Helper sharedHelper] getUserCollection]];
-    NSDictionary *tempDict = @{@"giphyID" : obj.giphyID,
-                               @"giphyOriginal" : obj.giphyOriginal,
-                               @"giphyFixedWidth" : obj.giphyFixedWidth};
+    NSDictionary *tempDict = @{@"giphyID" : obj[@"giphyID"],
+                               @"giphyOriginal" : obj[@"giphyOriginal"],
+                               @"giphyFixedWidth" : obj[@"giphyFixedWidth"]};
     [collectionArray addObject:tempDict];
     [[Helper sharedHelper] updateUserCollectionWithArray:collectionArray];
     
@@ -161,40 +198,40 @@
     return flowLayout.itemSize;
 }
 
-#pragma mark - TextField Delegate
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    NSString *searchText = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    [self filterContentForSearchText:searchText scope:nil];
-    
-    return YES;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
-}
-
-#pragma mark - Filtering SearchResult
-
-- (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope
-{
-    self.navigationItem.rightBarButtonItem.enabled = NO;
-    NSURLSessionTask *task = [GiphyObj searchGiphyWitKeyword:searchText withBlock:^(NSArray *posts, NSError *error) {
-        if (!error)
-        {
-            self.gifArray = [NSArray arrayWithArray:posts];
-            [self.gifCollectionVIew reloadData];
-        }
-        else
-        {
-            
-        }
-    }];
-    
-    [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
-    [self.refreshControl setRefreshingWithStateOfTask:task];
-}
+//#pragma mark - TextField Delegate
+//
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//{
+//    NSString *searchText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+//    [self filterContentForSearchText:searchText scope:nil];
+//    
+//    return YES;
+//}
+//
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//    [textField resignFirstResponder];
+//    return YES;
+//}
+//
+//#pragma mark - Filtering SearchResult
+//
+//- (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope
+//{
+//    self.navigationItem.rightBarButtonItem.enabled = NO;
+//    NSURLSessionTask *task = [GiphyObj searchGiphyWitKeyword:searchText withBlock:^(NSArray *posts, NSError *error) {
+//        if (!error)
+//        {
+//            self.gifArray = [NSArray arrayWithArray:posts];
+//            [self.gifCollectionVIew reloadData];
+//        }
+//        else
+//        {
+//            
+//        }
+//    }];
+//    
+//    [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
+//    [self.refreshControl setRefreshingWithStateOfTask:task];
+//}
 @end
