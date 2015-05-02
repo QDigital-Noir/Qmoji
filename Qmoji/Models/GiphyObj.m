@@ -19,7 +19,7 @@
     
     self.giphyID = [attributes valueForKeyPath:@"id"];
     self.giphyOriginal = attributes[@"images"][@"original"][@"url"];
-    self.giphyFixedWidth = attributes[@"images"][@"fixed_width"][@"url"];
+    self.giphyFixedWidth = attributes[@"images"][@"fixed_width_downsampled"][@"url"];
     
     return self;
 }

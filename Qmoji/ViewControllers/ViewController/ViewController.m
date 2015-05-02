@@ -28,6 +28,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     [self configView];
     [self reload:nil];
+    self.title = @"Trending";
 
 //    for (NSString* family in [UIFont familyNames])
 //    {
@@ -64,7 +65,27 @@
 //        if (!error && posts.count != 0)
 //        {
 //            self.gifArray = [NSArray arrayWithArray:posts];
-//            [self.gifCollectionVIew reloadData];
+////            [self.gifCollectionVIew reloadData];
+//            
+////            for (GiphyObj *gifObj in self.gifArray)
+////            {
+////                PFObject *obj = [PFObject objectWithClassName:@"Giphy"];
+////                [obj setObject:gifObj.giphyID forKey:@"giphyID"];
+////                [obj setObject:gifObj.giphyFixedWidth forKey:@"giphyFixedWidth"];
+////                [obj setObject:gifObj.giphyOriginal forKey:@"giphyOriginal"];
+////                [obj setObject:@"Trending" forKey:@"category"];
+////                [obj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+////                    if (succeeded)
+////                    {
+////                        //Success
+////                        NSLog(@"----- SAVE -----");
+////                    }
+////                    else
+////                    {
+////                        //Error Save Failed
+////                    }
+////                }];
+////            }
 //        }
 //        else
 //        {
@@ -94,6 +115,7 @@
                     self.gifArray = [NSArray arrayWithArray:objects];
                     [self.gifCollectionVIew reloadData];
                     [KVNProgress dismiss];
+                    [self.refreshControl endRefreshing];
                 }
                 else
                 {
@@ -149,18 +171,29 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    KVNProgressConfiguration *basicConfiguration = [[KVNProgressConfiguration alloc] init];;
+    basicConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
+    basicConfiguration.fullScreen = YES;
+    
     // Update user collection.
     PFObject *obj = (PFObject *)self.gifArray[indexPath.row];
     NSMutableArray *collectionArray = [NSMutableArray arrayWithArray:[[Helper sharedHelper] getUserCollection]];
     NSDictionary *tempDict = @{@"giphyID" : obj[@"giphyID"],
                                @"giphyOriginal" : obj[@"giphyOriginal"],
                                @"giphyFixedWidth" : obj[@"giphyFixedWidth"]};
+    
+    // Check if already exist
+    for (NSDictionary *dict in collectionArray)
+    {
+        if ([dict[@"giphyID"] isEqualToString:obj[@"giphyID"]])
+        {
+            [KVNProgress showErrorWithStatus:@"Already existing in your collection"];
+            return;
+        }
+    }
+    
     [collectionArray addObject:tempDict];
     [[Helper sharedHelper] updateUserCollectionWithArray:collectionArray];
-    
-    KVNProgressConfiguration *basicConfiguration = [[KVNProgressConfiguration alloc] init];;
-    basicConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
-    basicConfiguration.fullScreen = YES;
     [KVNProgress showSuccessWithStatus:@"Added to your collection"];
 }
 

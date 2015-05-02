@@ -19,5 +19,6 @@
 - (BOOL)getUnlockedStickerWithKey:(NSString *)key;
 - (void)updateUserCollectionWithArray:(NSMutableArray *)collectionArray;
 - (NSArray *)getUserCollection;
+- (void)writeImageFileWithName:(NSString *)name andImageData:(NSData *)data;
 
 @end

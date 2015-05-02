@@ -82,4 +82,19 @@
                                 return collectionArray;
 }
 
+#pragma mark - Write files.
+
+- (void)writeImageFileWithName:(NSString *)name andImageData:(NSData *)data
+{
+    //get the documents directory:
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    //make a file name to write the data to using the documents directory:
+    NSString *fileName = [NSString stringWithFormat:@"%@/%@", documentsDirectory, name];
+    
+    //save content to the documents directory
+    [data writeToFile:fileName atomically:YES];
+}
+
 @end

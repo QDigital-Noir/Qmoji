@@ -26,6 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 //    [self reload:nil];
+    self.title = @"My Collection";
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -130,40 +131,40 @@
     return flowLayout.itemSize;
 }
 
-#pragma mark - TextField Delegate
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    NSString *searchText = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    [self filterContentForSearchText:searchText scope:nil];
-    
-    return YES;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
-}
-
-#pragma mark - Filtering SearchResult
-
-- (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope
-{
-    self.navigationItem.rightBarButtonItem.enabled = NO;
-    NSURLSessionTask *task = [GiphyObj searchGiphyWitKeyword:searchText withBlock:^(NSArray *posts, NSError *error) {
-        if (!error)
-        {
-            self.gifArray = [NSArray arrayWithArray:posts];
-            [self.gifCollectionVIew reloadData];
-        }
-        else
-        {
-            
-        }
-    }];
-    
-    [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
-    [self.refreshControl setRefreshingWithStateOfTask:task];
-}
+//#pragma mark - TextField Delegate
+//
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//{
+//    NSString *searchText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+//    [self filterContentForSearchText:searchText scope:nil];
+//    
+//    return YES;
+//}
+//
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//    [textField resignFirstResponder];
+//    return YES;
+//}
+//
+//#pragma mark - Filtering SearchResult
+//
+//- (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope
+//{
+//    self.navigationItem.rightBarButtonItem.enabled = NO;
+//    NSURLSessionTask *task = [GiphyObj searchGiphyWitKeyword:searchText withBlock:^(NSArray *posts, NSError *error) {
+//        if (!error)
+//        {
+//            self.gifArray = [NSArray arrayWithArray:posts];
+//            [self.gifCollectionVIew reloadData];
+//        }
+//        else
+//        {
+//            
+//        }
+//    }];
+//    
+//    [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
+//    [self.refreshControl setRefreshingWithStateOfTask:task];
+//}
 @end
