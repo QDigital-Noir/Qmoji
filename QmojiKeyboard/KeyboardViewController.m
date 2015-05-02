@@ -85,34 +85,37 @@
     {
         NSDictionary *dict = array[i];
         
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(xpos, ypos, width, heigh)];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]
-                     placeholderImage:[UIImage imageNamed:@"placeholder"]
-                              options:SDWebImageRefreshCached];
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        imageView.userInteractionEnabled = YES;
-        imageView.backgroundColor = [UIColor grayColor];
-        imageView.tag = i;
-        UITapGestureRecognizer *guesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(test:)];
-        guesture.numberOfTapsRequired = 1;
-        guesture.numberOfTouchesRequired = 1;
-        [imageView addGestureRecognizer:guesture];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(xpos, ypos, width, heigh);
+        button.contentMode = UIViewContentModeScaleToFill;
+        button.userInteractionEnabled = YES;
+        button.backgroundColor = [UIColor grayColor];
+        button.tag = i;
+        
+        dispatch_async(dispatch_get_global_queue(0,0), ^{
+            NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:dict[@"giphyFixedWidth"]]];
+            if ( data == nil )
+                return;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // WARNING: is the cell still using the same data by this point??
+                [button setImage:[UIImage imageWithData: data] forState:UIControlStateNormal];
+            });
+        });
+         
+        [button addTarget:self action:@selector(copy:) forControlEvents:UIControlEventTouchUpInside];
 
         if (i % 2 == 0)
         {
             ypos = ypos + heigh + 1;
             self.qmojiKeyboard.scrollView.contentSize = CGSizeMake(xpos + width + 1, self.qmojiKeyboard.scrollView.frame.size.height);
-
         }
         else
         {
             xpos = xpos + width + 1;
             ypos = 0;
             self.qmojiKeyboard.scrollView.contentSize = CGSizeMake(xpos + width, self.qmojiKeyboard.scrollView.frame.size.height);
-
         }
-        
-        [self.qmojiKeyboard.scrollView addSubview:imageView];
+        [self.qmojiKeyboard.scrollView addSubview:button];
     }
     
     self.inputView = self.qmojiKeyboard;
@@ -126,7 +129,7 @@
 
 - (void)textWillChange:(id<UITextInput>)textInput {
     // The app is about to change the document's contents. Perform any preparation here.
-    NSLog(@"Test 1");
+//    NSLog(@"Test 1");
 //    UIPasteboard *appPasteBoard = [UIPasteboard generalPasteboard];//[UIPasteboard pasteboardWithName:@"CopyPaste" create:YES];
 //    //    appPasteBoard.persistent = YES;
 //    NSData *data = UIImagePNGRepresentation([UIImage imageNamed:@"keyboardcat.gif"]);
@@ -162,17 +165,16 @@
 
 #pragma mark - Copy function
 
-- (void)test:(id)sender
+- (void)copy:(id)sender
 {
-    NSLog(@"Test");
-//     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://media4.giphy.com/media/8CSflsMG1IFos/200w.gif"]];
-//     UIPasteboard *pasteBoard=[UIPasteboard generalPasteboard];
-//     [pasteBoard setData:data forPasteboardType:@"com.intencemedia.animatedgifkeyboard.extension"];
+    NSLog(@"Test : %ld", (long)[sender tag]);
+    NSArray *collectionArray = [[Helper sharedHelper] getUserCollection];
+    NSDictionary *dict = (NSDictionary *)collectionArray[[sender tag]];
     
-//    UIPasteboard *appPasteBoard = [UIPasteboard generalPasteboard];//[UIPasteboard pasteboardWithName:@"CopyPaste" create:YES];
-////    appPasteBoard.persistent = YES;
-//    NSData *data = UIImagePNGRepresentation([UIImage imageNamed:@"keyboardcat.gif"]);
-//    [appPasteBoard setData:data forPasteboardType:@"com.intencemedia.animatedgifkeyboard.extension"];
+    UIPasteboard *appPasteBoard = [UIPasteboard generalPasteboard];
+    NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"giphyOriginal"]]];
+    [appPasteBoard setData:imgData forPasteboardType:[UIPasteboardTypeListImage objectAtIndex:0]];
+    [self.textDocumentProxy insertText:[appPasteBoard string]];
 }
 
 @end
