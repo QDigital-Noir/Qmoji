@@ -32,6 +32,7 @@
     
     self.qmojiKeyboard = [[[NSBundle mainBundle] loadNibNamed:@"QmojiKeyboard" owner:nil options:nil] objectAtIndex:0];
     self.qmojiKeyboard.scrollView.delegate = self;
+    self.qmojiKeyboard.cateScrollView.delegate = self;
 
     float width = 0;
     float heigh = 0;
@@ -42,8 +43,8 @@
         self.qmojiKeyboard.scrollView.frame = CGRectMake(0, 0, self.qmojiKeyboard.frame.size.width, 158);
         self.qmojiKeyboard.scrollView.backgroundColor = [UIColor clearColor];
         self.qmojiKeyboard.globalButton.frame = CGRectMake(0, self.qmojiKeyboard.scrollView.frame.size.height, 45, 55);
-        self.qmojiKeyboard.statusLabel.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.scrollView.frame.size.height, 375 - 90, 55);
-        self.qmojiKeyboard.statusLabel.backgroundColor = [UIColor clearColor];
+        self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.scrollView.frame.size.height, 375 - 90, 55);
+        self.qmojiKeyboard.cateScrollView.backgroundColor = [UIColor redColor];
         self.qmojiKeyboard.deleteButton.frame = CGRectMake(375 - 45, self.qmojiKeyboard.scrollView.frame.size.height, 45, 55);
         width = 125;
         heigh = 79;
@@ -54,8 +55,8 @@
         self.qmojiKeyboard.scrollView.frame = CGRectMake(0, 0, 414, 170);
         self.qmojiKeyboard.scrollView.backgroundColor = [UIColor clearColor];
         self.qmojiKeyboard.globalButton.frame = CGRectMake(0, self.qmojiKeyboard.scrollView.frame.size.height, 45, 50);
-        self.qmojiKeyboard.statusLabel.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.scrollView.frame.size.height, 414 - 90, 50);
-        self.qmojiKeyboard.statusLabel.backgroundColor = [UIColor clearColor];
+        self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.scrollView.frame.size.height, 414 - 90, 50);
+        self.qmojiKeyboard.cateScrollView.backgroundColor = [UIColor redColor];
         self.qmojiKeyboard.deleteButton.frame = CGRectMake(414 - 45, self.qmojiKeyboard.scrollView.frame.size.height, 45, 50);
         
         width = 137;
@@ -67,8 +68,8 @@
         self.qmojiKeyboard.scrollView.frame = CGRectMake(0, 0, 320, 158);
         self.qmojiKeyboard.scrollView.backgroundColor = [UIColor clearColor];
         self.qmojiKeyboard.globalButton.frame = CGRectMake(0, self.qmojiKeyboard.scrollView.frame.size.height, 45, 50);
-        self.qmojiKeyboard.statusLabel.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.scrollView.frame.size.height, 320 - 90, 50);
-        self.qmojiKeyboard.statusLabel.backgroundColor = [UIColor clearColor];
+        self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.scrollView.frame.size.height, 320 - 90, 50);
+        self.qmojiKeyboard.cateScrollView.backgroundColor = [UIColor redColor];
         self.qmojiKeyboard.deleteButton.frame = CGRectMake(320 - 45, self.qmojiKeyboard.scrollView.frame.size.height, 45, 50);
         
         width = 125;
@@ -84,24 +85,27 @@
     for (int i = 0; i < array.count; i++)
     {
         NSDictionary *dict = array[i];
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(xpos, ypos, width, heigh);
-        button.contentMode = UIViewContentModeScaleToFill;
-        button.userInteractionEnabled = YES;
-        button.backgroundColor = [UIColor clearColor];
-        button.tag = i;
+        UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, width, heigh)];
+        loadingView.activityIndicatorViewStyle = UIActionSheetStyleDefault;
+        [loadingView startAnimating];
         
-        dispatch_async(dispatch_get_global_queue(0,0), ^{
-            NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:dict[@"giphyFixedWidth"]]];
-            if ( data == nil )
-                return;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // WARNING: is the cell still using the same data by this point??
-                [button setImage:[UIImage imageWithData: data] forState:UIControlStateNormal];
-            });
-        });
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(xpos, ypos, width, heigh)];
+        imageView.backgroundColor = [UIColor grayColor];
+        imageView.contentMode = UIViewContentModeScaleToFill;
+        imageView.tag = i;
+        imageView.userInteractionEnabled = YES;
+        [imageView sd_setImageWithURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]
+                     placeholderImage:[UIImage imageNamed:@"placeholder"] options:SDWebImageRefreshCached
+                            completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                [loadingView stopAnimating];
+                            }];
         
-        [button addTarget:self action:@selector(copy:) forControlEvents:UIControlEventTouchUpInside];
+        UITapGestureRecognizer *guesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                   action:@selector(keyboardMethod:)];
+        [guesture setNumberOfTapsRequired:1];
+        [guesture setNumberOfTouchesRequired:1];
+        [imageView addGestureRecognizer:guesture];
+
 
         if (i % 2 == 0)
         {
@@ -114,34 +118,55 @@
             ypos = 0;
             self.qmojiKeyboard.scrollView.contentSize = CGSizeMake(xpos + width, self.qmojiKeyboard.scrollView.frame.size.height);
         }
-        [self.qmojiKeyboard.scrollView addSubview:button];
+        [self.qmojiKeyboard.scrollView addSubview:imageView];
+    }
+    
+    // setup category
+    float xxpos = 0;
+    
+    for (int i = 0; i < 10; i++)
+    {
+        UIButton *cateButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        cateButton.backgroundColor = [UIColor blueColor];
+        cateButton.titleLabel.font = [UIFont fontWithName:@"JosefinSans-Light" size:24.0f];
+        cateButton.titleLabel.textColor = [UIColor whiteColor];
+        [cateButton setTitle:@"Category" forState:UIControlStateNormal];
+        [cateButton setTitle:@"Category" forState:UIControlStateSelected];
+        [cateButton addTarget:self action:@selector(categoryTapped:) forControlEvents:UIControlEventTouchUpInside];
+        CGSize size = [cateButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"JosefinSans-Light" size:24.0f]}];
+        [cateButton setFrame:CGRectMake(xxpos, 0, size.width, self.qmojiKeyboard.cateScrollView.frame.size.height)];
+        [self.qmojiKeyboard.cateScrollView addSubview:cateButton];
+    
+        xxpos = xxpos + size.width + 1;
+        self.qmojiKeyboard.cateScrollView.contentSize = CGSizeMake(xxpos, self.qmojiKeyboard.cateScrollView.frame.size.height);
     }
     
     self.inputView = self.qmojiKeyboard;
     [self addGuestureToKeyboard];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated
 }
 
-- (void)textWillChange:(id<UITextInput>)textInput {
+- (void)textWillChange:(id<UITextInput>)textInput
+{
     // The app is about to change the document's contents. Perform any preparation here.
-//    NSLog(@"Test 1");
-//    UIPasteboard *appPasteBoard = [UIPasteboard generalPasteboard];//[UIPasteboard pasteboardWithName:@"CopyPaste" create:YES];
-//    //    appPasteBoard.persistent = YES;
-//    NSData *data = UIImagePNGRepresentation([UIImage imageNamed:@"keyboardcat.gif"]);
-//    [appPasteBoard setData:data forPasteboardType:@"com.intencemedia.animatedgifkeyboard"];
 }
 
-- (void)textDidChange:(id<UITextInput>)textInput {
+- (void)textDidChange:(id<UITextInput>)textInput
+{
     // The app has just changed the document's contents, the document context has been updated.
     
     UIColor *textColor = nil;
-    if (self.textDocumentProxy.keyboardAppearance == UIKeyboardAppearanceDark) {
+    if (self.textDocumentProxy.keyboardAppearance == UIKeyboardAppearanceDark)
+    {
         textColor = [UIColor whiteColor];
-    } else {
+    }
+    else
+    {
         textColor = [UIColor blackColor];
     }
 }
@@ -162,29 +187,80 @@
     [self.textDocumentProxy deleteBackward];
 }
 
-#pragma mark - Copy function
+#pragma mark - Category Button
 
-- (void)copy:(id)sender
+- (void)categoryTapped:(id)sender
 {
-    NSLog(@"Test : %ld", (long)[sender tag]);
+    NSLog(@"CATEGORY");
+}
+
+
+#pragma marks - reloard keyboard
+
+- (void)reloardKeyboard
+{
+    NSArray *array = [[Helper sharedHelper] getUserCollection];
+    NSLog(@"array : %@", array);
+    
+    self.qmojiKeyboard = [[[NSBundle mainBundle] loadNibNamed:@"QmojiKeyboard" owner:nil options:nil] objectAtIndex:0];
+    self.qmojiKeyboard.scrollView.delegate = self;
+    self.qmojiKeyboard.cateScrollView.delegate = self;
+    
+    float width = 0;
+    float heigh = 0;
+    float xpos = 0;
+    float ypos = 0;
+    
+    for (int i = 0; i < array.count; i++)
+    {
+        NSDictionary *dict = array[i];
+        
+        UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, width, heigh)];
+        loadingView.activityIndicatorViewStyle = UIActionSheetStyleDefault;
+        [loadingView startAnimating];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(xpos, ypos, width, heigh)];
+        imageView.backgroundColor = [UIColor grayColor];
+        imageView.contentMode = UIViewContentModeScaleToFill;
+        imageView.tag = i;
+        imageView.userInteractionEnabled = YES;
+        [imageView sd_setImageWithURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]
+                     placeholderImage:[UIImage imageNamed:@"placeholder"] options:SDWebImageRefreshCached
+                            completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                [loadingView stopAnimating];
+                            }];
+        
+        UITapGestureRecognizer *guesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                   action:@selector(keyboardMethod:)];
+        [guesture setNumberOfTapsRequired:1];
+        [guesture setNumberOfTouchesRequired:1];
+        [imageView addGestureRecognizer:guesture];
+        
+        if (i % 2 == 0)
+        {
+            ypos = ypos + heigh + 1;
+            self.qmojiKeyboard.scrollView.contentSize = CGSizeMake(xpos + width + 1, self.qmojiKeyboard.scrollView.frame.size.height);
+        }
+        else
+        {
+            xpos = xpos + width + 1;
+            ypos = 0;
+            self.qmojiKeyboard.scrollView.contentSize = CGSizeMake(xpos + width, self.qmojiKeyboard.scrollView.frame.size.height);
+        }
+        [self.qmojiKeyboard.scrollView addSubview:imageView];
+    }
+}
+
+- (void)keyboardMethod:(id)sender
+{
+    NSLog(@"%ld", (long)[(UIGestureRecognizer *)sender view].tag);
+    int index = (int)[(UIGestureRecognizer *)sender view].tag;
     NSArray *collectionArray = [[Helper sharedHelper] getUserCollection];
-    NSDictionary *dict = (NSDictionary *)collectionArray[[sender tag]];
-    
-//    NSString *imageStringURL = [[NSBundle mainBundle] pathForResource:@"keyboardcat" ofType:@".gif"];
-//    NSData *data = [NSData dataWithContentsOfFile:imageStringURL];
-    
+    NSDictionary *dict = (NSDictionary *)collectionArray[index];
     UIPasteboard *appPasteBoard = [UIPasteboard generalPasteboard];
     NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]];
     [appPasteBoard setData:imgData forPasteboardType:[UIPasteboardTypeListImage objectAtIndex:3]];
     [self.textDocumentProxy insertText:[appPasteBoard string]];
-    
-    self.qmojiKeyboard.statusLabel.text = @"Copied!!";
-    [self performSelector:@selector(test) withObject:nil afterDelay:1.5];
-}
-
-- (void)test
-{
-    self.qmojiKeyboard.statusLabel.text = @"Tap to copy, Then paste to use";
 }
 
 @end

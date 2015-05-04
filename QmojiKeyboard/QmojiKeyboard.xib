@@ -23,13 +23,6 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </scrollView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to copy, Then paste to use" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L9N-y6-OTL">
-                    <rect key="frame" x="45" y="221" width="222" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Gp9-k2-hxl">
                     <rect key="frame" x="267" y="221" width="54" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -38,15 +31,19 @@
                     </state>
                     <state key="selected" image="global_icon"/>
                 </button>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ma0-rw-tan">
+                    <rect key="frame" x="43" y="212" width="235" height="42"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="cateScrollView" destination="ma0-rw-tan" id="q69-Xf-vtx"/>
                 <outlet property="deleteButton" destination="Gp9-k2-hxl" id="Dxa-JA-IKi"/>
                 <outlet property="globalButton" destination="gMS-ob-hbb" id="JvW-bm-7uS"/>
                 <outlet property="scrollView" destination="o5x-vB-SbT" id="wSU-xe-Xvc"/>
-                <outlet property="statusLabel" destination="L9N-y6-OTL" id="bBh-LW-mJb"/>
             </connections>
             <point key="canvasLocation" x="340" y="392.5"/>
         </view>
