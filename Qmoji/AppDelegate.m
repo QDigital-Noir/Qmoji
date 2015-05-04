@@ -148,6 +148,17 @@
     [self.window setRootViewController:self.slideMenuVC];
     [self.window makeKeyAndVisible];
     
+//    // Setup data
+//    [[Helper sharedHelper] setupDataWithCategoryName:@"Trending"];
+//    [[Helper sharedHelper] setupDataWithCategoryName:@"Animals"];
+//    [[Helper sharedHelper] setupDataWithCategoryName:@"Sci-Fi"];
+//    [[Helper sharedHelper] setupDataWithCategoryName:@"Movies"];
+//    [[Helper sharedHelper] setupDataWithCategoryName:@"Funnies"];
+//    [[Helper sharedHelper] setupDataWithCategoryName:@"Meme"];
+//    [[Helper sharedHelper] setupDataWithCategoryName:@"Cartoons"];
+//    [[Helper sharedHelper] setupDataWithCategoryName:@"Love"];
+//    [[Helper sharedHelper] setupDataWithCategoryName:@"Zombies"];
+    
     return YES;
 }
 

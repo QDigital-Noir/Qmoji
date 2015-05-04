@@ -20,5 +20,8 @@
 - (void)updateUserCollectionWithArray:(NSMutableArray *)collectionArray;
 - (NSArray *)getUserCollection;
 - (void)writeImageFileWithName:(NSString *)name andImageData:(NSData *)data;
+- (void)setCategoryData:(NSString *)categoryName withArray:(NSArray *)array;
+- (NSArray *)getCategoryData:(NSString *)categoryName;
+- (void)setupDataWithCategoryName:(NSString *)catename;
 
 @end

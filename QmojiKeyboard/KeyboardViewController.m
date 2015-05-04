@@ -12,6 +12,7 @@
 
 @interface KeyboardViewController () <UIScrollViewDelegate>
 @property (nonatomic, strong) QmojiKeyboard *qmojiKeyboard;
+@property (nonatomic, strong) NSArray *categoryArray;
 @end
 
 @implementation KeyboardViewController
@@ -25,8 +26,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Keyboard
+    // Set category array
+    self.categoryArray = @[@"Trending", @"Animals", @"Sci-Fi", @"Movies", @"Funnies", @"Meme", @"Cartoons", @"Love", @"Zombies"];
     
+    // Keyboard
     UIDeviceHardware *h = [[UIDeviceHardware alloc] init];
     NSLog(@"%@", [h platformString]);
     
@@ -124,12 +127,13 @@
     // setup category
     float xxpos = 0;
     
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < self.categoryArray.count; i++)
     {
         UIButton *cateButton = [UIButton buttonWithType:UIButtonTypeCustom];
         cateButton.backgroundColor = [UIColor blueColor];
         cateButton.titleLabel.font = [UIFont fontWithName:@"JosefinSans-Light" size:24.0f];
         cateButton.titleLabel.textColor = [UIColor whiteColor];
+        cateButton.tag = i;
         [cateButton setTitle:@"Category" forState:UIControlStateNormal];
         [cateButton setTitle:@"Category" forState:UIControlStateSelected];
         [cateButton addTarget:self action:@selector(categoryTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -191,7 +195,10 @@
 
 - (void)categoryTapped:(id)sender
 {
-    NSLog(@"CATEGORY");
+    int tag = (int)[sender tag];
+    NSArray *testArray = [[Helper sharedHelper] getCategoryData:self.categoryArray[tag]];
+    NSLog(@"CATEGORY : %@", self.categoryArray[tag]);
+    NSLog(@"Data : %@", testArray);
 }
 
 

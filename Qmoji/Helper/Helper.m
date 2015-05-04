@@ -82,6 +82,61 @@
                                 return collectionArray;
 }
 
+- (void)setCategoryData:(NSString *)categoryName withArray:(NSArray *)array
+{
+    NSUserDefaults *userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.intencemedia.animatedgifkeyboard"];
+    [userDefault setObject:array forKey:categoryName];
+    NSLog(@"Done : %@",categoryName);
+}
+
+- (NSArray *)getCategoryData:(NSString *)categoryName
+{
+    NSUserDefaults *userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.intencemedia.animatedgifkeyboard"];
+    NSArray *array = [NSArray arrayWithArray:(NSArray *)[userDefault objectForKey:categoryName]];
+    return array;
+}
+
+- (void)setupDataWithCategoryName:(NSString *)catename
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"Giphy"];
+    [query whereKey:@"category" equalTo:catename];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error)
+        {
+            //success
+            if (!error)
+            {
+                if (objects != nil && objects.count != 0)
+                {
+                    // success
+                    NSMutableArray *tempArray = [NSMutableArray array];
+                    for (PFObject *obj in objects)
+                    {
+                        NSDictionary *dict = @{@"giphyFixedWidth" : obj[@"giphyFixedWidth"],
+                                               @"giphyOriginal" : obj[@"giphyOriginal"],
+                                               @"giphyID" : obj[@"giphyID"]};
+                        [tempArray addObject:dict];
+                    }
+                    
+                    [[Helper sharedHelper] setCategoryData:catename withArray:tempArray];
+                }
+                else
+                {
+                    // success but not found
+                }
+            }
+            else
+            {
+                // error
+            }
+        }
+        else
+        {
+            //error
+        }
+    }];
+}
+
 #pragma mark - Write files.
 
 - (void)writeImageFileWithName:(NSString *)name andImageData:(NSData *)data
