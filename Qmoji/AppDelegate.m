@@ -148,16 +148,27 @@
     [self.window setRootViewController:self.slideMenuVC];
     [self.window makeKeyAndVisible];
     
-//    // Setup data
-//    [[Helper sharedHelper] setupDataWithCategoryName:@"Trending"];
-//    [[Helper sharedHelper] setupDataWithCategoryName:@"Animals"];
-//    [[Helper sharedHelper] setupDataWithCategoryName:@"Sci-Fi"];
-//    [[Helper sharedHelper] setupDataWithCategoryName:@"Movies"];
-//    [[Helper sharedHelper] setupDataWithCategoryName:@"Funnies"];
-//    [[Helper sharedHelper] setupDataWithCategoryName:@"Meme"];
-//    [[Helper sharedHelper] setupDataWithCategoryName:@"Cartoons"];
-//    [[Helper sharedHelper] setupDataWithCategoryName:@"Love"];
-//    [[Helper sharedHelper] setupDataWithCategoryName:@"Zombies"];
+    // Setup data
+    NSUserDefaults *userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.intencemedia.animatedgifkeyboard"];
+    if ([userDefault objectForKey:@"FIRST_INSTALL"] == nil)
+    {
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Trending"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Animals"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Sci-Fi"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Movies"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Funnies"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Meme"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Cartoons"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Love"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Zombies"];
+        
+        [userDefault setObject:[NSNumber numberWithBool:YES] forKey:@"FIRST_INSTALL"];
+        NSLog(@"First install");
+    }
+    else
+    {
+        NSLog(@"ALready install");
+    }
     
     return YES;
 }

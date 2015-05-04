@@ -129,39 +129,6 @@
             [[AppDelegate mainDelegate] setCateView];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGED_CATEGORY" object:nil];
         }
-        
-//        if (AppDelegateAccessor.isFromCollectionScreen)
-//        {
-//            [[AppDelegate mainDelegate] setCateView];
-//        }
-//        else
-//        {
-//            if (AppDelegateAccessor.isFromTrendingScreen)
-//            {
-//                [[AppDelegate mainDelegate] setCateView];
-//            }
-//            else
-//            {
-//                [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGED_CATEGORY" object:nil];
-//                [[AppDelegate mainDelegate].slideMenuVC toggleMenu];
-//            }
-//        }
-        
-//        if (AppDelegateAccessor.isFromCollectionScreen == NO && AppDelegateAccessor.isFromTrendingScreen == NO)
-//        {
-//            // From Category to Trending
-//            [[AppDelegate mainDelegate] setFirstView];
-//        }
-//        else if (AppDelegateAccessor.isFromCollectionScreen == YES && AppDelegateAccessor.isFromTrendingScreen == NO)
-//        {
-//            // From Collection to Trending
-//            [[AppDelegate mainDelegate] setFirstView];
-//        }
-//        else if (AppDelegateAccessor.isFromCollectionScreen == NO && AppDelegateAccessor.isFromTrendingScreen == YES)
-//        {
-//            // From Trending
-//            [[AppDelegate mainDelegate] setCateView];
-//        }
     }
 }
 
