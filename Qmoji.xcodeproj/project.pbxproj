@@ -47,6 +47,7 @@
 		105E34081AEA9893005740F9 /* JosefinSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F51AEA9893005740F9 /* JosefinSans-Thin.ttf */; };
 		105E34091AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */; };
 		105E340A1AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */; };
+		10718D371AF7EE3D006DD0AA /* cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10718D361AF7EE3D006DD0AA /* cell.xib */; };
 		1072B3BE1AF5F044002EBA5A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1072B3BD1AF5F044002EBA5A /* Crashlytics.framework */; };
 		1072B3BF1AF5F044002EBA5A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1072B3BD1AF5F044002EBA5A /* Crashlytics.framework */; };
 		107FCA5A1AF14BF600F0455F /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 107FCA591AF14BF600F0455F /* image.xcassets */; };
@@ -143,6 +144,7 @@
 		105E33F41AEA9893005740F9 /* JosefinSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		105E33F51AEA9893005740F9 /* JosefinSans-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Thin.ttf"; sourceTree = "<group>"; };
 		105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-ThinItalic.ttf"; sourceTree = "<group>"; };
+		10718D361AF7EE3D006DD0AA /* cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = cell.xib; sourceTree = "<group>"; };
 		1072B3BD1AF5F044002EBA5A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		107FCA591AF14BF600F0455F /* image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = image.xcassets; sourceTree = "<group>"; };
 		1097AB451AEFB17700BEA773 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				105E33E51AEA884C005740F9 /* QmojiKeyboard.xib */,
 				105E33E71AEA88C4005740F9 /* QmojiKeyboard.h */,
 				105E33E81AEA88C4005740F9 /* QmojiKeyboard.m */,
+				10718D361AF7EE3D006DD0AA /* cell.xib */,
 			);
 			path = QmojiKeyboard;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				10D2FEB21AF4F2A5008CEB15 /* keyboardcat.gif in Resources */,
 				105E340A1AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */,
 				105E34081AEA9893005740F9 /* JosefinSans-Thin.ttf in Resources */,
+				10718D371AF7EE3D006DD0AA /* cell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

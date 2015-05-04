@@ -10,9 +10,20 @@
 #import "QmojiKeyboard.h"
 #import "UIDeviceHardware.h"
 
-@interface KeyboardViewController () <UIScrollViewDelegate>
+#define kCellsPerRow 2
+
+@interface KeyboardViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+{
+    float width;
+    float heigh;
+    float screenWidth;
+}
+
 @property (nonatomic, strong) QmojiKeyboard *qmojiKeyboard;
 @property (nonatomic, strong) NSArray *categoryArray;
+@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) NSString *categoryName;
+
 @end
 
 @implementation KeyboardViewController
@@ -26,39 +37,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Set category array
-    self.categoryArray = @[@"Trending", @"Animals", @"Sci-Fi", @"Movies", @"Funnies", @"Meme", @"Cartoons", @"Love", @"Zombies"];
-    self.qmojiKeyboard = [[[NSBundle mainBundle] loadNibNamed:@"QmojiKeyboard" owner:nil options:nil] objectAtIndex:0];
-    self.qmojiKeyboard.scrollView.delegate = self;
-    self.qmojiKeyboard.cateScrollView.delegate = self;
+//    // Set category array
+    self.categoryArray = @[@"My Collection", @"Trending", @"Animals", @"Sci-Fi", @"Movies", @"Funnies", @"Meme", @"Cartoons", @"Love", @"Zombies"];
     
     // Setup data
-    NSArray *array = [[Helper sharedHelper] getUserCollection];
-    [self reloardKeyboardWithArray:array];
-    
-    // setup category
-    float xxpos = 0;
-    
-    for (int i = 0; i < self.categoryArray.count; i++)
-    {
-        UIButton *cateButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        cateButton.backgroundColor = [UIColor clearColor];
-        cateButton.titleLabel.font = [UIFont fontWithName:@"JosefinSans-Light" size:24.0f];
-        cateButton.titleLabel.textColor = [UIColor whiteColor];
-        cateButton.tag = i;
-        [cateButton setTitle:self.categoryArray[i] forState:UIControlStateNormal];
-        [cateButton setTitle:self.categoryArray[i] forState:UIControlStateSelected];
-        [cateButton addTarget:self action:@selector(categoryTapped:) forControlEvents:UIControlEventTouchUpInside];
-        CGSize size = [cateButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"JosefinSans-Light" size:24.0f]}];
-        [cateButton setFrame:CGRectMake(xxpos, 0, size.width, self.qmojiKeyboard.cateScrollView.frame.size.height)];
-        [self.qmojiKeyboard.cateScrollView addSubview:cateButton];
-    
-        xxpos = xxpos + size.width + 20;
-        self.qmojiKeyboard.cateScrollView.contentSize = CGSizeMake(xxpos, self.qmojiKeyboard.cateScrollView.frame.size.height);
-    }
-    
-    self.inputView = self.qmojiKeyboard;
-    [self addGuestureToKeyboard];
+    self.dataArray = [[Helper sharedHelper] getUserCollection];
+    [self setupKeyboardWithArray:self.dataArray];
 }
 
 - (void)didReceiveMemoryWarning
@@ -108,140 +92,225 @@
 - (void)categoryTapped:(id)sender
 {
     int tag = (int)[sender tag];
-    NSArray *testArray = [[Helper sharedHelper] getCategoryData:self.categoryArray[tag]];
-    NSLog(@"CATEGORY : %@", self.categoryArray[tag]);
-    NSLog(@"Data : %@", testArray);
-    [self reloardKeyboardWithArray:testArray];
+    self.dataArray = nil;
+
+    if (tag == 0)
+    {
+        self.dataArray = [[Helper sharedHelper] getUserCollection];
+    }
+    else
+    {
+        self.dataArray = [[Helper sharedHelper] getCategoryData:self.categoryArray[tag]];
+    }
+    
+    [self.qmojiKeyboard.collectionView reloadData];
+    
+    for (UIButton *button in self.qmojiKeyboard.cateScrollView.subviews)
+    {
+        if ([button isKindOfClass:[UIButton class]])
+        {
+            if (tag == button.tag)
+            {
+                [button setSelected:YES];
+            }
+            else
+            {
+                [button setSelected:NO];
+            }
+        }
+    }
 }
 
 
 #pragma marks - reloard keyboard
 
-- (void)reloardKeyboardWithArray:(NSArray *)dataArray
+- (void)setupKeyboardWithArray:(NSArray *)dataArray
 {
+    UINib *cellNib = [UINib nibWithNibName:@"cell" bundle:nil];
+
+    self.qmojiKeyboard = [[[NSBundle mainBundle] loadNibNamed:@"QmojiKeyboard" owner:nil options:nil] objectAtIndex:0];
+    self.qmojiKeyboard.collectionView.delegate = self;
+    self.qmojiKeyboard.collectionView.dataSource = self;
+    [self.qmojiKeyboard.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"Cell"];
+    
     UIDeviceHardware *h = [[UIDeviceHardware alloc] init];
     
-    float width = 0;
-    float heigh = 0;
+    width = 0;
+    heigh = 0;
     
     if ([[h platformString] isEqualToString:@"iPhone 6"])
     {
         self.qmojiKeyboard.frame = CGRectMake(0, 0, 375, 258);
-        self.qmojiKeyboard.scrollView.frame = CGRectMake(0, 0, self.qmojiKeyboard.frame.size.width, 158);
-        self.qmojiKeyboard.scrollView.backgroundColor = [UIColor clearColor];
-        self.qmojiKeyboard.globalButton.frame = CGRectMake(0, self.qmojiKeyboard.scrollView.frame.size.height, 45, 55);
-        self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.scrollView.frame.size.height, 375 - 90, 55);
+        self.qmojiKeyboard.collectionView.frame = CGRectMake(0, 0, self.qmojiKeyboard.frame.size.width, 158);
+        self.qmojiKeyboard.collectionView.backgroundColor = [UIColor clearColor];
+        self.qmojiKeyboard.globalButton.frame = CGRectMake(0, self.qmojiKeyboard.collectionView.frame.size.height, 45, 55);
+        self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.collectionView.frame.size.height, 375 - 90, 55);
         self.qmojiKeyboard.cateScrollView.backgroundColor = [UIColor clearColor];
-        self.qmojiKeyboard.deleteButton.frame = CGRectMake(375 - 45, self.qmojiKeyboard.scrollView.frame.size.height, 45, 55);
-        width = 125;
+        self.qmojiKeyboard.deleteButton.frame = CGRectMake(375 - 45, self.qmojiKeyboard.collectionView.frame.size.height, 45, 55);
+        
+        width = 375/3;//125;
         heigh = 79;
+        screenWidth = 375;
     }
     else if ([[h platformString] isEqualToString:@"iPhone 6 Plus"])
     {
         self.qmojiKeyboard.frame = CGRectMake(0, 0, 414, 271);
-        self.qmojiKeyboard.scrollView.frame = CGRectMake(0, 0, 414, 170);
-        self.qmojiKeyboard.scrollView.backgroundColor = [UIColor clearColor];
-        self.qmojiKeyboard.globalButton.frame = CGRectMake(0, self.qmojiKeyboard.scrollView.frame.size.height, 45, 50);
-        self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.scrollView.frame.size.height, 414 - 90, 50);
+        self.qmojiKeyboard.collectionView.frame = CGRectMake(0, 0, 414, 170);
+        self.qmojiKeyboard.collectionView.backgroundColor = [UIColor clearColor];
+        self.qmojiKeyboard.globalButton.frame = CGRectMake(0, self.qmojiKeyboard.collectionView.frame.size.height, 45, 50);
+        self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.collectionView.frame.size.height, 414 - 90, 50);
         self.qmojiKeyboard.cateScrollView.backgroundColor = [UIColor clearColor];
-        self.qmojiKeyboard.deleteButton.frame = CGRectMake(414 - 45, self.qmojiKeyboard.scrollView.frame.size.height, 45, 50);
+        self.qmojiKeyboard.deleteButton.frame = CGRectMake(414 - 45, self.qmojiKeyboard.collectionView.frame.size.height, 45, 50);
         
-        width = 137;
+        width = 414/3;//137;
         heigh = 85;
+        screenWidth = 414;
     }
     else
     {
         self.qmojiKeyboard.frame = CGRectMake(0, 0, 320, 253);
-        self.qmojiKeyboard.scrollView.frame = CGRectMake(0, 0, 320, 158);
-        self.qmojiKeyboard.scrollView.backgroundColor = [UIColor clearColor];
-        self.qmojiKeyboard.globalButton.frame = CGRectMake(0, self.qmojiKeyboard.scrollView.frame.size.height, 45, 50);
-        self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.scrollView.frame.size.height, 320 - 90, 50);
+        self.qmojiKeyboard.collectionView.frame = CGRectMake(0, 0, 320, 158);
+        self.qmojiKeyboard.collectionView.backgroundColor = [UIColor clearColor];
+        self.qmojiKeyboard.globalButton.frame = CGRectMake(0, self.qmojiKeyboard.collectionView.frame.size.height, 45, 50);
+        self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.collectionView.frame.size.height, 320 - 90, 50);
         self.qmojiKeyboard.cateScrollView.backgroundColor = [UIColor clearColor];
-        self.qmojiKeyboard.deleteButton.frame = CGRectMake(320 - 45, self.qmojiKeyboard.scrollView.frame.size.height, 45, 50);
+        self.qmojiKeyboard.deleteButton.frame = CGRectMake(320 - 45, self.qmojiKeyboard.collectionView.frame.size.height, 45, 50);
         
-        width = 125;
+        width = 320/3;//125;
         heigh = 79;
+        screenWidth = 320;
     }
     
-    for (UIView *view in self.qmojiKeyboard.scrollView.subviews)
-    {
-        [view removeFromSuperview];
-    }
-
-    float xpos = 0;
-    float ypos = 0;
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setItemSize:CGSizeMake(width, heigh)];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+    flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    flowLayout.minimumInteritemSpacing = 0;
+    flowLayout.minimumLineSpacing = 0;
+    [self.qmojiKeyboard.collectionView setCollectionViewLayout:flowLayout];
     
-    for (int i = 0; i < dataArray.count; i++)
+    // setup category
+    float xxpos = 0;
+    
+    for (int i = 0; i < self.categoryArray.count; i++)
     {
-        NSDictionary *dict = dataArray[i];
-        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        spinner.hidesWhenStopped = YES;
-        [spinner startAnimating];
+        UIButton *cateButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        cateButton.backgroundColor = [UIColor clearColor];
+        cateButton.titleLabel.font = [UIFont fontWithName:@"JosefinSans-Light" size:24.0f];
+        cateButton.titleLabel.textColor = [UIColor whiteColor];
+        cateButton.tag = i;
+        [cateButton setTitle:self.categoryArray[i] forState:UIControlStateNormal];
+        [cateButton setTitle:self.categoryArray[i] forState:UIControlStateSelected];
+        [cateButton addTarget:self action:@selector(categoryTapped:) forControlEvents:UIControlEventTouchUpInside];
+        CGSize size = [cateButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"JosefinSans-Light" size:24.0f]}];
+        [cateButton setBackgroundImage:[self setColor:[UIColor lightGrayColor] andFrame:CGRectMake(0, 0, size.width + 10, size.height)] forState:UIControlStateSelected];
+        [cateButton setFrame:CGRectMake(xxpos, 0, size.width + 10, self.qmojiKeyboard.cateScrollView.frame.size.height)];
+        [self.qmojiKeyboard.cateScrollView addSubview:cateButton];
         
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(xpos, ypos, width, heigh)];
-        imageView.backgroundColor = [UIColor clearColor];
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        imageView.tag = i;
-        imageView.userInteractionEnabled = YES;
-        spinner.center = CGPointMake(imageView.frame.size.width/2, imageView.frame.size.height/2);
-        [imageView addSubview:spinner];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]
-                     placeholderImage:[UIImage imageNamed:@"placeholder"] options:SDWebImageRefreshCached
-                            completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                                [spinner stopAnimating];
-                                [spinner removeFromSuperview];
-                            }];
+        xxpos = xxpos + size.width + 20;
+        self.qmojiKeyboard.cateScrollView.contentSize = CGSizeMake(xxpos, self.qmojiKeyboard.cateScrollView.frame.size.height);
         
-        UITapGestureRecognizer *guesture = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                   action:@selector(keyboardMethod:)];
-        [guesture setNumberOfTapsRequired:1];
-        [guesture setNumberOfTouchesRequired:1];
-        [imageView addGestureRecognizer:guesture];
-        
-        if (i % 2 == 0)
+        if (i == 0)
         {
-            ypos = ypos + heigh + 1;
-            self.qmojiKeyboard.scrollView.contentSize = CGSizeMake(xpos + width + 1, self.qmojiKeyboard.scrollView.frame.size.height);
+            cateButton.selected = YES;
         }
-        else
-        {
-            xpos = xpos + width + 1;
-            ypos = 0;
-            self.qmojiKeyboard.scrollView.contentSize = CGSizeMake(xpos + width, self.qmojiKeyboard.scrollView.frame.size.height);
-        }
-        [self.qmojiKeyboard.scrollView addSubview:imageView];
     }
+    
+    self.inputView = self.qmojiKeyboard;
+    [self addGuestureToKeyboard];
 }
 
 - (void)keyboardMethod:(id)sender
 {
     NSLog(@"%ld", (long)[(UIGestureRecognizer *)sender view].tag);
     int index = (int)[(UIGestureRecognizer *)sender view].tag;
-    NSArray *collectionArray = [[Helper sharedHelper] getUserCollection];
-    NSDictionary *dict = (NSDictionary *)collectionArray[index];
+    NSDictionary *dict = (NSDictionary *)self.dataArray[index];
     UIPasteboard *appPasteBoard = [UIPasteboard generalPasteboard];
     NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]];
     [appPasteBoard setData:imgData forPasteboardType:[UIPasteboardTypeListImage objectAtIndex:3]];
     [self.textDocumentProxy insertText:[appPasteBoard string]];
-    [self disableKeyboard];
 }
 
-- (void)enableKeyboard
+- (UIImage *)setColor:(UIColor *)color andFrame:(CGRect)frame
 {
-    for (UIView *view in self.qmojiKeyboard.scrollView.subviews)
-    {
-        [view setUserInteractionEnabled:YES];
-    }
-}
-
-- (void)disableKeyboard
-{
-    for (UIView *view in self.qmojiKeyboard.scrollView.subviews)
-    {
-        [view setUserInteractionEnabled:NO];
-    }
+    UIView *colorView = [[UIView alloc] initWithFrame:frame];
+    colorView.backgroundColor = color;
     
-    [self performSelector:@selector(enableKeyboard) withObject:nil afterDelay:0.5];
+    UIGraphicsBeginImageContext(colorView.bounds.size);
+    [colorView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage *colorImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return colorImage;
 }
+
+#pragma mark - UICollectionView Delegate & Datasource
+#pragma mark - UICollectionView DataSource & Delegate
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.dataArray.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *dict = [self.dataArray objectAtIndex:indexPath.row];
+    
+    static NSString *cellIdentifier = @"Cell";
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
+    imageView.frame = CGRectMake(0, 0, width, heigh);
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    spinner.hidesWhenStopped = YES;
+    [spinner startAnimating];
+
+    imageView.backgroundColor = [UIColor clearColor];
+    imageView.contentMode = UIViewContentModeScaleToFill;
+    imageView.userInteractionEnabled = YES;
+    spinner.center = CGPointMake(imageView.frame.size.width/2, imageView.frame.size.height/2);
+    [imageView addSubview:spinner];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]
+                 placeholderImage:[UIImage imageNamed:@"placeholder"] options:SDWebImageRefreshCached
+                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                            [spinner stopAnimating];
+                            [spinner removeFromSuperview];
+                        }];
+    
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"TEST : %ld", (long)indexPath.row);
+    NSDictionary *dict = (NSDictionary *)self.dataArray[indexPath.row];
+    UIPasteboard *appPasteBoard = [UIPasteboard generalPasteboard];
+    NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]];
+    [appPasteBoard setData:imgData forPasteboardType:[UIPasteboardTypeListImage objectAtIndex:3]];
+    [self.textDocumentProxy insertText:[appPasteBoard string]];
+}
+
+//- (CGSize)collectionView:(UICollectionView *)collectionView
+//                  layout:(UICollectionViewLayout *)collectionViewLayout
+//  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.qmojiKeyboard.collectionView.collectionViewLayout;
+//    CGFloat availableWidthForCells = CGRectGetWidth(self.qmojiKeyboard.collectionView.frame) - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumInteritemSpacing * (kCellsPerRow - 1);
+//    CGFloat cellWidth = availableWidthForCells / kCellsPerRow;
+//    flowLayout.itemSize = CGSizeMake(cellWidth, flowLayout.itemSize.height);
+//    return flowLayout.itemSize;
+//}
+
+
+//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+//{
+//    return UIEdgeInsetsMake(0, 0, 0, 0);
+//}
 
 @end
