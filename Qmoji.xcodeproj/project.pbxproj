@@ -47,6 +47,8 @@
 		105E34081AEA9893005740F9 /* JosefinSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F51AEA9893005740F9 /* JosefinSans-Thin.ttf */; };
 		105E34091AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */; };
 		105E340A1AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */; };
+		1072B3BE1AF5F044002EBA5A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1072B3BD1AF5F044002EBA5A /* Crashlytics.framework */; };
+		1072B3BF1AF5F044002EBA5A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1072B3BD1AF5F044002EBA5A /* Crashlytics.framework */; };
 		107FCA5A1AF14BF600F0455F /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 107FCA591AF14BF600F0455F /* image.xcassets */; };
 		107FCA5B1AF14BF600F0455F /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 107FCA591AF14BF600F0455F /* image.xcassets */; };
 		1097AB471AEFB17700BEA773 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1097AB461AEFB17700BEA773 /* IAPHelper.m */; };
@@ -141,6 +143,7 @@
 		105E33F41AEA9893005740F9 /* JosefinSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		105E33F51AEA9893005740F9 /* JosefinSans-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Thin.ttf"; sourceTree = "<group>"; };
 		105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-ThinItalic.ttf"; sourceTree = "<group>"; };
+		1072B3BD1AF5F044002EBA5A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		107FCA591AF14BF600F0455F /* image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = image.xcassets; sourceTree = "<group>"; };
 		1097AB451AEFB17700BEA773 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		1097AB461AEFB17700BEA773 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
@@ -162,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1072B3BE1AF5F044002EBA5A /* Crashlytics.framework in Frameworks */,
 				7839B9B4261E064C5F06EA71 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,6 +181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1072B3BF1AF5F044002EBA5A /* Crashlytics.framework in Frameworks */,
 				1012AB671AEB73C8003659EE /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,6 +192,7 @@
 		08CCA8E1DE6C7B4B92C35AC2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1072B3BD1AF5F044002EBA5A /* Crashlytics.framework */,
 				1012AB661AEB73C8003659EE /* libPods.a */,
 				1012AB621AEB7217003659EE /* libPods.a */,
 				9AFF9F44255343DDF080420C /* libPods.a */,
@@ -442,6 +448,7 @@
 				105E33A81AEA86FC005740F9 /* Resources */,
 				105E33E41AEA876B005740F9 /* Embed App Extensions */,
 				9877B31578DABE02E2081DCE /* Copy Pods Resources */,
+				1072B3BC1AF5EFF9002EBA5A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -593,6 +600,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1072B3BC1AF5EFF9002EBA5A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 6cef888a67b2dfb13971b13b469ef3cd1eb79cce 916bf43840959564c4746ac6a7d595094165f0b95efdbc65ef5981f99453d592";
+		};
 		9877B31578DABE02E2081DCE /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -789,13 +809,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Qmoji/Qmoji.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alan Dang (J2EG24V3F8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alan Dang (J2EG24V3F8)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Qmoji/Qmoji-Prefix.pch";
 				INFOPLIST_FILE = Qmoji/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "60b2f8e3-7657-463d-bc81-7e7b75398198";
 			};
 			name = Debug;
 		};
@@ -805,13 +830,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Qmoji/Qmoji.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: intence media, LLC (UH5VVTMLZZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: intence media, LLC (UH5VVTMLZZ)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Qmoji/Qmoji-Prefix.pch";
 				INFOPLIST_FILE = Qmoji/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8df8e341-21e1-4fab-9741-d8bca04dbeed";
 			};
 			name = Release;
 		};
@@ -856,19 +886,24 @@
 				CODE_SIGN_ENTITLEMENTS = QmojiKeyboard/QmojiKeyboard.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Alan Dang (J2EG24V3F8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alan Dang (J2EG24V3F8)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Qmoji/Qmoji-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = QmojiKeyboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "efc3db00-b0f6-4242-ad2c-65454413e805";
+				PROVISIONING_PROFILE = "3befc9ce-f9a1-4e9a-9088-f1b026ed1f6d";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -880,15 +915,20 @@
 				CODE_SIGN_ENTITLEMENTS = QmojiKeyboard/QmojiKeyboard.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: intence media, LLC (UH5VVTMLZZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: intence media, LLC (UH5VVTMLZZ)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Qmoji/Qmoji-Prefix.pch";
 				INFOPLIST_FILE = QmojiKeyboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "70fa8ac7-9122-4d96-a67c-fdad1286df1f";
+				PROVISIONING_PROFILE = "79051e1b-2447-4a87-9223-603bafebfa8f";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

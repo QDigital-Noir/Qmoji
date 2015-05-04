@@ -84,12 +84,11 @@
     for (int i = 0; i < array.count; i++)
     {
         NSDictionary *dict = array[i];
-        
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(xpos, ypos, width, heigh);
         button.contentMode = UIViewContentModeScaleToFill;
         button.userInteractionEnabled = YES;
-        button.backgroundColor = [UIColor grayColor];
+        button.backgroundColor = [UIColor clearColor];
         button.tag = i;
         
         dispatch_async(dispatch_get_global_queue(0,0), ^{
@@ -101,7 +100,7 @@
                 [button setImage:[UIImage imageWithData: data] forState:UIControlStateNormal];
             });
         });
-         
+        
         [button addTarget:self action:@selector(copy:) forControlEvents:UIControlEventTouchUpInside];
 
         if (i % 2 == 0)
@@ -171,10 +170,21 @@
     NSArray *collectionArray = [[Helper sharedHelper] getUserCollection];
     NSDictionary *dict = (NSDictionary *)collectionArray[[sender tag]];
     
+//    NSString *imageStringURL = [[NSBundle mainBundle] pathForResource:@"keyboardcat" ofType:@".gif"];
+//    NSData *data = [NSData dataWithContentsOfFile:imageStringURL];
+    
     UIPasteboard *appPasteBoard = [UIPasteboard generalPasteboard];
-    NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"giphyOriginal"]]];
-    [appPasteBoard setData:imgData forPasteboardType:[UIPasteboardTypeListImage objectAtIndex:0]];
+    NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]];
+    [appPasteBoard setData:imgData forPasteboardType:[UIPasteboardTypeListImage objectAtIndex:3]];
     [self.textDocumentProxy insertText:[appPasteBoard string]];
+    
+    self.qmojiKeyboard.statusLabel.text = @"Copied!!";
+    [self performSelector:@selector(test) withObject:nil afterDelay:1.5];
+}
+
+- (void)test
+{
+    self.qmojiKeyboard.statusLabel.text = @"Tap to copy, Then paste to use";
 }
 
 @end

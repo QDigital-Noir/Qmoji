@@ -11,6 +11,7 @@
 #import "ViewController.h"
 #import "CategoryViewController.h"
 #import "CollectionViewController.h"
+#import <Crashlytics/Crashlytics.h>
 
 
 @interface AppDelegate ()
@@ -27,6 +28,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [Crashlytics startWithAPIKey:@"6cef888a67b2dfb13971b13b469ef3cd1eb79cce"];
+    
     // Parse setup
     [Parse setApplicationId:@"VGBTWz7FYeSVcRq12XixARL7nQGOo08EADw92L8a"
                   clientKey:@"CW1d0mJAGTjBhvgLBs1WEay92o9reViZgtP76eZD"];
@@ -42,7 +45,7 @@
     
     
 //    // IAP Setup
-//    [PFPurchase addObserverForProduct:@"com.intencemedia.moviefxstickers.unlockall"
+//    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.all"
 //                                block:^(SKPaymentTransaction *transaction) {
 //                                    self.unlockedAll = YES;
 //                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedAll
