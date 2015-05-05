@@ -25,7 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    [self reload:nil];
     self.title = @"Favorite";
 }
 
@@ -83,7 +82,18 @@
     
     self.gifArray = [[Helper sharedHelper] getUserCollection];
     NSLog(@"Count collections : %lu", (unsigned long)self.gifArray.count);
+    
+    if (self.gifArray.count == 0)
+    {
+        [KVNProgress showErrorWithStatus:@"No favorite yet!"];
+        [self performSelector:@selector(dismissWithDelay) withObject:nil afterDelay:1.5];
+    }
     [self.gifCollectionVIew reloadData];
+}
+
+- (void)dismissWithDelay
+{
+    [KVNProgress dismiss];
 }
 
 #pragma mark - Button Methods

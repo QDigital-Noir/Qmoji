@@ -144,7 +144,7 @@
         self.qmojiKeyboard.collectionView.frame = CGRectMake(0, 0, self.qmojiKeyboard.frame.size.width, 158);
         self.qmojiKeyboard.collectionView.backgroundColor = [UIColor clearColor];
         self.qmojiKeyboard.globalButton.frame = CGRectMake(0, self.qmojiKeyboard.collectionView.frame.size.height, 45, 55);
-        self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.collectionView.frame.size.height, 375 - 90, 55);
+        self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width + 24, self.qmojiKeyboard.collectionView.frame.size.height, 375 - 90 - 48, 55);
         self.qmojiKeyboard.cateScrollView.backgroundColor = [UIColor clearColor];
         self.qmojiKeyboard.deleteButton.frame = CGRectMake(375 - 45, self.qmojiKeyboard.collectionView.frame.size.height, 45, 55);
         
@@ -158,7 +158,7 @@
         self.qmojiKeyboard.collectionView.frame = CGRectMake(0, 0, 414, 170);
         self.qmojiKeyboard.collectionView.backgroundColor = [UIColor clearColor];
         self.qmojiKeyboard.globalButton.frame = CGRectMake(0, self.qmojiKeyboard.collectionView.frame.size.height, 45, 50);
-        self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.collectionView.frame.size.height, 414 - 90, 50);
+        self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width + 24, self.qmojiKeyboard.collectionView.frame.size.height, 414 - 90 - 48, 50);
         self.qmojiKeyboard.cateScrollView.backgroundColor = [UIColor clearColor];
         self.qmojiKeyboard.deleteButton.frame = CGRectMake(414 - 45, self.qmojiKeyboard.collectionView.frame.size.height, 45, 50);
         
@@ -172,7 +172,7 @@
         self.qmojiKeyboard.collectionView.frame = CGRectMake(0, 0, 320, 158);
         self.qmojiKeyboard.collectionView.backgroundColor = [UIColor clearColor];
         self.qmojiKeyboard.globalButton.frame = CGRectMake(0, self.qmojiKeyboard.collectionView.frame.size.height, 45, 50);
-        self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.collectionView.frame.size.height, 320 - 90, 50);
+        self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width + 24, self.qmojiKeyboard.collectionView.frame.size.height, 320 - 90 - 48, 50);
         self.qmojiKeyboard.cateScrollView.backgroundColor = [UIColor clearColor];
         self.qmojiKeyboard.deleteButton.frame = CGRectMake(320 - 45, self.qmojiKeyboard.collectionView.frame.size.height, 45, 50);
         
@@ -215,6 +215,22 @@
             cateButton.selected = YES;
         }
     }
+    
+    // Arrow left & right
+    UIImageView *arrowLeft = [[UIImageView alloc] initWithFrame:CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width, self.qmojiKeyboard.collectionView.frame.size.height + 15, 24, 24)];
+    arrowLeft.backgroundColor = [UIColor clearColor];
+    arrowLeft.image = [UIImage imageNamed:@"left_icon"];
+    arrowLeft.alpha = 0.8f;
+    arrowLeft.contentMode = UIViewContentModeScaleAspectFill;
+    
+    UIImageView *arrowRight = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth - 72, self.qmojiKeyboard.collectionView.frame.size.height + 15, 24, 24)];
+    arrowRight.backgroundColor = [UIColor clearColor];
+    arrowRight.image = [UIImage imageNamed:@"right_icon"];
+    arrowRight.alpha = 0.8f;
+    arrowRight.contentMode = UIViewContentModeScaleAspectFill;
+    
+    [self.qmojiKeyboard addSubview:arrowLeft];
+    [self.qmojiKeyboard addSubview:arrowRight];
     
     self.inputView = self.qmojiKeyboard;
     [self addGuestureToKeyboard];

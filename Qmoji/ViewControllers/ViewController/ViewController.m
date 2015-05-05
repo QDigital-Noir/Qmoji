@@ -113,7 +113,6 @@
                 if (objects != nil && objects.count != 0)
                 {
                     // success
-                    NSLog(@"%@", objects);
                     self.gifArray = [NSArray arrayWithArray:objects];
                     [self.gifCollectionVIew reloadData];
                     [KVNProgress dismiss];
