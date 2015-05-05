@@ -38,7 +38,7 @@
     [super viewDidLoad];
     
 //    // Set category array
-    self.categoryArray = @[@"My Collection", @"Trending", @"Animals", @"Sci-Fi", @"Movies", @"Funnies", @"Meme", @"Cartoons", @"Love", @"Zombies"];
+    self.categoryArray = @[@"Favorite", @"Trending", @"Animals", @"Sci-Fi", @"Movies", @"Funnies", @"Meme", @"Cartoons", @"Love", @"Zombies"];
     
     // Setup data
     self.dataArray = [[Helper sharedHelper] getUserCollection];
@@ -220,17 +220,6 @@
     [self addGuestureToKeyboard];
 }
 
-- (void)keyboardMethod:(id)sender
-{
-    NSLog(@"%ld", (long)[(UIGestureRecognizer *)sender view].tag);
-    int index = (int)[(UIGestureRecognizer *)sender view].tag;
-    NSDictionary *dict = (NSDictionary *)self.dataArray[index];
-    UIPasteboard *appPasteBoard = [UIPasteboard generalPasteboard];
-    NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]];
-    [appPasteBoard setData:imgData forPasteboardType:[UIPasteboardTypeListImage objectAtIndex:3]];
-    [self.textDocumentProxy insertText:[appPasteBoard string]];
-}
-
 - (UIImage *)setColor:(UIColor *)color andFrame:(CGRect)frame
 {
     UIView *colorView = [[UIView alloc] initWithFrame:frame];
@@ -295,22 +284,5 @@
     [appPasteBoard setData:imgData forPasteboardType:[UIPasteboardTypeListImage objectAtIndex:3]];
     [self.textDocumentProxy insertText:[appPasteBoard string]];
 }
-
-//- (CGSize)collectionView:(UICollectionView *)collectionView
-//                  layout:(UICollectionViewLayout *)collectionViewLayout
-//  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.qmojiKeyboard.collectionView.collectionViewLayout;
-//    CGFloat availableWidthForCells = CGRectGetWidth(self.qmojiKeyboard.collectionView.frame) - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumInteritemSpacing * (kCellsPerRow - 1);
-//    CGFloat cellWidth = availableWidthForCells / kCellsPerRow;
-//    flowLayout.itemSize = CGSizeMake(cellWidth, flowLayout.itemSize.height);
-//    return flowLayout.itemSize;
-//}
-
-
-//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-//{
-//    return UIEdgeInsetsMake(0, 0, 0, 0);
-//}
 
 @end

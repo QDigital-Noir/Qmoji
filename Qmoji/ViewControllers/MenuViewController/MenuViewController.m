@@ -29,7 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     images = @[@"", @"", @"", @"", @"", @""];
-    menus = @[@"My Collections", @"Restore", @"Get more apps"];
+    menus = @[@"Favorite", @"Restore", @"Get more apps"];
     categories = @[@"Trending", @"Animals", @"Sci-Fi", @"Movies", @"Funnies", @"Meme", @"Cartoons", @"Love", @"Zombies"];
         
     self.menuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;

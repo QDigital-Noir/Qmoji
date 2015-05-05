@@ -26,7 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 //    [self reload:nil];
-    self.title = @"My Collection";
+    self.title = @"Favorite";
 }
 
 - (void)viewWillAppear:(BOOL)animated
