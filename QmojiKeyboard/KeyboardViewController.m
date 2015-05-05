@@ -38,7 +38,7 @@
     [super viewDidLoad];
     
 //    // Set category array
-    self.categoryArray = @[@"Favorite", @"Trending", @"Animals", @"Sci-Fi", @"Movies", @"Funnies", @"Meme", @"Cartoons", @"Love", @"Zombies"];
+    self.categoryArray = @[@"Favorite", @"Recent", @"Trending", @"Animals", @"Sci-Fi", @"Movies", @"Funnies", @"Meme", @"Cartoons", @"Love", @"Zombies"];
     
     // Setup data
     self.dataArray = [[Helper sharedHelper] getUserCollection];
@@ -97,6 +97,10 @@
     if (tag == 0)
     {
         self.dataArray = [[Helper sharedHelper] getUserCollection];
+    }
+    else if (tag == 1)
+    {
+        self.dataArray = [[Helper sharedHelper] getRecentUsed];
     }
     else
     {
@@ -318,15 +322,30 @@
             }
 
             self.qmojiKeyboard.collectionView.alpha = 0;
-            [self performSelector:@selector(showCollectionView) withObject:nil afterDelay:2.0];
+            [self performSelector:@selector(showCollectionView:) withObject:dict afterDelay:2.0];
         });
     });
 }
 
-- (void)showCollectionView
+- (void)showCollectionView:(NSDictionary *)obj
 {
     self.qmojiKeyboard.collectionView.alpha = 1;
     self.qmojiKeyboard.statusLabel.hidden = YES;
+    
+    // Update user collection.
+    NSMutableArray *recentArray = [NSMutableArray arrayWithArray:[[Helper sharedHelper] getRecentUsed]];
+    
+    // Check if already exist
+    for (NSDictionary *dict in recentArray)
+    {
+        if ([dict[@"giphyID"] isEqualToString:obj[@"giphyID"]])
+        {
+            return;
+        }
+    }
+    
+    [recentArray addObject:obj];
+    [[Helper sharedHelper] updateRecentUsedWithArray:recentArray];
 }
 
 @end

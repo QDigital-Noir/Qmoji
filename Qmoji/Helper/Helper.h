@@ -23,5 +23,7 @@
 - (void)setCategoryData:(NSString *)categoryName withArray:(NSArray *)array;
 - (NSArray *)getCategoryData:(NSString *)categoryName;
 - (void)setupDataWithCategoryName:(NSString *)catename;
+- (void)updateRecentUsedWithArray:(NSMutableArray *)collectionArray;
+- (NSArray *)getRecentUsed;
 
 @end

@@ -82,6 +82,19 @@
                                 return collectionArray;
 }
 
+- (void)updateRecentUsedWithArray:(NSMutableArray *)collectionArray
+{
+    NSUserDefaults *userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.intencemedia.animatedgifkeyboard"];
+    [userDefault setObject:collectionArray forKey:@"RecentUsed"];
+}
+
+- (NSArray *)getRecentUsed
+{
+    NSUserDefaults *userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.intencemedia.animatedgifkeyboard"];
+    NSArray *collectionArray = [NSArray arrayWithArray:(NSArray *)[userDefault objectForKey:@"RecentUsed"]];
+    return collectionArray;
+}
+
 - (void)setCategoryData:(NSString *)categoryName withArray:(NSArray *)array
 {
     NSUserDefaults *userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.intencemedia.animatedgifkeyboard"];
