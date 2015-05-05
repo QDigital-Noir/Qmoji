@@ -127,6 +127,7 @@
     
     PFQuery *query = [PFQuery queryWithClassName:@"Giphy"];
     [query whereKey:@"category" equalTo:AppDelegateAccessor.categoryName];
+    [query addDescendingOrder:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error)
         {
@@ -187,7 +188,7 @@
     PFObject *obj = (PFObject *)self.gifArray[indexPath.row];
     
     [cell setImageWithURL:obj[@"giphyFixedWidth"]
-                andIsPaid:@NO
+                andIsPaid:[obj[@"isLock"] boolValue]
               andCateName:@"Test"];
     
     return cell;
@@ -195,30 +196,56 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    KVNProgressConfiguration *basicConfiguration = [[KVNProgressConfiguration alloc] init];;
-    basicConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
-    basicConfiguration.fullScreen = YES;
-    
-    // Update user collection.
     PFObject *obj = (PFObject *)self.gifArray[indexPath.row];
-    NSMutableArray *collectionArray = [NSMutableArray arrayWithArray:[[Helper sharedHelper] getUserCollection]];
-    NSDictionary *tempDict = @{@"giphyID" : obj[@"giphyID"],
-                               @"giphyOriginal" : obj[@"giphyOriginal"],
-                               @"giphyFixedWidth" : obj[@"giphyFixedWidth"]};
     
-    // Check if already exist
-    for (NSDictionary *dict in collectionArray)
+    BOOL isUnlock = NO;//[[Helper sharedHelper] getUnlockedStickerWithKey:AppDelegateAccessor.categoryName];
+    BOOL isUnlockAll = NO;//[[Helper sharedHelper] getUnlockedStickerWithKey:@"All"];
+    BOOL isLock = [obj[@"isLock"] boolValue];
+    
+    if (isUnlock || isUnlockAll)
     {
-        if ([dict[@"giphyID"] isEqualToString:obj[@"giphyID"]])
+        NSLog(@"Unlocked %@", AppDelegateAccessor.categoryName);
+    }
+    else
+    {
+        if (isLock)
         {
-            [KVNProgress showErrorWithStatus:@"Already existing in your collection"];
-            return;
+            NSLog(@"Need to unlock!!!!!!");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Animated Gif Keyboard"
+                                                            message:@"This gif need to unlock."
+                                                           delegate:self
+                                                  cancelButtonTitle:@"No, Thank you"
+                                                  otherButtonTitles:@"Unlock now!", nil];
+            [alert show];
+        }
+        else
+        {
+            NSLog(@"No need to unlock");
+            KVNProgressConfiguration *basicConfiguration = [[KVNProgressConfiguration alloc] init];;
+            basicConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
+            basicConfiguration.fullScreen = YES;
+            
+            // Update user collection.
+            NSMutableArray *collectionArray = [NSMutableArray arrayWithArray:[[Helper sharedHelper] getUserCollection]];
+            NSDictionary *tempDict = @{@"giphyID" : obj[@"giphyID"],
+                                       @"giphyOriginal" : obj[@"giphyOriginal"],
+                                       @"giphyFixedWidth" : obj[@"giphyFixedWidth"]};
+            
+            // Check if already exist
+            for (NSDictionary *dict in collectionArray)
+            {
+                if ([dict[@"giphyID"] isEqualToString:obj[@"giphyID"]])
+                {
+                    [KVNProgress showErrorWithStatus:@"Already existing in your collection"];
+                    return;
+                }
+            }
+            
+            [collectionArray addObject:tempDict];
+            [[Helper sharedHelper] updateUserCollectionWithArray:collectionArray];
+            [KVNProgress showSuccessWithStatus:@"Added to your collection"];
         }
     }
-    
-    [collectionArray addObject:tempDict];
-    [[Helper sharedHelper] updateUserCollectionWithArray:collectionArray];
-    [KVNProgress showSuccessWithStatus:@"Added to your collection"];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
@@ -232,40 +259,37 @@
     return flowLayout.itemSize;
 }
 
-//#pragma mark - TextField Delegate
-//
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-//{
-//    NSString *searchText = [textField.text stringByReplacingCharactersInRange:range withString:string];
-//    [self filterContentForSearchText:searchText scope:nil];
-//    
-//    return YES;
-//}
-//
-//- (BOOL)textFieldShouldReturn:(UITextField *)textField
-//{
-//    [textField resignFirstResponder];
-//    return YES;
-//}
-//
-//#pragma mark - Filtering SearchResult
-//
-//- (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope
-//{
-//    self.navigationItem.rightBarButtonItem.enabled = NO;
-//    NSURLSessionTask *task = [GiphyObj searchGiphyWitKeyword:searchText withBlock:^(NSArray *posts, NSError *error) {
-//        if (!error)
-//        {
-//            self.gifArray = [NSArray arrayWithArray:posts];
-//            [self.gifCollectionVIew reloadData];
-//        }
-//        else
-//        {
-//            
-//        }
-//    }];
-//    
-//    [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
-//    [self.refreshControl setRefreshingWithStateOfTask:task];
-//}
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        NSLog(@"Not purchease");
+    }
+    else
+    {
+//        NSLog(@"Buying : %@", [[Helper sharedHelper] getIAPIdentifierWithKey:self.cateName]);
+//        KVNProgressConfiguration *basicConfiguration = [[KVNProgressConfiguration alloc] init];
+//        basicConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
+//        basicConfiguration.fullScreen = YES;
+//        [KVNProgress showWithStatus:@"Loading..."];
+//        
+//        [PFPurchase buyProduct:[[Helper sharedHelper] getIAPIdentifierWithKey:self.cateName] block:^(NSError *error) {
+//            if (!error)
+//            {
+//                // Run UI logic that informs user the product has been purchased, such as displaying an alert view.
+//                NSLog(@"Unlock %@ Success", self.cateName);
+//                [self.stickerCollectionView reloadData];
+//                [KVNProgress dismiss];
+//            }
+//            else
+//            {
+//                NSLog(@"IAP Error : %@", error.localizedDescription);
+//                [KVNProgress showErrorWithStatus:@"Error"];
+//            }
+//        }];
+    }
+}
+
 @end

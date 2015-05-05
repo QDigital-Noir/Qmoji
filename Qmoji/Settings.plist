@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IAP</key>
+	<dict>
+		<key>War</key>
+		<string>com.intencemedia.animatedgifkeyboard.all</string>
+		<key>Sea Creatures</key>
+		<string>com.intencemedia.animatedgifkeyboard.all</string>
+		<key>Sci-Fi</key>
+		<string>com.intencemedia.animatedgifkeyboard.all</string>
+		<key>Mother Nature</key>
+		<string>com.intencemedia.animatedgifkeyboard.all</string>
+		<key>Zombie</key>
+		<string>com.intencemedia.animatedgifkeyboard.all</string>
+		<key>Haunted</key>
+		<string>com.intencemedia.animatedgifkeyboard.all</string>
+		<key>Dinosaur</key>
+		<string>com.intencemedia.animatedgifkeyboard.all</string>
+		<key>Animals</key>
+		<string>com.intencemedia.animatedgifkeyboard.all</string>
+		<key>All</key>
+		<string>com.intencemedia.animatedgifkeyboard.all</string>
+	</dict>
+</dict>
+</plist>

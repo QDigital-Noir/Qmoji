@@ -47,6 +47,8 @@
 		105E34081AEA9893005740F9 /* JosefinSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F51AEA9893005740F9 /* JosefinSans-Thin.ttf */; };
 		105E34091AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */; };
 		105E340A1AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */; };
+		106EB8291AF8CE9000FDC871 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 106EB8281AF8CE9000FDC871 /* Settings.plist */; };
+		106EB82A1AF8CE9000FDC871 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 106EB8281AF8CE9000FDC871 /* Settings.plist */; };
 		10718D371AF7EE3D006DD0AA /* cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10718D361AF7EE3D006DD0AA /* cell.xib */; };
 		1072B3BE1AF5F044002EBA5A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1072B3BD1AF5F044002EBA5A /* Crashlytics.framework */; };
 		1072B3BF1AF5F044002EBA5A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1072B3BD1AF5F044002EBA5A /* Crashlytics.framework */; };
@@ -144,6 +146,7 @@
 		105E33F41AEA9893005740F9 /* JosefinSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		105E33F51AEA9893005740F9 /* JosefinSans-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Thin.ttf"; sourceTree = "<group>"; };
 		105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-ThinItalic.ttf"; sourceTree = "<group>"; };
+		106EB8281AF8CE9000FDC871 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 		10718D361AF7EE3D006DD0AA /* cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = cell.xib; sourceTree = "<group>"; };
 		1072B3BD1AF5F044002EBA5A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		107FCA591AF14BF600F0455F /* image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = image.xcassets; sourceTree = "<group>"; };
@@ -329,6 +332,7 @@
 				1012AB681AEB820C003659EE /* Qmoji-Prefix.pch */,
 				105E33AE1AEA86FC005740F9 /* Info.plist */,
 				105E33AF1AEA86FC005740F9 /* main.m */,
+				106EB8281AF8CE9000FDC871 /* Settings.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -570,6 +574,7 @@
 				105E34011AEA9893005740F9 /* JosefinSans-Regular.ttf in Resources */,
 				105E33FD1AEA9893005740F9 /* JosefinSans-Light.ttf in Resources */,
 				105E34071AEA9893005740F9 /* JosefinSans-Thin.ttf in Resources */,
+				106EB8291AF8CE9000FDC871 /* Settings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,6 +603,7 @@
 				105E340A1AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */,
 				105E34081AEA9893005740F9 /* JosefinSans-Thin.ttf in Resources */,
 				10718D371AF7EE3D006DD0AA /* cell.xib in Resources */,
+				106EB82A1AF8CE9000FDC871 /* Settings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

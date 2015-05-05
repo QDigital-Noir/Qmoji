@@ -114,7 +114,8 @@
                     {
                         NSDictionary *dict = @{@"giphyFixedWidth" : obj[@"giphyFixedWidth"],
                                                @"giphyOriginal" : obj[@"giphyOriginal"],
-                                               @"giphyID" : obj[@"giphyID"]};
+                                               @"giphyID" : obj[@"giphyID"],
+                                               @"isLock" : obj[@"isLock"]};
                         [tempArray addObject:dict];
                     }
                     
