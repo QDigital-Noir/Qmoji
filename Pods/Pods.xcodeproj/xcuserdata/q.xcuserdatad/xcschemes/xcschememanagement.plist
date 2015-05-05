@@ -29,11 +29,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SVProgressHUD.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-SlideMenu3D-SlideMenu3D.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,47 +47,42 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>128751062C5B0590CA109CB0</key>
+		<key>3E6D8A7F261A67533DBC103D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>215ADD8FDE245243163101A4</key>
+		<key>625CFBF5AD3FC474E748DC7D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3FF5B8CC1FB4625B38BE1550</key>
+		<key>B26673B83B53BCB0014EF5E8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>46D46DF14A7341A0B88A0C59</key>
+		<key>C5DD7BFEFB97507941F7725C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>57198DA19FDDBDA660B65295</key>
+		<key>E672BDCE884A07F6BABAABA3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>79B59B3828CF7E5604F7D201</key>
+		<key>E71057CB2F889B08180EE8DE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7DCCCFFA9AB768FC4FFE0B1C</key>
+		<key>F1B374B539833787CC01083C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>99A32A1321E257234A52BFDC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A56152595E51035A73EAD08A</key>
+		<key>F2EA02E073F2904224546ADF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -11,7 +11,6 @@
 #import "UIDeviceHardware.h"
 
 #define kCellsPerRow 2
-#define SV_APP_EXTENSIONS
 
 @interface KeyboardViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 {
