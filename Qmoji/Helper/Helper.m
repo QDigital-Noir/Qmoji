@@ -113,6 +113,7 @@
 {
     PFQuery *query = [PFQuery queryWithClassName:@"Giphy"];
     [query whereKey:@"category" equalTo:catename];
+    [query addDescendingOrder:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error)
         {
@@ -128,7 +129,8 @@
                         NSDictionary *dict = @{@"giphyFixedWidth" : obj[@"giphyFixedWidth"],
                                                @"giphyOriginal" : obj[@"giphyOriginal"],
                                                @"giphyID" : obj[@"giphyID"],
-                                               @"isLock" : obj[@"isLock"]};
+                                               @"isLock" : obj[@"isLock"],
+                                               @"category" : obj[@"category"]};
                         [tempArray addObject:dict];
                     }
                     

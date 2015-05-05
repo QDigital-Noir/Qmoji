@@ -49,6 +49,7 @@
 		105E340A1AEA9893005740F9 /* JosefinSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */; };
 		106EB8291AF8CE9000FDC871 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 106EB8281AF8CE9000FDC871 /* Settings.plist */; };
 		106EB82A1AF8CE9000FDC871 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 106EB8281AF8CE9000FDC871 /* Settings.plist */; };
+		106EB8301AF93D9700FDC871 /* GifCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 106EB82F1AF93D9700FDC871 /* GifCollectionViewCell.m */; };
 		10718D371AF7EE3D006DD0AA /* cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10718D361AF7EE3D006DD0AA /* cell.xib */; };
 		1072B3BE1AF5F044002EBA5A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1072B3BD1AF5F044002EBA5A /* Crashlytics.framework */; };
 		1072B3BF1AF5F044002EBA5A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1072B3BD1AF5F044002EBA5A /* Crashlytics.framework */; };
@@ -145,6 +146,8 @@
 		105E33F51AEA9893005740F9 /* JosefinSans-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Thin.ttf"; sourceTree = "<group>"; };
 		105E33F61AEA9893005740F9 /* JosefinSans-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-ThinItalic.ttf"; sourceTree = "<group>"; };
 		106EB8281AF8CE9000FDC871 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
+		106EB82E1AF93D9700FDC871 /* GifCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifCollectionViewCell.h; sourceTree = "<group>"; };
+		106EB82F1AF93D9700FDC871 /* GifCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifCollectionViewCell.m; sourceTree = "<group>"; };
 		10718D361AF7EE3D006DD0AA /* cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = cell.xib; sourceTree = "<group>"; };
 		1072B3BD1AF5F044002EBA5A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		107FCA591AF14BF600F0455F /* image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = image.xcassets; sourceTree = "<group>"; };
@@ -362,6 +365,8 @@
 				105E33E71AEA88C4005740F9 /* QmojiKeyboard.h */,
 				105E33E81AEA88C4005740F9 /* QmojiKeyboard.m */,
 				10718D361AF7EE3D006DD0AA /* cell.xib */,
+				106EB82E1AF93D9700FDC871 /* GifCollectionViewCell.h */,
+				106EB82F1AF93D9700FDC871 /* GifCollectionViewCell.m */,
 			);
 			path = QmojiKeyboard;
 			sourceTree = "<group>";
@@ -685,6 +690,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				104604411AF2653A003C0D97 /* Helper.m in Sources */,
+				106EB8301AF93D9700FDC871 /* GifCollectionViewCell.m in Sources */,
 				10D2FEAF1AF4D544008CEB15 /* UIDeviceHardware.m in Sources */,
 				105E33DD1AEA876B005740F9 /* KeyboardViewController.m in Sources */,
 				1097AB481AEFB17700BEA773 /* IAPHelper.m in Sources */,

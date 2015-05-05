@@ -165,7 +165,7 @@
     
     [cell setImageWithURL:obj[@"giphyFixedWidth"]
                 andIsPaid:[obj[@"isLock"] boolValue]
-              andCateName:@"Test"];
+              andCateName:obj[@"category"]];
     
     return cell;
 }

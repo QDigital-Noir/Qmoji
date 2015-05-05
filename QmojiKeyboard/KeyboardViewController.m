@@ -9,6 +9,7 @@
 #import "KeyboardViewController.h"
 #import "QmojiKeyboard.h"
 #import "UIDeviceHardware.h"
+#import "GifCollectionViewCell.h"
 
 #define kCellsPerRow 2
 
@@ -108,6 +109,7 @@
     }
     
     [self.qmojiKeyboard.collectionView reloadData];
+    [self.qmojiKeyboard.collectionView setContentOffset:CGPointZero animated:YES];
     
     for (UIButton *button in self.qmojiKeyboard.cateScrollView.subviews)
     {
@@ -283,17 +285,10 @@
     NSDictionary *dict = [self.dataArray objectAtIndex:indexPath.row];
     
     static NSString *cellIdentifier = @"Cell";
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-    UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
-    imageView.frame = CGRectMake(0, 0, width, heigh);
-    imageView.backgroundColor = [UIColor clearColor];
-    imageView.contentMode = UIViewContentModeScaleToFill;
-    imageView.userInteractionEnabled = YES;
-    [imageView sd_setImageWithURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]
-                 placeholderImage:[UIImage imageNamed:@"placeholder"] options:SDWebImageRefreshCached
-                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                        }];
+    GifCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    [cell setImageWithURL:dict[@"giphyFixedWidth"]
+                andIsPaid:[dict[@"isLock"] boolValue]
+              andCateName:dict[@"category"]];
 
     return cell;
 }
@@ -301,30 +296,49 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"TEST : %ld", (long)indexPath.row);
+    NSDictionary *dict = (NSDictionary *)self.dataArray[indexPath.row];
+    BOOL isUnlock = NO;//[[Helper sharedHelper] getUnlockedStickerWithKey:AppDelegateAccessor.categoryName];
+    BOOL isUnlockAll = NO;//[[Helper sharedHelper] getUnlockedStickerWithKey:@"All"];
+    BOOL isLock = [dict[@"isLock"] boolValue];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // time-consuming task
-        NSDictionary *dict = (NSDictionary *)self.dataArray[indexPath.row];
-        UIPasteboard *appPasteBoard = [UIPasteboard generalPasteboard];
-        NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]];
-        [appPasteBoard setData:imgData forPasteboardType:[UIPasteboardTypeListImage objectAtIndex:3]];
-        [self.textDocumentProxy insertText:[appPasteBoard string]];
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"DONE");
-            if (self.dataArray.count == 0)
-            {
-                self.qmojiKeyboard.statusLabel.hidden = YES;
-            }
-            else
-            {
-                self.qmojiKeyboard.statusLabel.hidden = NO;
-            }
-
-            self.qmojiKeyboard.collectionView.alpha = 0;
-            [self performSelector:@selector(showCollectionView:) withObject:dict afterDelay:2.0];
-        });
-    });
+    if (isUnlock || isUnlockAll)
+    {
+        NSLog(@"Unlocked");
+    }
+    else
+    {
+        if (isLock)
+        {
+            NSLog(@"Need to unlock!!!!!!");
+        }
+        else
+        {
+            NSLog(@"No need to unlock");
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                // time-consuming task
+                NSDictionary *dict = (NSDictionary *)self.dataArray[indexPath.row];
+                UIPasteboard *appPasteBoard = [UIPasteboard generalPasteboard];
+                NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]];
+                [appPasteBoard setData:imgData forPasteboardType:[UIPasteboardTypeListImage objectAtIndex:3]];
+                [self.textDocumentProxy insertText:[appPasteBoard string]];
+        
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"DONE");
+                    if (self.dataArray.count == 0)
+                    {
+                        self.qmojiKeyboard.statusLabel.hidden = YES;
+                    }
+                    else
+                    {
+                        self.qmojiKeyboard.statusLabel.hidden = NO;
+                    }
+        
+                    self.qmojiKeyboard.collectionView.alpha = 0;
+                    [self performSelector:@selector(showCollectionView:) withObject:dict afterDelay:2.0];
+                });
+            });
+        }
+    }
 }
 
 - (void)showCollectionView:(NSDictionary *)obj
