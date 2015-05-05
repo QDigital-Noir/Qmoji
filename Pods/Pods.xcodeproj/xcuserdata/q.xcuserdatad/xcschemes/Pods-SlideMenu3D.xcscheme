@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B2E7C76B6168B409C5DA792D"
+               BlueprintIdentifier = "57198DA19FDDBDA660B65295"
                BuildableName = "libPods-SlideMenu3D.a"
                BlueprintName = "Pods-SlideMenu3D"
                ReferencedContainer = "container:Pods.xcodeproj">

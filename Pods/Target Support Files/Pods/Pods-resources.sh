@@ -52,10 +52,12 @@ install_resource()
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "KVNProgress/KVNProgress/Resources/KVNProgressView.xib"
+  install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/SlideMenu3D.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "KVNProgress/KVNProgress/Resources/KVNProgressView.xib"
+  install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/SlideMenu3D.bundle"
 fi
 

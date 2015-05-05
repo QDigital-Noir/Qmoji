@@ -11,6 +11,7 @@
 #import "UIDeviceHardware.h"
 
 #define kCellsPerRow 2
+#define SV_APP_EXTENSIONS
 
 @interface KeyboardViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 {
@@ -126,11 +127,21 @@
 
 - (void)setupKeyboardWithArray:(NSArray *)dataArray
 {
+    if (dataArray.count == 0)
+    {
+        self.qmojiKeyboard.statusLabel.hidden = YES;
+    }
+    else
+    {
+        self.qmojiKeyboard.statusLabel.hidden = NO;
+    }
+    
     UINib *cellNib = [UINib nibWithNibName:@"cell" bundle:nil];
 
     self.qmojiKeyboard = [[[NSBundle mainBundle] loadNibNamed:@"QmojiKeyboard" owner:nil options:nil] objectAtIndex:0];
     self.qmojiKeyboard.collectionView.delegate = self;
     self.qmojiKeyboard.collectionView.dataSource = self;
+    self.qmojiKeyboard.collectionView.pagingEnabled = YES;
     [self.qmojiKeyboard.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"Cell"];
     
     UIDeviceHardware *h = [[UIDeviceHardware alloc] init];
@@ -147,6 +158,7 @@
         self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width + 24, self.qmojiKeyboard.collectionView.frame.size.height, 375 - 90 - 48, 55);
         self.qmojiKeyboard.cateScrollView.backgroundColor = [UIColor clearColor];
         self.qmojiKeyboard.deleteButton.frame = CGRectMake(375 - 45, self.qmojiKeyboard.collectionView.frame.size.height, 45, 55);
+        self.qmojiKeyboard.statusLabel.center = CGPointMake(self.qmojiKeyboard.collectionView.frame.size.width/2, self.qmojiKeyboard.collectionView.frame.size.height/2);
         
         width = 375/3;//125;
         heigh = 79;
@@ -161,6 +173,7 @@
         self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width + 24, self.qmojiKeyboard.collectionView.frame.size.height, 414 - 90 - 48, 50);
         self.qmojiKeyboard.cateScrollView.backgroundColor = [UIColor clearColor];
         self.qmojiKeyboard.deleteButton.frame = CGRectMake(414 - 45, self.qmojiKeyboard.collectionView.frame.size.height, 45, 50);
+        self.qmojiKeyboard.statusLabel.center = CGPointMake(self.qmojiKeyboard.collectionView.frame.size.width/2, self.qmojiKeyboard.collectionView.frame.size.height/2);
         
         width = 414/3;//137;
         heigh = 85;
@@ -175,6 +188,7 @@
         self.qmojiKeyboard.cateScrollView.frame = CGRectMake(self.qmojiKeyboard.globalButton.frame.size.width + 24, self.qmojiKeyboard.collectionView.frame.size.height, 320 - 90 - 48, 50);
         self.qmojiKeyboard.cateScrollView.backgroundColor = [UIColor clearColor];
         self.qmojiKeyboard.deleteButton.frame = CGRectMake(320 - 45, self.qmojiKeyboard.collectionView.frame.size.height, 45, 50);
+        self.qmojiKeyboard.statusLabel.center = CGPointMake(self.qmojiKeyboard.collectionView.frame.size.width/2, self.qmojiKeyboard.collectionView.frame.size.height/2);
         
         width = 320/3;//125;
         heigh = 79;
@@ -222,13 +236,11 @@
     arrowLeft.image = [UIImage imageNamed:@"left_icon"];
     arrowLeft.alpha = 0.8f;
     arrowLeft.contentMode = UIViewContentModeScaleAspectFill;
-    
     UIImageView *arrowRight = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth - 72, self.qmojiKeyboard.collectionView.frame.size.height + 15, 24, 24)];
     arrowRight.backgroundColor = [UIColor clearColor];
     arrowRight.image = [UIImage imageNamed:@"right_icon"];
     arrowRight.alpha = 0.8f;
     arrowRight.contentMode = UIViewContentModeScaleAspectFill;
-    
     [self.qmojiKeyboard addSubview:arrowLeft];
     [self.qmojiKeyboard addSubview:arrowRight];
     
@@ -272,33 +284,50 @@
     
     UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
     imageView.frame = CGRectMake(0, 0, width, heigh);
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    spinner.hidesWhenStopped = YES;
-    [spinner startAnimating];
-
     imageView.backgroundColor = [UIColor clearColor];
     imageView.contentMode = UIViewContentModeScaleToFill;
     imageView.userInteractionEnabled = YES;
-    spinner.center = CGPointMake(imageView.frame.size.width/2, imageView.frame.size.height/2);
-    [imageView addSubview:spinner];
     [imageView sd_setImageWithURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]
                  placeholderImage:[UIImage imageNamed:@"placeholder"] options:SDWebImageRefreshCached
                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                            [spinner stopAnimating];
-                            [spinner removeFromSuperview];
                         }];
-    
+
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"TEST : %ld", (long)indexPath.row);
-    NSDictionary *dict = (NSDictionary *)self.dataArray[indexPath.row];
-    UIPasteboard *appPasteBoard = [UIPasteboard generalPasteboard];
-    NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]];
-    [appPasteBoard setData:imgData forPasteboardType:[UIPasteboardTypeListImage objectAtIndex:3]];
-    [self.textDocumentProxy insertText:[appPasteBoard string]];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // time-consuming task
+        NSDictionary *dict = (NSDictionary *)self.dataArray[indexPath.row];
+        UIPasteboard *appPasteBoard = [UIPasteboard generalPasteboard];
+        NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]];
+        [appPasteBoard setData:imgData forPasteboardType:[UIPasteboardTypeListImage objectAtIndex:3]];
+        [self.textDocumentProxy insertText:[appPasteBoard string]];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"DONE");
+            if (self.dataArray.count == 0)
+            {
+                self.qmojiKeyboard.statusLabel.hidden = YES;
+            }
+            else
+            {
+                self.qmojiKeyboard.statusLabel.hidden = NO;
+            }
+
+            self.qmojiKeyboard.collectionView.alpha = 0;
+            [self performSelector:@selector(showCollectionView) withObject:nil afterDelay:2.0];
+        });
+    });
+}
+
+- (void)showCollectionView
+{
+    self.qmojiKeyboard.collectionView.alpha = 1;
+    self.qmojiKeyboard.statusLabel.hidden = YES;
 }
 
 @end

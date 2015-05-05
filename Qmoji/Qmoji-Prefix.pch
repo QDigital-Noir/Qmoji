@@ -20,6 +20,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "IAPHelper.h"
 #import "Helper.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 #define GiphyPublicKey "dc6zaTOxFJmzC"
 #define ParseAppID ""
