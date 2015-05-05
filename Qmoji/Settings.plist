@@ -4,22 +4,24 @@
 <dict>
 	<key>IAP</key>
 	<dict>
-		<key>War</key>
-		<string>com.intencemedia.animatedgifkeyboard.all</string>
-		<key>Sea Creatures</key>
-		<string>com.intencemedia.animatedgifkeyboard.all</string>
+		<key>Love</key>
+		<string>com.intencemedia.animatedgifkeyboard.love</string>
+		<key>Zombies</key>
+		<string>com.intencemedia.animatedgifkeyboard.zombies</string>
+		<key>Cartoons</key>
+		<string>com.intencemedia.animatedgifkeyboard.cartoons</string>
+		<key>Meme</key>
+		<string>com.intencemedia.animatedgifkeyboard.meme</string>
+		<key>Funnies</key>
+		<string>com.intencemedia.animatedgifkeyboard.funnies</string>
+		<key>Movies</key>
+		<string>com.intencemedia.animatedgifkeyboard.movies</string>
 		<key>Sci-Fi</key>
-		<string>com.intencemedia.animatedgifkeyboard.all</string>
-		<key>Mother Nature</key>
-		<string>com.intencemedia.animatedgifkeyboard.all</string>
-		<key>Zombie</key>
-		<string>com.intencemedia.animatedgifkeyboard.all</string>
-		<key>Haunted</key>
-		<string>com.intencemedia.animatedgifkeyboard.all</string>
-		<key>Dinosaur</key>
-		<string>com.intencemedia.animatedgifkeyboard.all</string>
+		<string>com.intencemedia.animatedgifkeyboard.scifi</string>
 		<key>Animals</key>
-		<string>com.intencemedia.animatedgifkeyboard.all</string>
+		<string>com.intencemedia.animatedgifkeyboard.animals</string>
+		<key>Trending</key>
+		<string>com.intencemedia.animatedgifkeyboard.trending</string>
 		<key>All</key>
 		<string>com.intencemedia.animatedgifkeyboard.all</string>
 	</dict>
