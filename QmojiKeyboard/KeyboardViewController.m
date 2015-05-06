@@ -107,7 +107,7 @@
     {
         self.dataArray = [[Helper sharedHelper] getCategoryData:self.categoryArray[tag]];
     }
-    
+    self.categoryName = self.categoryArray[tag];
     [self.qmojiKeyboard.collectionView reloadData];
     [self.qmojiKeyboard.collectionView setContentOffset:CGPointZero animated:YES];
     
@@ -248,6 +248,7 @@
     arrowRight.contentMode = UIViewContentModeScaleAspectFill;
     [self.qmojiKeyboard addSubview:arrowLeft];
     [self.qmojiKeyboard addSubview:arrowRight];
+    self.categoryName = @"Favorite";
     
     self.inputView = self.qmojiKeyboard;
     [self addGuestureToKeyboard];
@@ -297,13 +298,36 @@
 {
     NSLog(@"TEST : %ld", (long)indexPath.row);
     NSDictionary *dict = (NSDictionary *)self.dataArray[indexPath.row];
-    BOOL isUnlock = NO;//[[Helper sharedHelper] getUnlockedStickerWithKey:AppDelegateAccessor.categoryName];
-    BOOL isUnlockAll = NO;//[[Helper sharedHelper] getUnlockedStickerWithKey:@"All"];
+    BOOL isUnlock = [[Helper sharedHelper] getUnlockedStickerWithKey:self.categoryName];
+    BOOL isUnlockAll = [[Helper sharedHelper] getUnlockedStickerWithKey:@"All"];
     BOOL isLock = [dict[@"isLock"] boolValue];
     
     if (isUnlock || isUnlockAll)
     {
         NSLog(@"Unlocked");
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // time-consuming task
+            NSDictionary *dict = (NSDictionary *)self.dataArray[indexPath.row];
+            UIPasteboard *appPasteBoard = [UIPasteboard generalPasteboard];
+            NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"giphyFixedWidth"]]];
+            [appPasteBoard setData:imgData forPasteboardType:[UIPasteboardTypeListImage objectAtIndex:3]];
+            [self.textDocumentProxy insertText:[appPasteBoard string]];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"DONE");
+                if (self.dataArray.count == 0)
+                {
+                    self.qmojiKeyboard.statusLabel.hidden = YES;
+                }
+                else
+                {
+                    self.qmojiKeyboard.statusLabel.hidden = NO;
+                }
+                
+                self.qmojiKeyboard.collectionView.alpha = 0;
+                [self performSelector:@selector(showCollectionView:) withObject:dict afterDelay:2.0];
+            });
+        });
     }
     else
     {

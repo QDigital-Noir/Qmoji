@@ -107,8 +107,19 @@
             KVNProgressConfiguration *basicConfiguration = [[KVNProgressConfiguration alloc] init];;
             basicConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
             basicConfiguration.fullScreen = YES;
-            [KVNProgress showWithStatus:@"Restoring purcheased..."];
-//            [PFPurchase restore];
+            [KVNProgress showWithStatus:@"Restoring purchased..."];
+            [PFPurchase restore];
+            
+            /*
+             - IAP Integrated
+             - IAP Sandbox testiong account
+             Username : demo1@user.com
+             Password : Buzzi4me
+             - Added status once gif already copied.
+             - Added left & right arraow to navigate user to scroll left or right to see more category.
+             - Added ability to add recent git used.
+             - Added purchaes icon on gif items that unlock to use.
+            */
         }
         else
         {
@@ -122,6 +133,7 @@
         if (indexPath.row == 0)
         {
             [[AppDelegate mainDelegate] setFirstView];
+            AppDelegateAccessor.categoryName = @"Trending";
         }
         else
         {

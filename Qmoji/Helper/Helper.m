@@ -57,13 +57,15 @@
 {
     NSUserDefaults *appDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.intencemedia.animatedgifkeyboard"];
     [appDefault setObject:[NSNumber numberWithBool:unlocked] forKey:key];
-    [appDefault synchronize];
 }
 
 - (BOOL)getUnlockedStickerWithKey:(NSString *)key
 {
+    NSString *iapKey = [NSString stringWithFormat:@"%@_IAP", key];
     NSUserDefaults *appDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.intencemedia.animatedgifkeyboard"];
-    BOOL isUnlock = [[appDefault objectForKey:key] boolValue];
+    NSLog(@"%@",[appDefault objectForKey:iapKey]);
+    
+    BOOL isUnlock = [[appDefault objectForKey:iapKey] boolValue];
     return isUnlock;
 }
 

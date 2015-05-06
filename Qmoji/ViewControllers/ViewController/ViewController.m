@@ -174,13 +174,37 @@
 {
     PFObject *obj = (PFObject *)self.gifArray[indexPath.row];
     
-    BOOL isUnlock = NO;//[[Helper sharedHelper] getUnlockedStickerWithKey:AppDelegateAccessor.categoryName];
-    BOOL isUnlockAll = NO;//[[Helper sharedHelper] getUnlockedStickerWithKey:@"All"];
+    BOOL isUnlock = [[Helper sharedHelper] getUnlockedStickerWithKey:AppDelegateAccessor.categoryName];
+    BOOL isUnlockAll = [[Helper sharedHelper] getUnlockedStickerWithKey:@"All"];
     BOOL isLock = [obj[@"isLock"] boolValue];
     
     if (isUnlock || isUnlockAll)
     {
         NSLog(@"Unlocked %@", AppDelegateAccessor.categoryName);
+        KVNProgressConfiguration *basicConfiguration = [[KVNProgressConfiguration alloc] init];;
+        basicConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
+        basicConfiguration.fullScreen = YES;
+        
+        // Update user collection.
+        PFObject *obj = (PFObject *)self.gifArray[indexPath.row];
+        NSMutableArray *collectionArray = [NSMutableArray arrayWithArray:[[Helper sharedHelper] getUserCollection]];
+        NSDictionary *tempDict = @{@"giphyID" : obj[@"giphyID"],
+                                   @"giphyOriginal" : obj[@"giphyOriginal"],
+                                   @"giphyFixedWidth" : obj[@"giphyFixedWidth"]};
+        
+        // Check if already exist
+        for (NSDictionary *dict in collectionArray)
+        {
+            if ([dict[@"giphyID"] isEqualToString:obj[@"giphyID"]])
+            {
+                [KVNProgress showErrorWithStatus:@"Already existing in your collection"];
+                return;
+            }
+        }
+        
+        [collectionArray addObject:tempDict];
+        [[Helper sharedHelper] updateUserCollectionWithArray:collectionArray];
+        [KVNProgress showSuccessWithStatus:@"Added to your collection"];
     }
     else
     {
@@ -247,26 +271,27 @@
     }
     else
     {
-        //        NSLog(@"Buying : %@", [[Helper sharedHelper] getIAPIdentifierWithKey:self.cateName]);
-        //        KVNProgressConfiguration *basicConfiguration = [[KVNProgressConfiguration alloc] init];
-        //        basicConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
-        //        basicConfiguration.fullScreen = YES;
-        //        [KVNProgress showWithStatus:@"Loading..."];
-        //
-        //        [PFPurchase buyProduct:[[Helper sharedHelper] getIAPIdentifierWithKey:self.cateName] block:^(NSError *error) {
-        //            if (!error)
-        //            {
-        //                // Run UI logic that informs user the product has been purchased, such as displaying an alert view.
-        //                NSLog(@"Unlock %@ Success", self.cateName);
-        //                [self.stickerCollectionView reloadData];
-        //                [KVNProgress dismiss];
-        //            }
-        //            else
-        //            {
-        //                NSLog(@"IAP Error : %@", error.localizedDescription);
-        //                [KVNProgress showErrorWithStatus:@"Error"];
-        //            }
-        //        }];
+        NSLog(@"Buying : %@", [[Helper sharedHelper] getIAPIdentifierWithKey:AppDelegateAccessor.categoryName]);
+        KVNProgressConfiguration *basicConfiguration = [[KVNProgressConfiguration alloc] init];
+        basicConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
+        basicConfiguration.fullScreen = YES;
+        [KVNProgress showWithStatus:@"Loading..."];
+
+        [PFPurchase buyProduct:[[Helper sharedHelper] getIAPIdentifierWithKey:AppDelegateAccessor.categoryName] block:^(NSError *error) {
+            if (!error)
+            {
+                // Run UI logic that informs user the product has been purchased, such as displaying an alert view.
+                NSLog(@"Unlock %@ Success", AppDelegateAccessor.categoryName);
+                [self.gifCollectionVIew reloadData];
+                [KVNProgress dismiss];
+            }
+            else
+            {
+                NSLog(@"IAP Error : %@", error.localizedDescription);
+                [KVNProgress showErrorWithStatus:@"Error"];
+            }
+        }];
     }
 }
+
 @end

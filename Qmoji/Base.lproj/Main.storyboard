@@ -120,9 +120,6 @@
                                 <action selector="menuAction:" destination="vXZ-lx-hvc" id="yFx-eJ-HOI"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Unlock" id="YSD-hJ-L1D">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="gifCollectionVIew" destination="8Bh-xE-tlp" id="old-cY-JGW"/>
@@ -331,9 +328,6 @@
                             <connections>
                                 <action selector="menuAction:" destination="YP1-5b-izW" id="9M7-Xi-IBc"/>
                             </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Unlock" id="bmA-7E-7ot">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

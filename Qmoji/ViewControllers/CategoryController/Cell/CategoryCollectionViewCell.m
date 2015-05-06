@@ -17,8 +17,8 @@
                             options:SDWebImageRefreshCached];
     self.image1.contentMode = UIViewContentModeScaleAspectFill;
     
-    BOOL isUnlock = NO;//[[Helper sharedHelper] getUnlockedStickerWithKey:cateName];
-    BOOL isUnlockAll = NO;//[[Helper sharedHelper] getUnlockedStickerWithKey:@"All"];
+    BOOL isUnlock = [[Helper sharedHelper] getUnlockedStickerWithKey:cateName];
+    BOOL isUnlockAll = [[Helper sharedHelper] getUnlockedStickerWithKey:@"All"];
     if (isUnlock || isUnlockAll)
     {
         NSLog(@"No overlay");
