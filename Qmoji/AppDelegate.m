@@ -43,88 +43,8 @@
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
     
-    
-    // IAP Setup
-    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.all"
-                                block:^(SKPaymentTransaction *transaction) {
-                                    self.unlockedAll = YES;
-                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedAll
-                                                                         withKey:@"All_IAP"];
-                                    NSLog(@"unlockedAll");
-                                    [KVNProgress dismiss];
-                                }];
-    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.trending"
-                                block:^(SKPaymentTransaction *transaction) {
-                                    self.unlockedTrending = YES;
-                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedTrending
-                                                                         withKey:@"Trending_IAP"];
-                                    NSLog(@"unlockedTrending");
-                                    [KVNProgress dismiss];
-                                }];
-    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.animals"
-                                block:^(SKPaymentTransaction *transaction) {
-                                    self.unlockedAnimals = YES;
-                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedAnimals
-                                                                         withKey:@"Animals_IAP"];
-                                    NSLog(@"unlockedAnimals");
-                                    [KVNProgress dismiss];
-                                }];
-    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.scifi"
-                                block:^(SKPaymentTransaction *transaction) {
-                                    self.unlockedSciFi = YES;
-                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedSciFi
-                                                                         withKey:@"Sci-Fi_IAP"];
-                                    NSLog(@"unlockedSciFi");
-                                    [KVNProgress dismiss];
-                                }];
-    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.movies"
-                                block:^(SKPaymentTransaction *transaction) {
-                                    self.unlockedMovies = YES;
-                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedMovies
-                                                                         withKey:@"Movies_IAP"];
-                                    NSLog(@"unlockedMovies");
-                                    [KVNProgress dismiss];
-                                }];
-    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.funnies"
-                                block:^(SKPaymentTransaction *transaction) {
-                                    self.unlockedFunnies = YES;
-                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedFunnies
-                                                                         withKey:@"Funnies_IAP"];
-                                    NSLog(@"unlockedFunnies");
-                                    [KVNProgress dismiss];
-                                }];
-    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.meme"
-                                block:^(SKPaymentTransaction *transaction) {
-                                    self.unlockedMeme = YES;
-                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedMeme
-                                                                         withKey:@"Meme_IAP"];
-                                    NSLog(@"unlockedMeme");
-                                    [KVNProgress dismiss];
-                                }];
-    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.cartoons"
-                                block:^(SKPaymentTransaction *transaction) {
-                                    self.unlockedCartoons = YES;
-                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedCartoons
-                                                                         withKey:@"Cartoons"];
-                                    NSLog(@"unlockedCartoons");
-                                    [KVNProgress dismiss];
-                                }];
-    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.zombies"
-                                block:^(SKPaymentTransaction *transaction) {
-                                    self.unlockedZombie = YES;
-                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedZombie
-                                                                         withKey:@"Zombies_IAP"];
-                                    NSLog(@"unlockedZombie");
-                                    [KVNProgress dismiss];
-                                }];
-    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.love"
-                                block:^(SKPaymentTransaction *transaction) {
-                                    self.unlockedLove = YES;
-                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedLove
-                                                                         withKey:@"Love_IAP"];
-                                    NSLog(@"unlockedLove");
-                                    [KVNProgress dismiss];
-                                }];
+    // IAP
+    [self setupIAP];
 
     // Setup navigationbar style
     NSShadow *shadow = [[NSShadow alloc] init];
@@ -155,21 +75,48 @@
     [self.window setRootViewController:self.slideMenuVC];
     [self.window makeKeyAndVisible];
     
-    AppDelegateAccessor.categoryName = @"Trending";
+    AppDelegateAccessor.categoryName = @"Feels";
     
     // Setup data
     NSUserDefaults *userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.intencemedia.animatedgifkeyboard"];
     if ([userDefault objectForKey:@"FIRST_INSTALL"] == nil)
     {
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Trending"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Animals"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Sci-Fi"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Movies"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Funnies"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Meme"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Cartoons"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Feels"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Sleep"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Happy"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Sad"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Hungry"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Food"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Dance"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Dog"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Cat"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Celebrity"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Drunk"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Tired"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Bored"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Confused"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Mind Blown"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Beer"];
         [[Helper sharedHelper] setupDataWithCategoryName:@"Love"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Zombies"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Cars"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Deal With It"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Reaction"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Emotion"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Party"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Cry"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Laugh"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Awkward"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Face palm"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Birthday"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"LOL"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Kiss"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Roll eyes"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Thumbs up"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Thumbs down"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Shrug"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Wink"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"High Five"];
+        
         
         [userDefault setObject:[NSNumber numberWithBool:YES] forKey:@"FIRST_INSTALL"];
         NSLog(@"First install");
@@ -252,6 +199,301 @@
     
     UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:collectionVC];
     self.slideMenuVC.mainViewController = navVC;
+}
+
+#pragma mark - IAP Method
+
+- (void)setupIAP
+{
+    // IAP Setup
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.all"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedAll = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedAll
+                                                                         withKey:@"All_IAP"];
+                                    NSLog(@"unlockedAll");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.highfive"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedHighFive = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedHighFive
+                                                                         withKey:@"High Five_IAP"];
+                                    NSLog(@"unlockedHighFive");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.wink"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedWink = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedWink
+                                                                         withKey:@"Wink_IAP"];
+                                    NSLog(@"unlockedWink");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.shrug"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedShrug = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedShrug
+                                                                         withKey:@"Shrug_IAP"];
+                                    NSLog(@"unlockedShrug");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.thumbdown"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedThumbsdown = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedThumbsdown
+                                                                         withKey:@"Thumbs down_IAP"];
+                                    NSLog(@"unlockedThumbsdown");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.thumbup"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedThumbsup = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedThumbsup
+                                                                         withKey:@"Thumbs up_IAP"];
+                                    NSLog(@"unlockedThumbsup");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.rolleyes"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedRolleyes = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedRolleyes
+                                                                         withKey:@"Roll eyes_IAP"];
+                                    NSLog(@"unlockedRolleyes");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.kiss"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedKiss = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedKiss
+                                                                         withKey:@"Kiss_IAP"];
+                                    NSLog(@"unlockedKiss");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.lol"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedLOL = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedLOL
+                                                                         withKey:@"LOL_IAP"];
+                                    NSLog(@"unlockedLOL");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.birthday"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedBirthday = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedBirthday
+                                                                         withKey:@"Birthday_IAP"];
+                                    NSLog(@"unlockedBirthday");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.facepalm"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedFacepalm = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedFacepalm
+                                                                         withKey:@"Face palm_IAP"];
+                                    NSLog(@"unlockedFacepalm");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.awkward"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedAwkward = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedAwkward
+                                                                         withKey:@"Awkward_IAP"];
+                                    NSLog(@"unlockedAwkward");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.laugh"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedLaugh = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedLaugh
+                                                                         withKey:@"Laugh_IAP"];
+                                    NSLog(@"unlockedLaugh");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.cry"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedCry = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedCry
+                                                                         withKey:@"Cry_IAP"];
+                                    NSLog(@"unlockedCry");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.party"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedParty = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedParty
+                                                                         withKey:@"Party_IAP"];
+                                    NSLog(@"unlockedParty");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.emotion"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedEmotion = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedEmotion
+                                                                         withKey:@"Emotion_IAP"];
+                                    NSLog(@"unlockedEmotion");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.reaction"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedReaction = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedReaction
+                                                                         withKey:@"Reaction_IAP"];
+                                    NSLog(@"unlockedReaction");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.dealwithit"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedDealWithIt = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedDealWithIt
+                                                                         withKey:@"Deal With It_IAP"];
+                                    NSLog(@"unlockedDealWithIt");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.cars"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedCars = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedCars
+                                                                         withKey:@"Cars_IAP"];
+                                    NSLog(@"unlockedCars");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.love"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedLove = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedLove
+                                                                         withKey:@"Love_IAP"];
+                                    NSLog(@"unlockedLove");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.beer"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedBeer = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedBeer
+                                                                         withKey:@"Beer_IAP"];
+                                    NSLog(@"unlockedBeer");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.mindblown"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedMindBlown = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedMindBlown
+                                                                         withKey:@"Mind Blown_IAP"];
+                                    NSLog(@"unlockedMindBlown");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.confused"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedConfused = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedConfused
+                                                                         withKey:@"Confused_IAP"];
+                                    NSLog(@"unlockedConfused");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.bored"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedBored = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedBored
+                                                                         withKey:@"Bored_IAP"];
+                                    NSLog(@"unlockedBored");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.tired"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedTired = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedTired
+                                                                         withKey:@"Tired_IAP"];
+                                    NSLog(@"unlockedTired");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.drunk"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedDrunk = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedDrunk
+                                                                         withKey:@"Drunk_IAP"];
+                                    NSLog(@"unlockedDrunk");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.celebrity"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedCelebrity = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedCelebrity
+                                                                         withKey:@"Celebrity_IAP"];
+                                    NSLog(@"unlockedCelebrity");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.cat"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedCat = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedCat
+                                                                         withKey:@"Cat_IAP"];
+                                    NSLog(@"unlockedCat");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.dog"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedDog = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedDog
+                                                                         withKey:@"Dog_IAP"];
+                                    NSLog(@"unlockedDog");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.dance"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedDance = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedDance
+                                                                         withKey:@"Dance_IAP"];
+                                    NSLog(@"unlockedDance");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.food"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedFood = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedFood
+                                                                         withKey:@"Food_IAP"];
+                                    NSLog(@"unlockedFood");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.hungry"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedHungry = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedHungry
+                                                                         withKey:@"Hungry_IAP"];
+                                    NSLog(@"unlockedHungry");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.sad"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedSad = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedSad
+                                                                         withKey:@"Sad_IAP"];
+                                    NSLog(@"unlockedSad");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.happy"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedHappy = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedHappy
+                                                                         withKey:@"Happy_IAP"];
+                                    NSLog(@"unlockedHappy");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.sleep"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedSleep = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedSleep
+                                                                         withKey:@"Sleep_IAP"];
+                                    NSLog(@"unlockedSleep");
+                                    [KVNProgress dismiss];
+                                }];
+    [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.feels"
+                                block:^(SKPaymentTransaction *transaction) {
+                                    self.unlockedFeels = YES;
+                                    [[Helper sharedHelper] updateUnlockedSticker:self.unlockedFeels
+                                                                         withKey:@"Feels_IAP"];
+                                    NSLog(@"unlockedFeels");
+                                    [KVNProgress dismiss];
+                                }];
 }
 
 @end

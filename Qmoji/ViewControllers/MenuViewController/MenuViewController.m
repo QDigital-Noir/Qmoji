@@ -28,10 +28,45 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    images = @[@"", @"", @"", @"", @"", @""];
-    menus = @[@"Favorite", @"Restore", @"Get more apps"];
-    categories = @[@"Trending", @"Animals", @"Sci-Fi", @"Movies", @"Funnies", @"Meme", @"Cartoons", @"Love", @"Zombies"];
-        
+    menus = @[@"Favorite", @"Unlock All GIFS", @"Restore", @"Get more apps"];
+    categories = @[@"Feels",
+                   @"Sleep",
+                   @"Happy",
+                   @"Sad",
+                   @"Hungry",
+                   @"Food",
+                   @"Dance",
+                   @"Dog",
+                   @"Cat",
+                   @"Celebrity",
+                   @"Drunk",
+                   @"Tired",
+                   @"Bored",
+                   @"Confused",
+                   @"Mind Blown",
+                   @"Beer",
+                   @"Love",
+                   @"Cars",
+                   @"Deal With It",
+                   @"Reaction",
+                   @"Emotion",
+                   @"Party",
+                   @"Cry",
+                   @"Laugh",
+                   @"Awkward",
+                   @"Face palm",
+                   @"Birthday",
+                   @"LOL",
+                   @"Kiss",
+                   @"Roll eyes",
+                   @"Thumbs up",
+                   @"Thumbs down",
+                   @"Shrug",
+                   @"Wink",
+                   @"High Five"];
+    
+//    categories = [anArray sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    
     self.menuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.menuTableView.backgroundColor = [UIColor clearColor];
     [self.menuTableView reloadData];
@@ -61,6 +96,11 @@
     return 50;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString* cellIdentifier = @"CellIdentifier";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -71,12 +111,12 @@
     if (indexPath.section == 0)
     {
         cell.textLabel.text = [menus objectAtIndex:indexPath.row];
-        cell.imageView.image = [UIImage imageNamed:[menus objectAtIndex:indexPath.row]];
+//        cell.imageView.image = [UIImage imageNamed:[menus objectAtIndex:indexPath.row]];
     }
     else
     {
         cell.textLabel.text = [categories objectAtIndex:indexPath.row];
-        cell.imageView.image = [UIImage imageNamed:[categories objectAtIndex:indexPath.row]];
+//        cell.imageView.image = [UIImage imageNamed:[categories objectAtIndex:indexPath.row]];
     }
     
     cell.textLabel.font = [UIFont fontWithName:@"JosefinSans-SemiBold" size:20.0f];
@@ -103,23 +143,35 @@
         }
         else if (indexPath.row == 1)
         {
+            // Unlock all
+            NSLog(@"Buying all : %@", [[Helper sharedHelper] getIAPIdentifierWithKey:@"All"]);
+            KVNProgressConfiguration *basicConfiguration = [[KVNProgressConfiguration alloc] init];
+            basicConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
+            basicConfiguration.fullScreen = YES;
+            [KVNProgress showWithStatus:@"Loading..."];
+            
+            [PFPurchase buyProduct:[[Helper sharedHelper] getIAPIdentifierWithKey:@"All"] block:^(NSError *error) {
+                if (!error)
+                {
+                    // Run UI logic that informs user the product has been purchased, such as displaying an alert view.
+                    NSLog(@"Unlock all gifs Success");
+                    [KVNProgress dismiss];
+                }
+                else
+                {
+                    NSLog(@"IAP Error : %@", error.localizedDescription);
+                    [KVNProgress showErrorWithStatus:@"Error"];
+                }
+            }];
+        }
+        else if (indexPath.row == 2)
+        {
             // Restore purcheased
             KVNProgressConfiguration *basicConfiguration = [[KVNProgressConfiguration alloc] init];;
             basicConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
             basicConfiguration.fullScreen = YES;
             [KVNProgress showWithStatus:@"Restoring purchased..."];
             [PFPurchase restore];
-            
-            /*
-             - IAP Integrated
-             - IAP Sandbox testiong account
-             Username : demo1@user.com
-             Password : Buzzi4me
-             - Added status once gif already copied.
-             - Added left & right arraow to navigate user to scroll left or right to see more category.
-             - Added ability to add recent git used.
-             - Added purchaes icon on gif items that unlock to use.
-            */
         }
         else
         {

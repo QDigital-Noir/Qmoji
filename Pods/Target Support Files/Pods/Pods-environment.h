@@ -66,6 +66,18 @@
 #define COCOAPODS_VERSION_MINOR_Bolts_Tasks 1
 #define COCOAPODS_VERSION_PATCH_Bolts_Tasks 5
 
+// EAIntroView
+#define COCOAPODS_POD_AVAILABLE_EAIntroView
+#define COCOAPODS_VERSION_MAJOR_EAIntroView 2
+#define COCOAPODS_VERSION_MINOR_EAIntroView 7
+#define COCOAPODS_VERSION_PATCH_EAIntroView 3
+
+// EARestrictedScrollView
+#define COCOAPODS_POD_AVAILABLE_EARestrictedScrollView
+#define COCOAPODS_VERSION_MAJOR_EARestrictedScrollView 0
+#define COCOAPODS_VERSION_MINOR_EARestrictedScrollView 1
+#define COCOAPODS_VERSION_PATCH_EARestrictedScrollView 0
+
 // Facebook-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_Facebook_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_Facebook_iOS_SDK 3

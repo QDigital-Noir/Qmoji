@@ -4,24 +4,76 @@
 <dict>
 	<key>IAP</key>
 	<dict>
+		<key>Feels</key>
+		<string>com.intencemedia.animatedgifkeyboard.feels</string>
+		<key>Sleep</key>
+		<string>com.intencemedia.animatedgifkeyboard.sleep</string>
+		<key>Happy</key>
+		<string>com.intencemedia.animatedgifkeyboard.happy</string>
+		<key>Sad</key>
+		<string>com.intencemedia.animatedgifkeyboard.sad</string>
+		<key>Hungry</key>
+		<string>com.intencemedia.animatedgifkeyboard.hungry</string>
+		<key>Food</key>
+		<string>com.intencemedia.animatedgifkeyboard.food</string>
+		<key>Dance</key>
+		<string>com.intencemedia.animatedgifkeyboard.dance</string>
+		<key>Dog</key>
+		<string>com.intencemedia.animatedgifkeyboard.dog</string>
+		<key>Cat</key>
+		<string>com.intencemedia.animatedgifkeyboard.cat</string>
+		<key>Celebrity</key>
+		<string>com.intencemedia.animatedgifkeyboard.celebrity</string>
+		<key>Drunk</key>
+		<string>com.intencemedia.animatedgifkeyboard.drunk</string>
+		<key>Tired</key>
+		<string>com.intencemedia.animatedgifkeyboard.tired</string>
+		<key>Bored</key>
+		<string>com.intencemedia.animatedgifkeyboard.bored</string>
+		<key>Confused</key>
+		<string>com.intencemedia.animatedgifkeyboard.confused</string>
+		<key>Mind Blown</key>
+		<string>com.intencemedia.animatedgifkeyboard.mindblown</string>
+		<key>Beer</key>
+		<string>com.intencemedia.animatedgifkeyboard.beer</string>
 		<key>Love</key>
 		<string>com.intencemedia.animatedgifkeyboard.love</string>
-		<key>Zombies</key>
-		<string>com.intencemedia.animatedgifkeyboard.zombies</string>
-		<key>Cartoons</key>
-		<string>com.intencemedia.animatedgifkeyboard.cartoons</string>
-		<key>Meme</key>
-		<string>com.intencemedia.animatedgifkeyboard.meme</string>
-		<key>Funnies</key>
-		<string>com.intencemedia.animatedgifkeyboard.funnies</string>
-		<key>Movies</key>
-		<string>com.intencemedia.animatedgifkeyboard.movies</string>
-		<key>Sci-Fi</key>
-		<string>com.intencemedia.animatedgifkeyboard.scifi</string>
-		<key>Animals</key>
-		<string>com.intencemedia.animatedgifkeyboard.animals</string>
-		<key>Trending</key>
-		<string>com.intencemedia.animatedgifkeyboard.trending</string>
+		<key>Cars</key>
+		<string>com.intencemedia.animatedgifkeyboard.cars</string>
+		<key>Deal With It</key>
+		<string>com.intencemedia.animatedgifkeyboard.dealwithit</string>
+		<key>Reaction</key>
+		<string>com.intencemedia.animatedgifkeyboard.reaction</string>
+		<key>Emotion</key>
+		<string>com.intencemedia.animatedgifkeyboard.emotion</string>
+		<key>Party</key>
+		<string>com.intencemedia.animatedgifkeyboard.party</string>
+		<key>Cry</key>
+		<string>com.intencemedia.animatedgifkeyboard.cry</string>
+		<key>Laugh</key>
+		<string>com.intencemedia.animatedgifkeyboard.laugh</string>
+		<key>Awkward</key>
+		<string>com.intencemedia.animatedgifkeyboard.awkward</string>
+		<key>Face palm</key>
+		<string>com.intencemedia.animatedgifkeyboard.facepalm</string>
+		<key>Birthday</key>
+		<string>com.intencemedia.animatedgifkeyboard.birthday</string>
+		<key>LOL</key>
+		<string>com.intencemedia.animatedgifkeyboard.lol</string>
+		<key>Kiss</key>
+		<string>com.intencemedia.animatedgifkeyboard.kiss</string>
+		<key>Roll eyes</key>
+		<string>com.intencemedia.animatedgifkeyboard.rolleyes</string>
+		<key>Thumbs up</key>
+		<string>com.intencemedia.animatedgifkeyboard.thumbup</string>
+		<key>Thumbs down</key>
+		<string>com.intencemedia.animatedgifkeyboard.thumbdown</string>
+		<key>Shrug</key>
+		<string>com.intencemedia.animatedgifkeyboard.shrug</string>
+		<key>Wink</key>
+		<string>com.intencemedia.animatedgifkeyboard.wink</string>
+		<key>High Five</key>
+		<string>com.intencemedia.animatedgifkeyboard.highfive</string>
 		<key>All</key>
 		<string>com.intencemedia.animatedgifkeyboard.all</string>
 	</dict>

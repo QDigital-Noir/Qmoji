@@ -4,7 +4,7 @@
 //
 //  Created by Q on 4/24/15.
 //  Copyright (c) 2015 Q. All rights reserved.
-//
+// $(PRODUCT_NAME)
 
 #import "ViewController.h"
 #import "AppDelegate.h"
@@ -28,7 +28,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     [self configView];
     [self reload:nil];
-    self.title = @"Trending";
+    self.title = AppDelegateAccessor.categoryName;
 
 //    for (NSString* family in [UIFont familyNames])
 //    {
@@ -102,7 +102,7 @@
     [KVNProgress showWithStatus:@"Loading..."];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Giphy"];
-    [query whereKey:@"category" equalTo:@"Trending"];
+    [query whereKey:@"category" equalTo:AppDelegateAccessor.categoryName];
     [query addDescendingOrder:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error)
