@@ -39,7 +39,43 @@
     [super viewDidLoad];
     
 //    // Set category array
-    self.categoryArray = @[@"Favorite", @"Recent", @"Trending", @"Animals", @"Sci-Fi", @"Movies", @"Funnies", @"Meme", @"Cartoons", @"Love", @"Zombies"];
+    self.categoryArray = @[@"Favorite",
+                           @"Recent",
+                           @"Feels",
+                           @"Sleep",
+                           @"Happy",
+                           @"Sad",
+                           @"Hungry",
+                           @"Food",
+                           @"Dance",
+                           @"Dog",
+                           @"Cat",
+                           @"Celebrity",
+                           @"Drunk",
+                           @"Tired",
+                           @"Bored",
+                           @"Confused",
+                           @"Mind Blown",
+                           @"Beer",
+                           @"Love",
+                           @"Cars",
+                           @"Deal With It",
+                           @"Reaction",
+                           @"Emotion",
+                           @"Party",
+                           @"Cry",
+                           @"Laugh",
+                           @"Awkward",
+                           @"Face palm",
+                           @"Birthday",
+                           @"LOL",
+                           @"Kiss",
+                           @"Roll eyes",
+                           @"Thumbs up",
+                           @"Thumbs down",
+                           @"Shrug",
+                           @"Wink",
+                           @"High Five"];
     
     // Setup data
     self.dataArray = [[Helper sharedHelper] getUserCollection];
