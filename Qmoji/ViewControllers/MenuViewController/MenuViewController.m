@@ -182,17 +182,9 @@
     }
     else
     {
-        if (indexPath.row == 0)
-        {
-            [[AppDelegate mainDelegate] setFirstView];
-            AppDelegateAccessor.categoryName = @"Trending";
-        }
-        else
-        {
-            AppDelegateAccessor.categoryName = categories[indexPath.row];
-            [[AppDelegate mainDelegate] setCateView];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGED_CATEGORY" object:nil];
-        }
+        AppDelegateAccessor.categoryName = categories[indexPath.row];
+        [[AppDelegate mainDelegate] setCateView];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGED_CATEGORY" object:nil];
     }
 }
 

@@ -25,7 +25,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self reload:nil];
+
     if (AppDelegateAccessor.isFromTrendingScreen)
     {
         [self reload:nil];
@@ -41,12 +42,14 @@
 {
     // Add notification observer
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload:) name:@"CHANGED_CATEGORY" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload:) name:@"REDIRECT_CATEGORY" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 /*

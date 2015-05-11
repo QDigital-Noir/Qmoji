@@ -10,8 +10,6 @@
 		1012AB671AEB73C8003659EE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1012AB661AEB73C8003659EE /* libPods.a */; };
 		10214DC11AECF1FC00BD56A3 /* APIClientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 10214DC01AECF1FC00BD56A3 /* APIClientHelper.m */; };
 		10214DC51AECFDB400BD56A3 /* GiphyObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 10214DC41AECFDB400BD56A3 /* GiphyObj.m */; };
-		10214DC91AED1CA700BD56A3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10214DC81AED1CA700BD56A3 /* ViewController.m */; };
-		10214DCD1AED240400BD56A3 /* MainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10214DCC1AED240400BD56A3 /* MainCollectionViewCell.m */; };
 		10214DD01AED336000BD56A3 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 10214DCF1AED336000BD56A3 /* Helper.m */; };
 		103F9E5C1AEE84840089BE34 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 103F9E5B1AEE84840089BE34 /* CollectionViewController.m */; };
 		103F9E5F1AEE84DB0089BE34 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 103F9E5E1AEE84DB0089BE34 /* CategoryViewController.m */; };
@@ -103,10 +101,6 @@
 		10214DC01AECF1FC00BD56A3 /* APIClientHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClientHelper.m; sourceTree = "<group>"; };
 		10214DC31AECFDB400BD56A3 /* GiphyObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiphyObj.h; sourceTree = "<group>"; };
 		10214DC41AECFDB400BD56A3 /* GiphyObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiphyObj.m; sourceTree = "<group>"; };
-		10214DC71AED1CA700BD56A3 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		10214DC81AED1CA700BD56A3 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		10214DCB1AED240400BD56A3 /* MainCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCollectionViewCell.h; sourceTree = "<group>"; };
-		10214DCC1AED240400BD56A3 /* MainCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCollectionViewCell.m; sourceTree = "<group>"; };
 		10214DCE1AED336000BD56A3 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		10214DCF1AED336000BD56A3 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		103F9E5A1AEE84840089BE34 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
@@ -227,25 +221,6 @@
 				10214DC41AECFDB400BD56A3 /* GiphyObj.m */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		10214DC61AED1C5500BD56A3 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				10214DCA1AED23B500BD56A3 /* Cell */,
-				10214DC71AED1CA700BD56A3 /* ViewController.h */,
-				10214DC81AED1CA700BD56A3 /* ViewController.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		10214DCA1AED23B500BD56A3 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				10214DCB1AED240400BD56A3 /* MainCollectionViewCell.h */,
-				10214DCC1AED240400BD56A3 /* MainCollectionViewCell.m */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		103F9E581AEE83CA0089BE34 /* CollectionController */ = {
@@ -409,7 +384,6 @@
 			children = (
 				103F9E591AEE840D0089BE34 /* CategoryController */,
 				103F9E581AEE83CA0089BE34 /* CollectionController */,
-				10214DC61AED1C5500BD56A3 /* ViewController */,
 				10C83DEC1AEB98EF003FD03F /* MenuViewController */,
 			);
 			path = ViewControllers;
@@ -659,7 +633,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10214DC91AED1CA700BD56A3 /* ViewController.m in Sources */,
 				105E33B31AEA86FC005740F9 /* AppDelegate.m in Sources */,
 				10C83DF31AEB9BAF003FD03F /* MenuTableViewCell.m in Sources */,
 				103F9E5F1AEE84DB0089BE34 /* CategoryViewController.m in Sources */,
@@ -673,7 +646,6 @@
 				10214DD01AED336000BD56A3 /* Helper.m in Sources */,
 				103F9E641AEE85310089BE34 /* UserCollectionViewCell.m in Sources */,
 				103F9E5C1AEE84840089BE34 /* CollectionViewController.m in Sources */,
-				10214DCD1AED240400BD56A3 /* MainCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

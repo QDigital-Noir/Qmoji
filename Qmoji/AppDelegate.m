@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "MenuViewController.h"
-#import "ViewController.h"
 #import "CategoryViewController.h"
 #import "CollectionViewController.h"
 #import <Crashlytics/Crashlytics.h>
@@ -354,7 +353,7 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
     menuVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
     menuVC.view.backgroundColor = [UIColor clearColor];
-    navMain = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"MainNavController"];
+    navMain = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"categoryVC"];
     rootView = navMain.view;
     
     self.slideMenuVC.menuViewController = menuVC;
@@ -515,17 +514,6 @@
 
 + (AppDelegate *)mainDelegate {
     return (AppDelegate *)[UIApplication sharedApplication].delegate;
-}
-
-- (void)setFirstView
-{
-    if (!navMain)
-    {
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-        navMain = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"ViewController"];
-    }
-    
-    self.slideMenuVC.mainViewController = navMain;
 }
 
 - (void)setCateView

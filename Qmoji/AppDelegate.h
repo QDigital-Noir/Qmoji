@@ -56,7 +56,6 @@
 @property (nonatomic, strong) NSString *categoryName;
 
 + (AppDelegate *)mainDelegate;
-- (void)setFirstView;
 - (void)setCateView;
 - (void)setCollectionView;
 
