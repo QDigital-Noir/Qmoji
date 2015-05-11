@@ -361,7 +361,7 @@
                 }
                 
                 self.qmojiKeyboard.collectionView.alpha = 0;
-                [self performSelector:@selector(showCollectionView:) withObject:dict afterDelay:2.0];
+                [self performSelector:@selector(showCollectionView:) withObject:dict afterDelay:3.0];
             });
         });
     }
@@ -370,6 +370,17 @@
         if (isLock)
         {
             NSLog(@"Need to unlock!!!!!!");
+            self.qmojiKeyboard.statusLabel.text = @"Unlock in the containing app.";
+            self.qmojiKeyboard.statusLabel.hidden = NO;
+            self.qmojiKeyboard.collectionView.alpha = 0;
+            
+            UIWebView * webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+            NSString *urlString = [NSString stringWithFormat:@"gifKeyboard://?categoryName=%@", self.categoryName];
+            NSString * content = [NSString stringWithFormat : @"<head><meta http-equiv='refresh' content='0; URL=%@'></head>", urlString];
+            [webView loadHTMLString:content baseURL:nil];
+            [self.qmojiKeyboard addSubview:webView];
+            [webView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:1.0];
+            [self performSelector:@selector(showCollectionView2:) withObject:dict afterDelay:3.0];
         }
         else
         {
@@ -405,6 +416,7 @@
 {
     self.qmojiKeyboard.collectionView.alpha = 1;
     self.qmojiKeyboard.statusLabel.hidden = YES;
+    self.qmojiKeyboard.statusLabel.text = @"Copied. Now paste in message";
     
     // Update user collection.
     NSMutableArray *recentArray = [NSMutableArray arrayWithArray:[[Helper sharedHelper] getRecentUsed]];
@@ -420,6 +432,13 @@
     
     [recentArray addObject:obj];
     [[Helper sharedHelper] updateRecentUsedWithArray:recentArray];
+}
+
+- (void)showCollectionView2:(NSDictionary *)obj
+{
+    self.qmojiKeyboard.collectionView.alpha = 1;
+    self.qmojiKeyboard.statusLabel.hidden = YES;
+    self.qmojiKeyboard.statusLabel.text = @"Copied. Now paste in message";
 }
 
 @end

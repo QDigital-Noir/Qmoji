@@ -818,6 +818,7 @@
 			baseConfigurationReference = 271F6D1A70E3F5C7576154B2 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Qmoji/Qmoji.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Alan Dang (J2EG24V3F8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alan Dang (J2EG24V3F8)";
@@ -839,6 +840,7 @@
 			baseConfigurationReference = 3F45852CDF787F419CE16EC1 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Qmoji/Qmoji.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: intence media, LLC (UH5VVTMLZZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: intence media, LLC (UH5VVTMLZZ)";

@@ -234,8 +234,8 @@
         if (isLock)
         {
             NSLog(@"Need to unlock!!!!!!");
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Animated Gif Keyboard"
-                                                            message:@"This gif need to unlock."
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"GIF Keyboard"
+                                                            message:@"Unlock all GIFS in category for $0.99"
                                                            delegate:self
                                                   cancelButtonTitle:@"No, Thank you"
                                                   otherButtonTitles:@"Unlock now!", nil];

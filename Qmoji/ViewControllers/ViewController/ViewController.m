@@ -28,7 +28,8 @@
     // Do any additional setup after loading the view, typically from a nib.
     [self configView];
     [self reload:nil];
-    self.title = AppDelegateAccessor.categoryName;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload:) name:@"REDIRECT_CATEGORY" object:nil];
 
 //    for (NSString* family in [UIFont familyNames])
 //    {
@@ -44,6 +45,7 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];                      
     // Dispose of any resources that can be recreated.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Setup view.
@@ -60,6 +62,7 @@
 
 - (void)reload:(__unused id)sender
 {
+    self.title = AppDelegateAccessor.categoryName;
     self.navigationItem.rightBarButtonItem.enabled = NO;
 //    NSURLSessionTask *task = [GiphyObj trendingGiphyWithBlock:^(NSArray *posts, NSError *error) {
 //        if (!error && posts.count != 0)
@@ -211,8 +214,8 @@
         if (isLock)
         {
             NSLog(@"Need to unlock!!!!!!");
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Animated Gif Keyboard"
-                                                            message:@"This gif need to unlock."
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"GIF Keyboard"
+                                                            message:@"Unlock all GIFS in category for $0.99"
                                                            delegate:self
                                                   cancelButtonTitle:@"No, Thank you"
                                                   otherButtonTitles:@"Unlock now!", nil];

@@ -36,7 +36,7 @@
 
 - (void)setup {
     
-    _distanceOpenMenu = 210.0f;
+    _distanceOpenMenu = 245.0f;
     
     self.view.backgroundColor = [UIColor blackColor];
     

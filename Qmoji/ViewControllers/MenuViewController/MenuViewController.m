@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    menus = @[@"Favorite", @"Unlock All GIFS", @"Restore", @"Get more apps"];
+    menus = @[@"Favorite", @"Unlock all gifs for $4.99", @"Restore", @"Get more apps"];
     categories = @[@"Feels",
                    @"Sleep",
                    @"Happy",

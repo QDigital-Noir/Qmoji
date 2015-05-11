@@ -13,13 +13,14 @@
 #import "CollectionViewController.h"
 #import <Crashlytics/Crashlytics.h>
 
-
-@interface AppDelegate ()
+@interface AppDelegate () <EAIntroDelegate>
 {
     MenuViewController *menuVC;
     CategoryViewController *categoryVC;
     CollectionViewController *collectionVC;
     UINavigationController *navMain;
+    UIView *rootView;
+    EAIntroView *_intro;
 }
 @end
 
@@ -44,168 +45,6 @@
     [application registerForRemoteNotifications];
     
     // IAP
-    [self setupIAP];
-
-    // Setup navigationbar style
-    NSShadow *shadow = [[NSShadow alloc] init];
-    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
-    shadow.shadowOffset = CGSizeMake(0, 1);
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]]; // Set bar button color
-    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]]; // Set bar background color
-    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
-                                                           shadow, NSShadowAttributeName,
-                                                           [UIFont fontWithName:@"JosefinSans-Bold" size:26.0], NSFontAttributeName, nil]];
-    
-    // Setup menu.
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.slideMenuVC = [[HKSlideMenu3DController alloc] init];
-    self.slideMenuVC.view.frame =  [[UIScreen mainScreen] bounds];
-    
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    menuVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
-    menuVC.view.backgroundColor = [UIColor clearColor];
-    navMain = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"MainNavController"];
-    
-    self.slideMenuVC.menuViewController = menuVC;
-    self.slideMenuVC.mainViewController = navMain;
-    self.slideMenuVC.backgroundImage = [UIImage imageNamed:@"cloud"];
-    self.slideMenuVC.backgroundImageContentMode = UIViewContentModeTopLeft;
-    self.slideMenuVC.enablePan = NO;
-    [self.window setRootViewController:self.slideMenuVC];
-    [self.window makeKeyAndVisible];
-    
-    AppDelegateAccessor.categoryName = @"Feels";
-    
-    // Setup data
-    NSUserDefaults *userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.intencemedia.animatedgifkeyboard"];
-    if ([userDefault objectForKey:@"FIRST_INSTALL"] == nil)
-    {
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Feels"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Sleep"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Happy"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Sad"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Hungry"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Food"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Dance"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Dog"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Cat"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Celebrity"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Drunk"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Tired"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Bored"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Confused"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Mind Blown"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Beer"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Love"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Cars"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Deal With It"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Reaction"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Emotion"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Party"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Cry"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Laugh"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Awkward"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Face palm"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Birthday"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"LOL"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Kiss"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Roll eyes"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Thumbs up"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Thumbs down"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Shrug"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Wink"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"High Five"];
-        
-        
-        [userDefault setObject:[NSNumber numberWithBool:YES] forKey:@"FIRST_INSTALL"];
-        NSLog(@"First install");
-    }
-    else
-    {
-        NSLog(@"ALready install");
-    }
-    
-    return YES;
-}
-
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    // Store the deviceToken in the current installation and save it to Parse.
-    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    [currentInstallation setDeviceTokenFromData:deviceToken];
-    [currentInstallation saveInBackground];
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
-}
-
-+ (AppDelegate *)mainDelegate {
-    return (AppDelegate *)[UIApplication sharedApplication].delegate;
-}
-
-- (void)setFirstView
-{
-    if (!navMain)
-    {
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-        navMain = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"ViewController"];
-    }
-    
-    self.slideMenuVC.mainViewController = navMain;
-}
-
-- (void)setCateView
-{
-    if (!categoryVC)
-    {
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-        categoryVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"CategoryViewController"];
-    }
-    
-    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:categoryVC];
-    self.slideMenuVC.mainViewController = navVC;
-}
-
-- (void)setCollectionView
-{
-    if (!collectionVC)
-    {
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-        collectionVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"CollectionViewController"];
-    }
-    
-    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:collectionVC];
-    self.slideMenuVC.mainViewController = navVC;
-}
-
-#pragma mark - IAP Method
-
-- (void)setupIAP
-{
-    // IAP Setup
     [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.all"
                                 block:^(SKPaymentTransaction *transaction) {
                                     self.unlockedAll = YES;
@@ -494,6 +333,222 @@
                                     NSLog(@"unlockedFeels");
                                     [KVNProgress dismiss];
                                 }];
+    
+
+    // Setup navigationbar style
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+    shadow.shadowOffset = CGSizeMake(0, 1);
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]]; // Set bar button color
+    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]]; // Set bar background color
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
+                                                           shadow, NSShadowAttributeName,
+                                                           [UIFont fontWithName:@"JosefinSans-Bold" size:26.0], NSFontAttributeName, nil]];
+    
+    // Setup menu.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.slideMenuVC = [[HKSlideMenu3DController alloc] init];
+    self.slideMenuVC.view.frame =  [[UIScreen mainScreen] bounds];
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    menuVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
+    menuVC.view.backgroundColor = [UIColor clearColor];
+    navMain = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"MainNavController"];
+    rootView = navMain.view;
+    
+    self.slideMenuVC.menuViewController = menuVC;
+    self.slideMenuVC.mainViewController = navMain;
+    self.slideMenuVC.backgroundImage = [UIImage imageNamed:@"cloud"];
+    self.slideMenuVC.backgroundImageContentMode = UIViewContentModeTopLeft;
+    self.slideMenuVC.enablePan = NO;
+    [self.window setRootViewController:self.slideMenuVC];
+    [self.window makeKeyAndVisible];
+    
+    AppDelegateAccessor.categoryName = @"Feels";
+    
+    // Setup data
+    NSUserDefaults *userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.intencemedia.animatedgifkeyboard"];
+    if ([userDefault objectForKey:@"FIRST_INSTALL"] == nil)
+    {
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Feels"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Sleep"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Happy"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Sad"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Hungry"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Food"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Dance"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Dog"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Cat"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Celebrity"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Drunk"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Tired"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Bored"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Confused"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Mind Blown"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Beer"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Love"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Cars"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Deal With It"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Reaction"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Emotion"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Party"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Cry"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Laugh"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Awkward"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Face palm"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Birthday"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"LOL"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Kiss"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Roll eyes"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Thumbs up"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Thumbs down"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Shrug"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"Wink"];
+        [[Helper sharedHelper] setupDataWithCategoryName:@"High Five"];
+        
+        
+        [userDefault setObject:[NSNumber numberWithBool:YES] forKey:@"FIRST_INSTALL"];
+        NSLog(@"First install");
+        
+    }
+    else
+    {
+        NSLog(@"ALready install");
+    }
+    
+    EAIntroPage *page1 = [EAIntroPage page];
+    page1.title = @"";
+    page1.desc = @"";
+    page1.bgImage = [UIImage imageNamed:@"Screenshot1"];
+    page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title1"]];
+    
+    EAIntroPage *page2 = [EAIntroPage page];
+    page2.title = @"";
+    page2.desc = @"";
+    page2.bgImage = [UIImage imageNamed:@"Screenshot2"];
+    page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title2"]];
+    
+    EAIntroPage *page3 = [EAIntroPage page];
+    page3.title = @"";
+    page3.desc = @"";
+    page3.bgImage = [UIImage imageNamed:@"Screenshot3"];
+    page3.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title3"]];
+    
+    EAIntroPage *page4 = [EAIntroPage page];
+    page4.title = @"";
+    page4.desc = @"";
+    page4.bgImage = [UIImage imageNamed:@"Screenshot4"];
+    page4.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title4"]];
+    
+    EAIntroPage *page5 = [EAIntroPage page];
+    page5.title = @"";
+    page5.desc = @"";
+    page5.bgImage = [UIImage imageNamed:@"Screenshot5"];
+    page5.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title4"]];
+    
+    EAIntroPage *page6 = [EAIntroPage page];
+    page6.title = @"";
+    page6.desc = @"";
+    page6.bgImage = [UIImage imageNamed:@"Screenshot6"];
+    page6.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title4"]];
+    
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4,page5,page6]];
+    [intro setDelegate:self];
+    [intro showInView:rootView animateDuration:0.3];
+    
+    return YES;
 }
 
+- (void)applicationWillResignActive:(UIApplication *)application {
+    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    // Check the calling application Bundle ID
+    if (url != nil)
+    {
+        NSLog(@"URL scheme: %@", [url scheme]);
+        NSLog(@"URL query: %@", [url query]);
+        NSArray *array = [[url query] componentsSeparatedByString:@"="];
+        NSLog(@"%@ : %@", array[0], array[1]);
+        AppDelegateAccessor.categoryName = array[1];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"REDIRECT_CATEGORY" object:nil];
+        return YES;
+    }
+    else
+        return NO;
+}
+
++ (AppDelegate *)mainDelegate {
+    return (AppDelegate *)[UIApplication sharedApplication].delegate;
+}
+
+- (void)setFirstView
+{
+    if (!navMain)
+    {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        navMain = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"ViewController"];
+    }
+    
+    self.slideMenuVC.mainViewController = navMain;
+}
+
+- (void)setCateView
+{
+    if (!categoryVC)
+    {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        categoryVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"CategoryViewController"];
+    }
+    
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:categoryVC];
+    self.slideMenuVC.mainViewController = navVC;
+}
+
+- (void)setCollectionView
+{
+    if (!collectionVC)
+    {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        collectionVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"CollectionViewController"];
+    }
+    
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:collectionVC];
+    self.slideMenuVC.mainViewController = navVC;
+}
 @end
