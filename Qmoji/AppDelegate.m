@@ -34,15 +34,6 @@
     [Parse setApplicationId:@"VGBTWz7FYeSVcRq12XixARL7nQGOo08EADw92L8a"
                   clientKey:@"CW1d0mJAGTjBhvgLBs1WEay92o9reViZgtP76eZD"];
     
-    // Register for Push Notitications
-    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
-                                                    UIUserNotificationTypeBadge |
-                                                    UIUserNotificationTypeSound);
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
-                                                                             categories:nil];
-    [application registerUserNotificationSettings:settings];
-    [application registerForRemoteNotifications];
-    
     // IAP
     [PFPurchase addObserverForProduct:@"com.intencemedia.animatedgifkeyboard.all"
                                 block:^(SKPaymentTransaction *transaction) {
@@ -452,7 +443,19 @@
     page6.bgImage = [UIImage imageNamed:@"Screenshot6"];
     page6.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title4"]];
     
-    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4,page5,page6]];
+    EAIntroPage *page7 = [EAIntroPage page];
+    page7.title = @"";
+    page7.desc = @"";
+    page7.bgImage = [UIImage imageNamed:@"Screenshot7"];
+    page7.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title4"]];
+    
+    EAIntroPage *page8 = [EAIntroPage page];
+    page8.title = @"";
+    page8.desc = @"";
+    page8.bgImage = [UIImage imageNamed:@"Screenshot8"];
+    page8.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title4"]];
+    
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4,page5,page6,page7,page8]];
     [intro setDelegate:self];
     [intro showInView:rootView animateDuration:0.3];
     
@@ -479,17 +482,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    // Store the deviceToken in the current installation and save it to Parse.
-    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    [currentInstallation setDeviceTokenFromData:deviceToken];
-    [currentInstallation saveInBackground];
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
 }
 
 - (BOOL)application:(UIApplication *)application

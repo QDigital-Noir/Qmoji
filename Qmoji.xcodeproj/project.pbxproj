@@ -825,7 +825,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ca596a2b-11ca-459b-85b6-f8403198b99b";
+				PROVISIONING_PROFILE = "7e1fcbe9-1299-44e0-8ac7-a8858a7d5f86";
 			};
 			name = Release;
 		};
@@ -912,7 +912,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3f872415-4434-49cf-ab4a-de0b5b6ef9ee";
+				PROVISIONING_PROFILE = "ed3b0aca-3683-4045-8430-af85dce6369c";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
