@@ -31,6 +31,7 @@ PODS:
   - EARestrictedScrollView (0.1.0)
   - Facebook-iOS-SDK (3.23.2):
     - Bolts (~> 1.0)
+  - FLAnimatedImage (1.0.8)
   - KVNProgress (2.2.1)
   - Parse (1.7.1):
     - Bolts (~> 1.1)
@@ -45,6 +46,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
   - EAIntroView (~> 2.7.0)
+  - FLAnimatedImage (~> 1.0)
   - KVNProgress (~> 2.2.1)
   - Parse (~> 1.7.1)
   - ParseFacebookUtils (~> 1.7.1)
@@ -57,6 +59,7 @@ SPEC CHECKSUMS:
   EAIntroView: bedde44388280d71c9798ce36c82720901596355
   EARestrictedScrollView: 5ab3eadd9ea55282cc72df0daecb09803059e3a0
   Facebook-iOS-SDK: cd87f0b2f0c1d9574b44e8fa2baacc275524bac3
+  FLAnimatedImage: f9422f796135aff80d8c00b2afc48015bb746e24
   KVNProgress: 7001d2d16a2755cee5599e8e485befe056f2197b
   Parse: fa8ec29de6d82035635986c11946299fb1b38316
   ParseFacebookUtils: fa09adf78372b589163b5a71a34d6ebc7eb83395

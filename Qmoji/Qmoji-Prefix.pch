@@ -21,6 +21,7 @@
 #import "IAPHelper.h"
 #import "Helper.h"
 #import <EAIntroView/EAIntroView.h>
+#import "FLAnimatedImage.h"
 
 
 #define GiphyPublicKey "dc6zaTOxFJmzC"

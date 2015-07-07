@@ -12,14 +12,17 @@
 
 - (void)setImageWithURL:(NSString *)urlString andIsPaid:(BOOL)isLock andCateName:(NSString *)cateName
 {
-    NSLog(@"urlString : %@", urlString);
-    
 //    [self.image1 sd_setImageWithURL:[NSURL URLWithString:urlString]
 //                   placeholderImage:[UIImage imageNamed:@"placeholder"]
 //                            options:SDWebImageRefreshCached];
     
-    self.image1.image = [UIImage imageNamed:@"1PUzYSVDY7Nug.gif"];
-    self.image1.contentMode = UIViewContentModeScaleAspectFill;
+    NSArray *filepath = [urlString componentsSeparatedByString:@"."];
+    
+    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:filepath[0] ofType:@"gif"]]];
+    FLAnimatedImageView *imageView = [[FLAnimatedImageView alloc] init];
+    imageView.animatedImage = image;
+    imageView.frame = CGRectMake(0.0, 0.0, self.image1.frame.size.width, self.image1.frame.size.height);
+    [self.image1 addSubview:imageView];
     
     BOOL isUnlock = [[Helper sharedHelper] getUnlockedStickerWithKey:cateName];
     BOOL isUnlockAll = [[Helper sharedHelper] getUnlockedStickerWithKey:@"All"];

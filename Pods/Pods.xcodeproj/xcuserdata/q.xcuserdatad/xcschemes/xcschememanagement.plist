@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-FLAnimatedImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Facebook-iOS-SDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,52 +62,57 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4D6A5DBE862AF33879150785</key>
+		<key>175A139B1A0FBD679DDF4B1D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>51B72D7556ECCE5E0361EA55</key>
+		<key>1E8114F75281E0B42DBBA062</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6F2C1A16B779B4971EA85651</key>
+		<key>3BFA57D4E4D1AB3CB2D20CA2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>76E241D706EBC487C5D3C5D5</key>
+		<key>5A971CABB152D0365CD81FF6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7D2FD3DCD72E2457D3584507</key>
+		<key>5C5650D2F9EA0BD9E886EAE9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>947FB323C11DCE8440CD1B63</key>
+		<key>A31F8FDBCA8AF091DDC95DE5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AF7A243C7A1F08E16CF5505D</key>
+		<key>B25CAEFFE9B24F2874805721</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E1D13340D51171525D2DCAB9</key>
+		<key>D99FB78CEEFF951D553A1E2E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E367DD6A7C73AE1F6EC91A2C</key>
+		<key>ECD514B5CA17E096EFB22BDF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FCB51784FF9492F0E721ECC4</key>
+		<key>F03D1CD49DFA15D83E4AF8D1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FC3AA22B74CB3B34664E4407</key>
 		<dict>
 			<key>primary</key>
 			<true/>
