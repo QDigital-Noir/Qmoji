@@ -12,9 +12,13 @@
 
 - (void)setImageWithURL:(NSString *)urlString andIsPaid:(BOOL)isLock andCateName:(NSString *)cateName
 {
-    [self.image1 sd_setImageWithURL:[NSURL URLWithString:urlString]
-                   placeholderImage:[UIImage imageNamed:@"placeholder"]
-                            options:SDWebImageRefreshCached];
+    NSLog(@"urlString : %@", urlString);
+    
+//    [self.image1 sd_setImageWithURL:[NSURL URLWithString:urlString]
+//                   placeholderImage:[UIImage imageNamed:@"placeholder"]
+//                            options:SDWebImageRefreshCached];
+    
+    self.image1.image = [UIImage imageNamed:@"1PUzYSVDY7Nug.gif"];
     self.image1.contentMode = UIViewContentModeScaleAspectFill;
     
     BOOL isUnlock = [[Helper sharedHelper] getUnlockedStickerWithKey:cateName];

@@ -128,6 +128,7 @@
 //    [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
 //    [self.refreshControl setRefreshingWithStateOfTask:task];
     
+    /*
     PFQuery *query = [PFQuery queryWithClassName:@"Giphy"];
     [query whereKey:@"category" equalTo:AppDelegateAccessor.categoryName];
     [query addDescendingOrder:@"createdAt"];
@@ -166,7 +167,12 @@
             [KVNProgress dismiss];
         }
     }];
-}
+    */
+    
+    self.gifArray = [NSArray arrayWithArray:[[Helper sharedHelper] getCategoryData:AppDelegateAccessor.categoryName]];
+    [self.gifCollectionVIew reloadData];
+    [KVNProgress dismiss];
+    [self.refreshControl endRefreshing];}
 
 #pragma mark - Button Methods
 - (IBAction)menuAction:(id)sender

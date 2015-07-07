@@ -358,54 +358,23 @@
     AppDelegateAccessor.categoryName = @"Feels";
     
     // Setup data
-    NSUserDefaults *userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.intencemedia.animatedgifkeyboard"];
-    if ([userDefault objectForKey:@"FIRST_INSTALL"] == nil)
-    {
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Feels"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Sleep"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Happy"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Sad"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Hungry"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Food"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Dance"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Dog"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Cat"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Celebrity"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Drunk"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Tired"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Bored"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Confused"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Mind Blown"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Beer"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Love"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Cars"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Deal With It"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Reaction"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Emotion"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Party"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Cry"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Laugh"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Awkward"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Face palm"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Birthday"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"LOL"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Kiss"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Roll eyes"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Thumbs up"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Thumbs down"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Shrug"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"Wink"];
-        [[Helper sharedHelper] setupDataWithCategoryName:@"High Five"];
-        
-        
-        [userDefault setObject:[NSNumber numberWithBool:YES] forKey:@"FIRST_INSTALL"];
-        NSLog(@"First install");
-        
-    }
-    else
-    {
-        NSLog(@"ALready install");
-    }
+    
+//    if ([[Helper sharedHelper] connectedToNetwork])
+//    {
+//        NSLog(@"APP CONNECTED WITH INTERNET");
+//        [[Helper sharedHelper] setupInitialData];
+//    }
+//    else
+//    {
+        NSLog(@"APP NOT CONNECTED WITH INTERNET");
+        [[Helper sharedHelper] setupInitialOfflineData];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"GIF KEYBOARD"
+//                                                        message:@"Can't connect. Please check your internet Connection"
+//                                                       delegate:nil
+//                                              cancelButtonTitle:@"OK"
+//                                              otherButtonTitles:nil];
+//        [alert show];
+//    }
     
     EAIntroPage *page1 = [EAIntroPage page];
     page1.title = @"";
@@ -458,6 +427,70 @@
     EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4,page5,page6,page7,page8]];
     [intro setDelegate:self];
     [intro showInView:rootView animateDuration:0.3];
+    
+    /*
+    // Query url and download
+    PFQuery *query = [PFQuery queryWithClassName:@"Giphy"];
+    [query setLimit:1000];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error)
+        {
+            //success
+            
+            NSLog(@"count object found : %lu", (unsigned long)objects.count);
+            
+            if (!error)
+            {
+                if (objects != nil && objects.count != 0)
+                {
+                    // success
+                    
+                    for (PFObject *obj in objects)
+                    {
+                        NSString *stringURL = obj[@"giphyFixedWidth"];
+                        NSString *fileName = [NSString stringWithFormat:@"%@.gif", obj[@"giphyID"]];
+                        NSURL  *url = [NSURL URLWithString:stringURL];
+                        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                        NSString *documentsDirectory = [paths objectAtIndex:0];
+                        NSString *folderPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@/", obj[@"category"]]];
+                        NSFileManager *fileManager  = [NSFileManager defaultManager];
+                        
+                        NSError *error = nil;
+                        if (![fileManager fileExistsAtPath:folderPath])
+                        {
+                            [fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:NO attributes:nil error:&error];
+                        }
+                        NSString *filePath = [folderPath stringByAppendingPathComponent:fileName];
+                        
+                        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+                        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                            if (error) {
+                                NSLog(@"Download Error:%@",error.description);
+                            }
+                            if (data) {
+                                [data writeToFile:filePath atomically:YES];
+                                NSLog(@"File is saved to %@",filePath);
+                            }
+                        }];
+                    }
+                }
+                else
+                {
+                    // success but not found
+                }
+            }
+            else
+            {
+                // error
+            }
+        }
+        else
+        {
+            //error
+        }
+    }];
+     
+    */
     
     return YES;
 }
@@ -530,5 +563,21 @@
     
     UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:collectionVC];
     self.slideMenuVC.mainViewController = navVC;
+}
+
+- (NSURL *)audioRecordingPath:(NSString *)fileName
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+    NSString *folderPath = [documentsDirectory stringByAppendingPathComponent:@"/Recorded"];
+    NSFileManager *fileManager  = [NSFileManager defaultManager];
+    
+    NSError *error = nil;
+    if (![fileManager fileExistsAtPath:folderPath])
+        [fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:NO attributes:nil error:&error]; //Create folder
+    
+    NSString *filePath = [folderPath stringByAppendingPathComponent:fileName];
+    
+    return [NSURL fileURLWithPath:filePath];
 }
 @end

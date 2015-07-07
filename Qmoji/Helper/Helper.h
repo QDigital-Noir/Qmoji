@@ -25,5 +25,8 @@
 - (void)setupDataWithCategoryName:(NSString *)catename;
 - (void)updateRecentUsedWithArray:(NSMutableArray *)collectionArray;
 - (NSArray *)getRecentUsed;
-
+- (BOOL)connectedToNetwork;
+- (void)setupInitialData;
+- (void)setupOfflineWithCategoryName:(NSString *)catename;
+- (void)setupInitialOfflineData;
 @end
